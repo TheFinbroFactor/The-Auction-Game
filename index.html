@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Auction Wars</title>
+<style>
+  :root{
+    --bg:#07070c;
+    --panel:rgba(255,255,255,.045);
+    --border:rgba(255,255,255,.09);
+    --gold:#fbbf24;
+    --green:#34d399;
+    --red:#f87171;
+    --text:#f4f4f6;
+    --muted:#8b8b9a;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    background-image:
+      radial-gradient(circle at 15% -5%, rgba(99,102,241,.28) 0%, transparent 45%),
+      radial-gradient(circle at 90% 105%, rgba(168,85,247,.22) 0%, transparent 45%);
+    background-attachment:fixed;
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    padding:18px 14px 34px;
+    min-height:100%;
+  }
+  .app{width:100%;max-width:520px}
+  .screen{display:none;animation:fade .3s ease}
+  .screen.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* ---------- shared ---------- */
+  .logo{
+    font-size:34px;font-weight:900;letter-spacing:2px;text-align:center;
+    margin:14px 0 2px;line-height:1;
+  }
+  .logo span{
+    background:linear-gradient(90deg,#fbbf24,#f59e0b,#fde68a);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .tagline{text-align:center;color:var(--muted);font-size:13px;margin:8px 0 22px;letter-spacing:.4px}
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:14px;
+    margin-bottom:12px;
+  }
+  .label{
+    font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;
+    color:var(--muted);margin-bottom:10px;
+    display:flex;justify-content:space-between;align-items:center;gap:8px;
+  }
+  .label .hint{font-size:10px;letter-spacing:.4px;text-transform:none;font-weight:600}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+  .btn-primary{
+    width:100%;padding:17px;border-radius:16px;font-size:16px;font-weight:900;letter-spacing:1px;
+    background:linear-gradient(135deg,#fbbf24,#f59e0b);
+    color:#1a1206;box-shadow:0 8px 26px rgba(251,191,36,.28);
+    transition:transform .1s;
+  }
+  .btn-primary:active{transform:scale(.98)}
+  .btn-primary:disabled{opacity:.4;box-shadow:none}
+  .rules{color:var(--muted);font-size:11.5px;text-align:center;line-height:1.6;margin:14px 4px 0}
+  .muted{color:var(--muted)}
+
+  /* ---------- setup : packs ---------- */
+  .pack-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .pack{
+    position:relative;
+    padding:11px 8px;border-radius:12px;font-size:12.5px;font-weight:700;
+    background:rgba(255,255,255,.05);border:1px solid var(--border);
+    color:var(--text);transition:.15s;text-align:left;
+    display:flex;flex-direction:column;gap:3px;line-height:1.25;
+  }
+  .pack.sel{background:rgba(251,191,36,.16);border-color:var(--gold);color:var(--gold)}
+  .pack .pcount{font-size:9.5px;font-weight:700;color:var(--muted);letter-spacing:.5px}
+  .pack.sel .pcount{color:rgba(251,191,36,.75)}
+  .pack.new{
+    border-style:dashed;border-color:rgba(255,255,255,.22);
+    align-items:center;justify-content:center;text-align:center;color:var(--muted);
+    font-weight:800;letter-spacing:.5px;min-height:52px;
+  }
+  .pack.new:active{background:rgba(255,255,255,.1)}
+  .pack-actions{display:flex;gap:6px;margin-top:10px}
+  .mini-btn{
+    flex:1;padding:9px;border-radius:10px;font-size:11.5px;font-weight:800;
+    background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text);
+    letter-spacing:.4px;
+  }
+  .mini-btn:active{background:rgba(255,255,255,.13)}
+  .mini-btn.danger{color:var(--red);border-color:rgba(248,113,113,.35)}
+  .preview{
+    margin-top:10px;padding:10px;border-radius:12px;
+    background:rgba(0,0,0,.22);border:1px solid var(--border);
+    font-size:11px;color:var(--muted);line-height:1.6;max-height:130px;overflow-y:auto;
+  }
+  .preview b{color:var(--gold);font-weight:900}
+
+  /* ---------- setup : inputs ---------- */
+  .seg{display:flex;gap:8px}
+  .seg.wrap{flex-wrap:wrap}
+  .segbtn{
+    flex:1;padding:12px 6px;border-radius:12px;font-weight:800;font-size:14px;
+    background:rgba(255,255,255,.05);border:1px solid var(--border);transition:.15s;
+    min-width:52px;
+  }
+  .segbtn.sel{background:rgba(251,191,36,.16);border-color:var(--gold);color:var(--gold)}
+  .names{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+  .name-input{
+    width:100%;padding:12px;border-radius:12px;font-size:14px;font-weight:600;
+    background:rgba(0,0,0,.3);border:1px solid var(--border);color:var(--text);
+    outline:none;font-family:inherit;
+  }
+  .name-input:focus{border-color:rgba(251,191,36,.5)}
+  .cash-row{display:flex;align-items:center;justify-content:center;gap:20px}
+  .step{
+    width:44px;height:44px;border-radius:50%;font-size:22px;font-weight:700;
+    background:rgba(255,255,255,.07);border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .step:active{background:rgba(255,255,255,.14)}
+  .cash-val{font-size:26px;font-weight:900;color:var(--gold);min-width:96px;text-align:center}
+  .sub-hint{font-size:11px;color:var(--muted);text-align:center;margin-top:10px;font-weight:600;line-height:1.5}
+
+  /* ---------- pack editor ---------- */
+  .editor-overlay{
+    position:fixed;inset:0;z-index:1000;display:none;
+    background:rgba(4,4,10,.86);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    overflow-y:auto;padding:20px 14px 40px;
+  }
+  .editor-overlay.show{display:block;animation:fade .2s ease}
+  .editor-card{
+    max-width:520px;margin:0 auto;background:#0c0c14;
+    border:1px solid var(--border);border-radius:22px;padding:18px;
+    box-shadow:0 20px 60px rgba(0,0,0,.6);
+  }
+  .editor-title{font-size:18px;font-weight:900;letter-spacing:.6px;margin-bottom:4px}
+  .editor-sub{font-size:11.5px;color:var(--muted);margin-bottom:16px;font-weight:600;line-height:1.5}
+  .field{margin-bottom:14px}
+  .field-label{font-size:10.5px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block}
+  .emoji-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+  .emoji-row::-webkit-scrollbar{height:0}
+  .emoji-opt{
+    width:40px;height:40px;flex-shrink:0;border-radius:11px;font-size:19px;
+    background:rgba(255,255,255,.05);border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;transition:.15s;
+  }
+  .emoji-opt.sel{background:rgba(251,191,36,.18);border-color:var(--gold)}
+  .editor-input{
+    width:100%;padding:12px;border-radius:12px;font-size:14px;font-weight:600;
+    background:rgba(0,0,0,.32);border:1px solid var(--border);color:var(--text);
+    outline:none;font-family:inherit;
+  }
+  .editor-input:focus{border-color:rgba(251,191,36,.5)}
+  .editor-textarea{
+    width:100%;min-height:170px;resize:vertical;
+    background:rgba(0,0,0,.32);border:1px solid var(--border);border-radius:12px;
+    padding:11px;color:var(--text);font-size:13px;font-family:inherit;outline:none;
+    line-height:1.6;
+  }
+  .editor-textarea:focus{border-color:rgba(251,191,36,.5)}
+  .editor-count{font-size:11px;color:var(--muted);margin-top:8px;font-weight:700;text-align:right}
+  .editor-count b{color:var(--gold)}
+  .editor-actions{display:flex;gap:8px;margin-top:6px}
+  .editor-actions .btn-primary{flex:1}
+  .btn-ghost{
+    padding:17px 18px;border-radius:16px;font-size:14px;font-weight:800;
+    background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text);
+    letter-spacing:.4px;
+  }
+  .btn-ghost:active{background:rgba(255,255,255,.13)}
+  .btn-ghost.danger{color:var(--red);border-color:rgba(248,113,113,.35)}
+  .btn-ghost.full{width:100%;margin-top:8px;padding:13px}
+
+  /* ---------- game ---------- */
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:10px}
+  .topic{font-size:13px;font-weight:800;letter-spacing:.6px;color:var(--gold);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .counter{font-size:12px;color:var(--muted);font-weight:600;flex-shrink:0}
+  .progress{height:5px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;margin-bottom:16px}
+  .progress>div{height:100%;border-radius:99px;background:linear-gradient(90deg,#fbbf24,#f59e0b);transition:width .4s}
+
+  .item-card{
+    border-radius:24px;padding:30px 20px;text-align:center;
+    background:linear-gradient(160deg,rgba(251,191,36,.16),rgba(168,85,247,.14));
+    border:1px solid rgba(251,191,36,.32);
+    box-shadow:0 12px 40px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.07);
+    margin-bottom:12px;
+  }
+  .item-label{font-size:10px;letter-spacing:2.4px;color:var(--muted);font-weight:800;margin-bottom:12px}
+  .item-name{font-size:clamp(22px,6.6vw,32px);font-weight:900;line-height:1.15;word-break:break-word}
+  .item-value{margin-top:14px;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.5px}
+  .item-value span{color:var(--gold);font-weight:900;letter-spacing:2px}
+
+  .bid-banner{
+    text-align:center;padding:12px;border-radius:14px;margin-bottom:12px;
+    background:rgba(255,255,255,.05);border:1px solid var(--border);font-size:14px;
+  }
+  .bid-banner strong{color:var(--gold);font-weight:900}
+  .bid-banner.empty{color:var(--muted);font-size:13px}
+
+  .players{display:grid;grid-template-columns:repeat(auto-fit,minmax(86px,1fr));gap:8px;margin-bottom:12px}
+  .pcard{
+    position:relative;padding:10px 6px;border-radius:14px;text-align:center;
+    background:var(--panel);border:1px solid var(--border);transition:.25s;overflow:hidden;
+  }
+  .pcard.active{border-color:var(--gold);background:rgba(251,191,36,.13);box-shadow:0 0 0 1px rgba(251,191,36,.3),0 0 22px rgba(251,191,36,.18)}
+  .pcard.folded,.pcard.broke{opacity:.38}
+  .pname{font-size:12px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:10px}
+  .pcard:not(:has(.pbadge)) .pname{margin-top:0}
+  .pmoney{font-size:16px;font-weight:900;color:var(--green);margin-top:3px}
+  .pitems{font-size:10px;color:var(--muted);margin-top:2px;font-weight:600}
+  .pbadge{
+    position:absolute;top:0;left:0;right:0;font-size:8px;font-weight:900;letter-spacing:1px;
+    padding:3px 0;text-align:center;
+  }
+  .pbadge.high{background:var(--gold);color:#1a1206}
+  .pbadge.out,.pbadge.broke{background:rgba(255,255,255,.14);color:var(--muted)}
+
+  .controls{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:14px}
+  .turn-line{text-align:center;font-size:13px;color:var(--muted);margin-bottom:12px;font-weight:600}
+  .turn-line strong{color:var(--gold);font-weight:900}
+  .bid-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:10px}
+  .bid-amount{font-size:34px;font-weight:900;color:var(--gold);min-width:110px;text-align:center;letter-spacing:-1px}
+  .quick{display:flex;gap:8px;margin-bottom:10px}
+  .quick button{
+    flex:1;padding:9px;border-radius:10px;font-size:12px;font-weight:800;
+    background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--muted);
+  }
+  .quick button:active{background:rgba(255,255,255,.13)}
+  .btn-bid{
+    width:100%;padding:15px;border-radius:14px;font-size:15px;font-weight:900;letter-spacing:.6px;
+    background:linear-gradient(135deg,#34d399,#10b981);color:#04231a;
+    box-shadow:0 6px 20px rgba(52,211,153,.22);margin-bottom:8px;
+  }
+  .btn-bid:active{transform:scale(.985)}
+  .btn-fold{
+    width:100%;padding:12px;border-radius:14px;font-size:13px;font-weight:800;letter-spacing:.6px;
+    background:transparent;border:1px solid rgba(248,113,113,.4);color:var(--red);
+  }
+  .btn-fold:active{background:rgba(248,113,113,.1)}
+  .cant{
+    text-align:center;font-size:13px;color:var(--red);font-weight:700;padding:14px 0;margin-bottom:8px;
+  }
+
+  /* ---------- flash ---------- */
+  .flash{
+    position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;
+    background:rgba(4,4,10,.82);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+    opacity:0;transition:opacity .25s;padding:20px;
+  }
+  .flash.show{opacity:1}
+  .flash-inner{text-align:center;animation:pop .35s cubic-bezier(.2,1.5,.5,1)}
+  @keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+  .flash-sold{
+    font-size:46px;font-weight:900;letter-spacing:3px;
+    background:linear-gradient(90deg,#fbbf24,#fde68a,#f59e0b);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .flash-sold.unsold{background:linear-gradient(90deg,#8b8b9a,#c4c4d0);-webkit-background-clip:text;background-clip:text}
+  .flash-item{font-size:20px;font-weight:800;margin-top:6px}
+  .flash-price{font-size:14px;color:var(--muted);margin-top:8px;font-weight:600}
+
+  /* ---------- results ---------- */
+  .winner-box{
+    text-align:center;padding:26px 16px;border-radius:22px;margin-bottom:14px;
+    background:linear-gradient(160deg,rgba(251,191,36,.2),rgba(168,85,247,.12));
+    border:1px solid rgba(251,191,36,.38);
+  }
+  .crown{font-size:40px;line-height:1}
+  .wlabel{font-size:11px;letter-spacing:3px;color:var(--muted);font-weight:800;margin-top:8px}
+  .wname{font-size:30px;font-weight:900;margin-top:4px;color:var(--gold);word-break:break-word}
+  .wsub{font-size:12.5px;color:var(--muted);margin-top:8px;font-weight:600}
+  .rank-list{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+  .rank-row{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:13px}
+  .rank-row.first{border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.07)}
+  .rank-head{display:flex;align-items:center;gap:8px}
+  .medal{font-size:17px}
+  .rname{font-weight:800;font-size:14px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .rval{font-weight:900;color:var(--gold);font-size:15px}
+  .rline{font-size:11px;color:var(--muted);margin:4px 0 8px 25px;font-weight:600}
+  .ritems{display:flex;flex-wrap:wrap;gap:5px;margin-left:25px}
+  .chip{
+    font-size:10.5px;padding:4px 8px;border-radius:99px;font-weight:600;
+    background:rgba(255,255,255,.07);border:1px solid var(--border);
+  }
+  .chip b{color:var(--gold);font-weight:900}
+  .unsold .ritems{margin-left:0}
+</style>
+</head>
+<body>
+<div class="app">
+  <section id="screen-setup" class="screen active"></section>
+  <section id="screen-game" class="screen"></section>
+  <section id="screen-results" class="screen"></section>
+</div>
+
+<div id="packEditor" class="editor-overlay"></div>
+
+<script>
+/* =========================================================
+   BUILT-IN PACKS  (20 items each)
+   ========================================================= */
+const PACKS = {
+  "🍔 Fast Food": ["Big Mac","Large Fries","10pc McNuggets","McFlurry","Filet-O-Fish","Apple Pie","Happy Meal","Quarter Pounder","McChicken","Ice Cream Cone","Chicken Sandwich","Large Coke","Whopper","Crunchwrap Supreme","Doritos Locos Taco","Onion Rings","Chili Cheese Fries","Corn Dog","Mozzarella Sticks","Milkshake"],
+  "⚡ Pokémon": ["Charizard","Pikachu","Mewtwo","Eevee","Gengar","Snorlax","Blastoise","Dragonite","Magikarp","Mew","Arcanine","Lucario","Garchomp","Gardevoir","Umbreon","Greninja","Rayquaza","Gyarados","Blaziken","Sceptile"],
+  "🦸 Superpowers": ["Flight","Invisibility","Super Strength","Time Travel","Teleportation","Mind Reading","Immortality","Super Speed","Shapeshifting","Laser Eyes","Healing Factor","Force Fields","Telekinesis","Weather Control","Duplication","Size Change","Intangibility","Precognition","Telepathy","Reality Warping"],
+  "🎲 Random Objects": ["A Rusty Spoon","A Golden Toilet","A 2004 Honda Civic","A Rubber Duck","A Pet Rock","One Old Boot","A Cursed Mirror","A Box of Matches","A Broken Clock","A Jar of Air","A Single Paperclip","A Singing Fish","A Soggy Sandwich","A Left Sock","A Mystery Key","A Dented Can","A Cracked Phone Case","A Dead Battery","A Haunted Lamp","A Very Long Straw"],
+  "🐘 Animals": ["Blue Whale","Golden Retriever","Honey Badger","T-Rex","Giant Panda","Great White Shark","Bald Eagle","Platypus","Octopus","Sloth","Honeybee","Grey Wolf","Elephant","Cheetah","Kangaroo","Penguin","Red Panda","Axolotl","Capybara","Narwhal"],
+  "🎮 Video Games": ["Minecraft","GTA VI","Fortnite","Zelda: BOTW","Among Us","Elden Ring","Roblox","Stardew Valley","Skyrim","Tetris","Mario Kart","Pokémon Go","Hollow Knight","Hades","Celeste","Portal 2","The Witcher 3","Red Dead 2","Animal Crossing","Baldur's Gate 3"],
+  "🍬 Snacks": ["Doritos","Oreos","Gummy Bears","Skittles","Pringles","Sour Patch Kids","Kit Kat","M&M's","Cheetos","Popcorn","Twizzlers","Chips Ahoy","Reese's Cups","Haribo Goldbears","Takis","Pretzels","Trail Mix","Beef Jerky","Rice Krispies Treats","Swedish Fish"],
+  "🌍 Places": ["Hawaii","Paris","Tokyo","The Moon","Atlantis","Grandma's House","Area 51","Walmart","The DMV","Mars","Disney World","A Gas Station Bathroom","The Bermuda Triangle","Mount Everest","The Amazon","Antarctica","Las Vegas","The North Pole","A Haunted House","The ISS"],
+  "🎬 Movies": ["The Godfather","Titanic","Avatar","Jurassic Park","The Matrix","Inception","Toy Story","Shrek","Pulp Fiction","Star Wars","The Lion King","Back to the Future","Jaws","Frozen","Parasite","Spirited Away","Interstellar","The Dark Knight","Forrest Gump","Spider-Man"],
+  "😂 Memes": ["Distracted Boyfriend","Doge","Rickroll","Skibidi Toilet","Grimace Shake","Among Us Sus","Crying Cat","This Is Fine","Drake Hotline Bling","Success Kid","Bad Luck Brian","Trollface","Nyan Cat","Big Chungus","Grumpy Cat","Sad Pepe","Stonks","Expanding Brain","Woman Yelling at Cat","Two Soyjaks Pointing"],
+  "🏆 Sports": ["The Super Bowl","A Gold Medal","The World Cup","A Slam Dunk","A Hole in One","The Stanley Cup","A Home Run","The Masters Green Jacket","A Touchdown","The Tour de France","Wimbledon","The NBA Finals","An Olympic Torch","A Boxing Title","The Kentucky Derby","A Perfect Game","The Champions League","A Triple Double","A Hat Trick","The Ballon d'Or"],
+  "🎵 Music Artists": ["Taylor Swift","Drake","Beyoncé","The Weeknd","Bad Bunny","Billie Eilish","Kendrick Lamar","Ariana Grande","Ed Sheeran","Post Malone","Travis Scott","Rihanna","Eminem","SZA","Olivia Rodrigo","Dua Lipa","Morgan Wallen","Doja Cat","Lil Baby","Harry Styles"]
+};
+
+const EMOJI_CHOICES = ['✨','🍔','⚡','🦸','🎲','🐘','🎮','🍬','🌍','🎬','😂','🏆','🎵','🚗','💼','😊','🪐','🔥','💎','👑','🍕','🧟','🧙','🐉'];
+const ITEM_COUNT_OPTIONS = [5, 10, 15, 20];
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function shuffle(a){
+  a = a.slice();
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(s =>
+    s.classList.toggle('active', s.id === 'screen-' + name)
+  );
+  window.scrollTo(0, 0);
+}
+function parseItems(text){
+  return text.split(/[\n,]/).map(s => s.trim()).filter(Boolean);
+}
+function makeValues(n){
+  let pool = [];
+  while (pool.length < n) pool = pool.concat(shuffle([1,2,3,4,5,6,7,8,9,10]));
+  return pool.slice(0, n);
+}
+function uid(){ return 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+/* =========================================================
+   CUSTOM PACK STORAGE
+   ========================================================= */
+const PACKS_KEY = 'auctionWars_customPacks_v1';
+function loadCustomPacks(){
+  try {
+    const raw = localStorage.getItem(PACKS_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr.filter(p => p && p.id && Array.isArray(p.items)) : [];
+  } catch(e){ return []; }
+}
+function persistCustomPacks(packs){
+  try { localStorage.setItem(PACKS_KEY, JSON.stringify(packs)); } catch(e){}
+}
+
+/* =========================================================
+   SETUP STATE
+   ========================================================= */
+const setup = {
+  packId: Object.keys(PACKS)[0],
+  customPacks: loadCustomPacks(),
+  playerCount: 2,
+  names: ['Player 1','Player 2','Player 3','Player 4'],
+  cash: 20,
+  itemCount: 10
+};
+
+/* =========================================================
+   PACK EDITOR STATE
+   ========================================================= */
+const editor = {
+  open: false,
+  id: null,
+  emoji: '✨',
+  name: '',
+  itemsText: ''
+};
+
+function openEditor(id){
+  const existing = id ? setup.customPacks.find(p => p.id === id) : null;
+  editor.open = true;
+  editor.id = existing ? existing.id : null;
+  editor.emoji = existing ? existing.emoji : '✨';
+  editor.name = existing ? existing.name : '';
+  editor.itemsText = existing ? existing.items.join('\n') : '';
+  renderEditor();
+}
+
+function closeEditor(){
+  editor.open = false;
+  $('packEditor').classList.remove('show');
+  $('packEditor').innerHTML = '';
+}
+
+function renderEditor(){
+  const overlay = $('packEditor');
+  const count = parseItems(editor.itemsText).length;
+
+  overlay.innerHTML = `
+    <div class="editor-card">
+      <div class="editor-title">${editor.id ? 'Edit Pack' : 'Create Pack'}</div>
+      <div class="editor-sub">Give it an emoji, a name and a list of items. Saved to this browser.</div>
+
+      <div class="field">
+        <label class="field-label">Icon</label>
+        <div class="emoji-row" id="emojiRow">
+          ${EMOJI_CHOICES.map(e => `
+            <button class="emoji-opt ${e === editor.emoji ? 'sel' : ''}" data-emoji="${e}">${e}</button>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="edName">Pack name</label>
+        <input id="edName" class="editor-input" maxlength="24" placeholder="e.g. Horror Movies" value="${esc(editor.name)}">
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="edItems">Items — one per line</label>
+        <textarea id="edItems" class="editor-textarea" placeholder="Jason Voorhees&#10;The Babadook&#10;Pennywise&#10;A Creepy Doll">${esc(editor.itemsText)}</textarea>
+        <div class="editor-count"><b>${count}</b> item${count === 1 ? '' : 's'}</div>
+      </div>
+
+      <div class="editor-actions">
+        <button class="btn-ghost" data-ed="cancel">Cancel</button>
+        <button class="btn-primary" data-ed="save">Save Pack</button>
+      </div>
+      ${editor.id ? `<button class="btn-ghost danger full" data-ed="delete">Delete Pack</button>` : ''}
+    </div>
+  `;
+
+  overlay.classList.add('show');
+
+  $('edName').addEventListener('input', e => { editor.name = e.target.value; });
+  $('edItems').addEventListener('input', e => {
+    editor.itemsText = e.target.value;
+    const c = parseItems(editor.itemsText).length;
+    const el = overlay.querySelector('.editor-count');
+    if (el) el.innerHTML = `<b>${c}</b> item${c === 1 ? '' : 's'}`;
+  });
+}
+
+$('packEditor').addEventListener('click', e => {
+  const emojiBtn = e.target.closest('[data-emoji]');
+  if (emojiBtn){
+    editor.emoji = emojiBtn.dataset.emoji;
+    $('packEditor').querySelectorAll('.emoji-opt').forEach(b =>
+      b.classList.toggle('sel', b.dataset.emoji === editor.emoji)
+    );
+    return;
+  }
+
+  const action = e.target.closest('[data-ed]');
+  if (!action) return;
+
+  if (action.dataset.ed === 'cancel'){
+    closeEditor();
+    return;
+  }
+
+  if (action.dataset.ed === 'save'){
+    const name = editor.name.trim();
+    const items = parseItems(editor.itemsText);
+    if (!name){ alert('Give your pack a name.'); return; }
+    if (items.length < 2){ alert('Add at least 2 items.'); return; }
+
+    if (editor.id){
+      const p = setup.customPacks.find(x => x.id === editor.id);
+      if (p){ p.name = name; p.emoji = editor.emoji; p.items = items; }
+    } else {
+      const newPack = { id: 'custom_' + uid(), name, emoji: editor.emoji, items };
+      setup.customPacks.push(newPack);
+      setup.packId = newPack.id;
+    }
+    persistCustomPacks(setup.customPacks);
+    closeEditor();
+    renderSetup();
+    return;
+  }
+
+  if (action.dataset.ed === 'delete'){
+    if (!confirm('Delete this pack? This cannot be undone.')) return;
+    setup.customPacks = setup.customPacks.filter(p => p.id !== editor.id);
+    persistCustomPacks(setup.customPacks);
+    if (setup.packId === editor.id) setup.packId = Object.keys(PACKS)[0];
+    closeEditor();
+    renderSetup();
+  }
+});
+
+/* =========================================================
+   PACK HELPERS
+   ========================================================= */
+function getSelectedPack(){
+  if (setup.packId.startsWith('custom_')){
+    return setup.customPacks.find(p => p.id === setup.packId) || null;
+  }
+  if (PACKS[setup.packId]) return { name: setup.packId, emoji: '', items: PACKS[setup.packId] };
+  return null;
+}
+function getSelectedItems(){
+  const p = getSelectedPack();
+  return p ? p.items.slice() : [];
+}
+function getSelectedLabel(){
+  const p = getSelectedPack();
+  if (!p) return '—';
+  return setup.packId.startsWith('custom_') ? `${p.emoji} ${p.name}` : p.name;
+}
+
+/* =========================================================
+   SETUP RENDER
+   ========================================================= */
+function renderSetup(){
+  const el = $('screen-setup');
+  const selected = getSelectedPack();
+  const selectedIsCustom = setup.packId.startsWith('custom_');
+  const available = selected ? selected.items.length : 0;
+  const effective = Math.min(setup.itemCount, available);
+  const customPacks = setup.customPacks;
+
+  el.innerHTML = `
+    <h1 class="logo">AUCTION <span>WARS</span></h1>
+    <p class="tagline">Bid. Bluff. Go broke.</p>
+
+    <div class="panel">
+      <div class="label">
+        <span>Topic</span>
+        <span class="hint">${customPacks.length} custom pack${customPacks.length === 1 ? '' : 's'}</span>
+      </div>
+      <div class="pack-grid">
+        ${Object.keys(PACKS).map(k => `
+          <button class="pack ${(!selectedIsCustom && setup.packId === k) ? 'sel' : ''}" data-pack="${esc(k)}">
+            <span>${esc(k)}</span>
+            <span class="pcount">${PACKS[k].length} items</span>
+          </button>
+        `).join('')}
+        ${customPacks.map(p => `
+          <button class="pack ${setup.packId === p.id ? 'sel' : ''}" data-pack="${esc(p.id)}">
+            <span>${esc(p.emoji)} ${esc(p.name)}</span>
+            <span class="pcount">${p.items.length} items · yours</span>
+          </button>
+        `).join('')}
+        <button class="pack new" data-newpack="1">＋ Create pack</button>
+      </div>
+
+      ${selectedIsCustom && selected ? `
+        <div class="preview">
+          ${selected.items.slice(0, 40).map(i => esc(i)).join(' · ')}
+        </div>
+        <div class="pack-actions">
+          <button class="mini-btn" data-editpack="${esc(selected.id)}">✏️ Edit items</button>
+          <button class="mini-btn danger" data-deletepack="${esc(selected.id)}">🗑 Delete</button>
+        </div>
+      ` : ''}
+    </div>
+
+    <div class="panel">
+      <div class="label">Players</div>
+      <div class="seg">
+        ${[2,3,4].map(n => `<button class="segbtn ${setup.playerCount === n ? 'sel' : ''}" data-count="${n}">${n} players</button>`).join('')}
+      </div>
+      <div class="names">
+        ${Array.from({length: setup.playerCount}, (_, i) => `
+          <input class="name-input" data-idx="${i}" maxlength="12" value="${esc(setup.names[i] || '')}" placeholder="Player ${i+1}">
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="label">Starting cash each</div>
+      <div class="cash-row">
+        <button class="step" data-cash="-10">−</button>
+        <div class="cash-val">$${setup.cash}</div>
+        <button class="step" data-cash="10">+</button>
+      </div>
+      <div class="sub-hint">Range $10 – $500</div>
+    </div>
+
+    <div class="panel">
+      <div class="label">
+        <span>Items in auction</span>
+        <span class="hint">${selected ? `pack has ${available}` : ''}</span>
+      </div>
+      <div class="seg wrap">
+        ${ITEM_COUNT_OPTIONS.map(n => `
+          <button class="segbtn ${setup.itemCount === n ? 'sel' : ''}" data-items="${n}">${n}</button>
+        `).join('')}
+      </div>
+      <div class="sub-hint">
+        ${selected
+          ? (effective < setup.itemCount
+              ? `Only ${effective} item${effective === 1 ? '' : 's'} available — will use all of them.`
+              : `Auctioning <b style="color:var(--gold)">${effective}</b> item${effective === 1 ? '' : 's'} from ${esc(getSelectedLabel())}.`)
+          : 'Select a topic above.'}
+      </div>
+    </div>
+
+    <button class="btn-primary" id="startBtn" ${(!selected || available < 2) ? 'disabled' : ''}>START AUCTION</button>
+    <p class="rules">
+      Values are hidden until the very end.<br>
+      Highest total value wins. Game ends when every item is sold — or only one player still has cash.
+    </p>
+  `;
+}
+
+$('screen-setup').addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+
+  if (btn.dataset.pack !== undefined && btn.dataset.pack !== ''){
+    setup.packId = btn.dataset.pack;
+    renderSetup();
+  } else if (btn.dataset.newpack){
+    openEditor(null);
+  } else if (btn.dataset.editpack){
+    openEditor(btn.dataset.editpack);
+  } else if (btn.dataset.deletepack){
+    const id = btn.dataset.deletepack;
+    if (!confirm('Delete this pack? This cannot be undone.')) return;
+    setup.customPacks = setup.customPacks.filter(p => p.id !== id);
+    persistCustomPacks(setup.customPacks);
+    if (setup.packId === id) setup.packId = Object.keys(PACKS)[0];
+    renderSetup();
+  } else if (btn.dataset.count){
+    setup.playerCount = +btn.dataset.count;
+    renderSetup();
+  } else if (btn.dataset.cash){
+    setup.cash = Math.max(10, Math.min(500, setup.cash + (+btn.dataset.cash)));
+    renderSetup();
+  } else if (btn.dataset.items){
+    setup.itemCount = +btn.dataset.items;
+    renderSetup();
+  } else if (btn.id === 'startBtn'){
+    startGame();
+  }
+});
+
+$('screen-setup').addEventListener('input', e => {
+  if (e.target.classList.contains('name-input')){
+    setup.names[+e.target.dataset.idx] = e.target.value;
+  }
+});
+
+/* =========================================================
+   GAME STATE
+   ========================================================= */
+const state = {
+  topicName: '',
+  players: [],
+  items: [],
+  idx: 0,
+  currentBid: 0,
+  highBidder: null,
+  turn: 0,
+  pendingBid: 1,
+  locked: false
+};
+
+/* =========================================================
+   START GAME
+   ========================================================= */
+function startGame(){
+  const pool = getSelectedItems();
+  if (pool.length < 2){ alert('This pack needs at least 2 items.'); return; }
+
+  const count = Math.min(setup.itemCount, pool.length);
+  const names = shuffle(pool).slice(0, count);
+  const vals = makeValues(count);
+
+  state.items = names.map((n, i) => ({ name: n, value: vals[i], winner: null, price: null }));
+  state.topicName = getSelectedLabel();
+  state.players = Array.from({ length: setup.playerCount }, (_, i) => ({
+    id: i,
+    name: (setup.names[i] || '').trim() || ('Player ' + (i + 1)),
+    money: setup.cash,
+    startCash: setup.cash,
+    items: [],
+    inRound: true
+  }));
+  state.idx = 0;
+  state.locked = false;
+
+  showScreen('game');
+  startItem();
+}
+
+/* =========================================================
+   ITEM FLOW
+   ========================================================= */
+function startItem(){
+  state.currentBid = 0;
+  state.highBidder = null;
+  state.locked = false;
+
+  state.players.forEach(p => { p.inRound = p.money > 0; });
+
+  const n = state.players.length;
+  const start = state.idx % n;
+  let found = -1;
+  for (let k = 0; k < n; k++){
+    const j = (start + k) % n;
+    if (state.players[j].inRound){ found = j; break; }
+  }
+  state.turn = found;
+
+  if (found === -1){ resolveItem(); return; }
+
+  state.pendingBid = Math.min(state.currentBid + 1, state.players[found].money);
+  renderGame();
+}
+
+function advanceTurn(){
+  const n = state.players.length;
+  for (let k = 1; k <= n; k++){
+    const j = (state.turn + k) % n;
+    if (state.players[j].inRound){ state.turn = j; return; }
+  }
+}
+
+function afterAction(){
+  const remaining = state.players.filter(p => p.inRound);
+  if (remaining.length <= 1){ resolveItem(); return; }
+
+  advanceTurn();
+  const cur = state.players[state.turn];
+  state.pendingBid = Math.min(state.currentBid + 1, cur.money);
+  renderGame();
+}
+
+function resolveItem(){
+  const item = state.items[state.idx];
+  const remaining = state.players.filter(p => p.inRound);
+
+  let winner = null;
+  let price = 0;
+
+  if (remaining.length === 1 &&
+      state.highBidder !== null &&
+      remaining[0].id === state.highBidder){
+    winner = remaining[0];
+    price = state.currentBid;
+  }
+
+  if (winner){
+    winner.money -= price;
+    winner.items.push({ name: item.name, value: item.value, price });
+    item.winner = winner.id;
+    item.price = price;
+  }
+
+  state.locked = true;
+  showFlash(item, winner, price);
+
+  setTimeout(() => {
+    state.idx++;
+    const solvent = state.players.filter(p => p.money > 0).length;
+    if (state.idx >= state.items.length || solvent <= 1){
+      endGame();
+    } else {
+      startItem();
+    }
+  }, 1450);
+}
+
+/* =========================================================
+   GAME RENDER
+   ========================================================= */
+function renderGame(){
+  const g = $('screen-game');
+  const item = state.items[state.idx];
+  const total = state.items.length;
+  const cur = state.players[state.turn];
+
+  const minB = state.currentBid + 1;
+  const maxB = cur ? cur.money : 0;
+  const canBid = cur && maxB >= minB;
+
+  if (canBid){
+    state.pendingBid = Math.max(minB, Math.min(state.pendingBid, maxB));
+  }
+
+  g.innerHTML = `
+    <div class="topbar">
+      <div class="topic">${esc(state.topicName)}</div>
+      <div class="counter">Item ${state.idx + 1} / ${total}</div>
+    </div>
+    <div class="progress"><div style="width:${(state.idx / total) * 100}%"></div></div>
+
+    <div class="item-card">
+      <div class="item-label">ON THE BLOCK</div>
+      <div class="item-name">${esc(item.name)}</div>
+      <div class="item-value">Value: <span>? ? ?</span></div>
+    </div>
+
+    <div class="bid-banner ${state.highBidder === null ? 'empty' : ''}">
+      ${state.highBidder === null
+        ? 'No bids yet — opening at $1'
+        : `Current bid <strong>$${state.currentBid}</strong> by <strong>${esc(state.players[state.highBidder].name)}</strong>`}
+    </div>
+
+    <div class="players">
+      ${state.players.map((p, i) => `
+        <div class="pcard ${i === state.turn ? 'active' : ''} ${(!p.inRound && p.money > 0) ? 'folded' : ''} ${p.money <= 0 ? 'broke' : ''}">
+          ${i === state.highBidder ? '<div class="pbadge high">HIGH BID</div>' : ''}
+          ${(p.money <= 0) ? '<div class="pbadge broke">BROKE</div>' : (!p.inRound ? '<div class="pbadge out">OUT</div>' : '')}
+          <div class="pname">${esc(p.name)}</div>
+          <div class="pmoney">$${p.money}</div>
+          <div class="pitems">${p.items.length} item${p.items.length === 1 ? '' : 's'}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="controls">
+      <div class="turn-line">${cur ? `<strong>${esc(cur.name)}</strong>, it's your move` : ''}</div>
+
+      ${canBid ? `
+        <div class="bid-row">
+          <button class="step" data-action="dec">−</button>
+          <div class="bid-amount">$${state.pendingBid}</div>
+          <button class="step" data-action="inc">+</button>
+        </div>
+        <div class="quick">
+          <button data-action="quick" data-v="1">+$1</button>
+          <button data-action="quick" data-v="5">+$5</button>
+          <button data-action="quick" data-v="all">ALL IN</button>
+        </div>
+        <button class="btn-bid" data-action="bid">BID $${state.pendingBid}</button>
+      ` : `
+        <div class="cant">You can't cover the minimum bid of $${minB}</div>
+      `}
+
+      <button class="btn-fold" data-action="fold">FOLD</button>
+    </div>
+  `;
+}
+
+$('screen-game').addEventListener('click', e => {
+  if (state.locked) return;
+  const btn = e.target.closest('[data-action]');
+  if (!btn) return;
+
+  const cur = state.players[state.turn];
+  if (!cur) return;
+
+  const minB = state.currentBid + 1;
+  const maxB = cur.money;
+
+  switch (btn.dataset.action){
+    case 'inc':
+      state.pendingBid = Math.min(state.pendingBid + 1, maxB);
+      renderGame();
+      break;
+
+    case 'dec':
+      state.pendingBid = Math.max(state.pendingBid - 1, minB);
+      renderGame();
+      break;
+
+    case 'quick': {
+      const v = btn.dataset.v;
+      if (v === 'all') state.pendingBid = maxB;
+      else state.pendingBid = Math.min(state.pendingBid + (+v), maxB);
+      state.pendingBid = Math.max(state.pendingBid, minB);
+      renderGame();
+      break;
+    }
+
+    case 'bid': {
+      const amt = state.pendingBid;
+      if (amt <= state.currentBid || amt > cur.money) return;
+      state.currentBid = amt;
+      state.highBidder = cur.id;
+      afterAction();
+      break;
+    }
+
+    case 'fold':
+      cur.inRound = false;
+      afterAction();
+      break;
+  }
+});
+
+/* =========================================================
+   FLASH OVERLAY
+   ========================================================= */
+function showFlash(item, winner, price){
+  const el = document.createElement('div');
+  el.className = 'flash';
+  el.innerHTML = winner
+    ? `<div class="flash-inner">
+         <div class="flash-sold">SOLD!</div>
+         <div class="flash-item">${esc(item.name)}</div>
+         <div class="flash-price">${esc(winner.name)} pays $${price}</div>
+       </div>`
+    : `<div class="flash-inner">
+         <div class="flash-sold unsold">NO SALE</div>
+         <div class="flash-item">${esc(item.name)}</div>
+         <div class="flash-price">Everyone folded</div>
+       </div>`;
+
+  document.body.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('show'));
+  setTimeout(() => {
+    el.classList.remove('show');
+    setTimeout(() => el.remove(), 300);
+  }, 1250);
+}
+
+/* =========================================================
+   END GAME / RESULTS
+   ========================================================= */
+function endGame(){
+  state.locked = true;
+
+  const ranked = state.players.map(p => ({
+    name: p.name,
+    money: p.money,
+    items: p.items,
+    total: p.items.reduce((s, it) => s + it.value, 0)
+  })).sort((a, b) => (b.total - a.total) || (b.money - a.money));
+
+  const top = ranked[0];
+  const tie = ranked.length > 1 &&
+              ranked[1].total === top.total &&
+              ranked[1].money === top.money;
+
+  const medals = ['🥇','🥈','🥉','4️⃣'];
+  const unsold = state.items.filter(it => it.winner === null);
+
+  $('screen-results').innerHTML = `
+    <div class="winner-box">
+      <div class="crown">${tie ? '🤝' : '👑'}</div>
+      <div class="wlabel">${tie ? 'DEAD HEAT' : 'WINNER'}</div>
+      <div class="wname">${esc(top.name)}</div>
+      <div class="wsub">${top.total} total value · $${top.money} left</div>
+    </div>
+
+    <div class="rank-list">
+      ${ranked.map((r, i) => `
+        <div class="rank-row ${i === 0 ? 'first' : ''}">
+          <div class="rank-head">
+            <span class="medal">${medals[i] || ''}</span>
+            <span class="rname">${esc(r.name)}</span>
+            <span class="rval">${r.total} pts</span>
+          </div>
+          <div class="rline">$${r.money} left · ${r.items.length} item${r.items.length === 1 ? '' : 's'}</div>
+          <div class="ritems">
+            ${r.items.length
+              ? r.items.map(it => `<span class="chip">${esc(it.name)} <b>${it.value}</b></span>`).join('')
+              : '<span class="muted" style="font-size:11px">bought nothing 😬</span>'}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+
+    ${unsold.length ? `
+      <div class="panel unsold">
+        <div class="label">Went unsold</div>
+        <div class="ritems">
+          ${unsold.map(it => `<span class="chip">${esc(it.name)} <b>${it.value}</b></span>`).join('')}
+        </div>
+      </div>
+    ` : ''}
+
+    <button class="btn-primary" id="againBtn">PLAY AGAIN</button>
+  `;
+
+  $('againBtn').addEventListener('click', () => {
+    renderSetup();
+    showScreen('setup');
+  });
+
+  showScreen('results');
+}
+
+/* =========================================================
+   BOOT
+   ========================================================= */
+renderSetup();
+</script>
+</body>
+</html>
