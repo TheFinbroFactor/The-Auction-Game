@@ -695,8 +695,12 @@ const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--){ co
 const uid = () => 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2,8);
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
+/* ============================================================
+   FIX: showScreen clears the reveal flash when leaving game
+   ============================================================ */
 function showScreen(name){
   document.querySelectorAll('.screen').forEach(s => s.classList.toggle('active', s.id === 'screen-' + name));
+  if (name !== 'game') hideRevealFlash();
   window.scrollTo(0, 0);
 }
 function initialsOf(name){
@@ -1015,7 +1019,7 @@ const presence = {
 };
 
 /* ============================================================
-   GAMES MODULE — polling primary, listener bonus
+   GAMES MODULE
    ============================================================ */
 const games = {
   pollTimer: null,
@@ -1448,7 +1452,7 @@ const session = {
   game: null,
   myIdx: -1,
   pendingBid: 1,
-  lastTurnKey: null,      // <-- tracks (gameId|itemIdx|turnIdx) to reset bid on turn change
+  lastTurnKey: null,
   advancing: false,
   lastRevealKey: null,
   inviteModalOpen: null,
@@ -2002,6 +2006,9 @@ function onGamesUpdate(game){
   } else if (game.status === 'ended'){
     if (me && me.status === 'joined'){
       if (session.inviteModalOpen){ session.inviteModalOpen = null; closeModal(); }
+      /* FIX: clear the reveal flash before navigating to results */
+      hideRevealFlash();
+      session.lastRevealKey = null;
       renderResultsFromGame();
       showScreen('results');
       maybeRecordElo(game);
@@ -2160,10 +2167,7 @@ function renderGameFromGame(){
   const isGuestTurn = curParticipant?.isGuest && !curForfeited;
   const isMyTurn = session.myIdx === curIdx;
 
-  // ============================================================
   // FIX #1: Reset pending bid whenever the turn changes
-  //   (game id, item index, and turn index form a unique key)
-  // ============================================================
   const turnKey = `${m.id}|${game.idx}|${game.turnIdx}`;
   if (session.lastTurnKey !== turnKey){
     session.lastTurnKey = turnKey;
@@ -2174,7 +2178,6 @@ function renderGameFromGame(){
   const minB = game.currentBid + 1;
   const maxB = curPlayer?.money ?? 0;
 
-  // Keep pending in range for the current turn
   if (session.pendingBid < minB) session.pendingBid = minB;
   if (session.pendingBid > maxB && maxB >= minB) session.pendingBid = maxB;
   if (session.pendingBid < minB && maxB < minB) session.pendingBid = minB;
@@ -2274,24 +2277,21 @@ function renderTurnLine(cur, isMyTurn, isGuestTurn, curForfeited, game){
 }
 
 /* ============================================================
-   FIX #2: renderBidControls now ALWAYS shows a fold button
-   when it's the current player's turn (or it's a guest's turn),
-   even if they can't cover the minimum bid.
+   FIX #2: Always show a fold button when it's the current
+   player's turn (or a guest's turn), even when they can't
+   cover the minimum bid.
    ============================================================ */
 function renderBidControls(canBid, minB, isGuestTurn, cur, isMyTurn, curForfeited, game, iHaveForfeited, myParticipant){
-  // Forfeited current player — nothing to do, waiting for state to advance
   if (curForfeited){
     return `<div class="spectator-note">Waiting for next active player…</div>`;
   }
 
-  // I've forfeited — I'm a spectator now
   if (iHaveForfeited){
     return `<div class="spectator-note">You've forfeited this match. Watching only.</div>`;
   }
 
   const isMyAction = isMyTurn || isGuestTurn;
 
-  // Not my turn — show a waiting message, optionally mentioning why
   if (!isMyAction){
     const curP = game.players[game.turnIdx];
     if (curP && curP.money < minB){
@@ -2300,8 +2300,6 @@ function renderBidControls(canBid, minB, isGuestTurn, cur, isMyTurn, curForfeite
     return `<div class="spectator-note">Waiting for your turn…</div>`;
   }
 
-  // It's my turn (or a guest's turn) but I can't cover the minimum.
-  // Show a Pass/Fold button so the auction can continue.
   if (!canBid){
     const curP = game.players[game.turnIdx];
     const money = curP?.money ?? 0;
@@ -2314,7 +2312,6 @@ function renderBidControls(canBid, minB, isGuestTurn, cur, isMyTurn, curForfeite
     `;
   }
 
-  // Normal bid controls
   const label = isGuestTurn ? `BID FOR ${cur.name.toUpperCase()}` : `BID $${session.pendingBid}`;
   return `
     <div class="bid-row">
@@ -2333,7 +2330,7 @@ function renderBidControls(canBid, minB, isGuestTurn, cur, isMyTurn, curForfeite
 }
 
 /* ============================================================
-   GAME MENU (with Forfeit)
+   GAME MENU
    ============================================================ */
 function openGameMenu(){
   const m = session.game;
@@ -2498,7 +2495,6 @@ $('screen-game').addEventListener('click', async e => {
   }
 });
 
-/* Local actions */
 function handleLocalAction(btn){
   const g = localGame.game;
   if (g.phase !== 'bidding') return;
@@ -2507,7 +2503,6 @@ function handleLocalAction(btn){
   const minB = g.currentBid + 1;
   const maxB = curPlayer.money;
 
-  // Reset pendingBid on turn change (local)
   const turnKey = `local|${g.idx}|${g.turnIdx}`;
   if (session.lastTurnKey !== turnKey){
     session.lastTurnKey = turnKey;
@@ -2641,6 +2636,10 @@ function hideRevealFlash(){ $('flashOverlay').classList.remove('show'); }
 const eloRecorded = {};
 
 function renderResultsFromGame(){
+  /* FIX: clear the reveal flash every time we render results */
+  hideRevealFlash();
+  session.lastRevealKey = null;
+
   const m = session.game;
   if (!m) return;
 
