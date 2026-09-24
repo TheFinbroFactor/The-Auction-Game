@@ -239,10 +239,6 @@
   .waiting-row .badge.status-accepted{background:rgba(52,211,153,.15);color:var(--green)}
   .waiting-row .badge.status-pending{background:rgba(251,191,36,.15);color:var(--gold)}
   .waiting-row .badge.status-declined{background:rgba(248,113,113,.15);color:var(--red)}
-
-  /* ============================================================
-     GAME TOPBAR with menu button
-     ============================================================ */
   .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
   .topic-pill{
     display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;
@@ -1290,12 +1286,6 @@ const games = {
     });
   },
 
-  /**
-   * Forfeit — the caller leaves the auction. Their money goes to 0, they're out.
-   * If they were the high bidder, the current bid resets to 0.
-   * If it was their turn, advance to next active player.
-   * If only one active player remains after that, resolve the item and end.
-   */
   async forfeit(gameId, myUid){
     const ref = cloud.fb.dbMod.doc(cloud.db, 'games', gameId);
     await cloud.fb.dbMod.runTransaction(cloud.db, async tx => {
@@ -1310,17 +1300,13 @@ const games = {
       if (myIdx === -1) throw new Error('You are not in this game');
       if (data.participants[myIdx].forfeited) throw new Error('Already forfeited');
 
-      // Mark participant as forfeited
       const newParticipants = data.participants.map((p, i) =>
         i === myIdx ? { ...p, forfeited: true } : p
       );
-
-      // Zero their cash and put them out
       const newPlayers = g.players.map((p, i) =>
         i === myIdx ? { ...p, money: 0, inRound: false } : p
       );
 
-      // If they were the high bidder and we're mid-auction, void their bid
       let newHighBidderIdx = g.highBidderIdx;
       let newCurrentBid = g.currentBid;
       if (g.phase === 'bidding' && g.highBidderIdx === myIdx){
@@ -1328,7 +1314,6 @@ const games = {
         newCurrentBid = 0;
       }
 
-      // Only one active player left? Resolve the item and end.
       const activeCount = newPlayers.filter(p => p.inRound).length;
 
       if (g.phase === 'bidding' && activeCount <= 1){
@@ -1355,7 +1340,6 @@ const games = {
         return;
       }
 
-      // Advance turn if it was theirs
       let nextTurnIdx = g.turnIdx;
       if (g.turnIdx === myIdx){
         const n = newPlayers.length;
@@ -1464,6 +1448,7 @@ const session = {
   game: null,
   myIdx: -1,
   pendingBid: 1,
+  lastTurnKey: null,      // <-- tracks (gameId|itemIdx|turnIdx) to reset bid on turn change
   advancing: false,
   lastRevealKey: null,
   inviteModalOpen: null,
@@ -1969,6 +1954,7 @@ function startLocalGame(participants){
     game: localGame.game
   };
   session.myIdx = 0;
+  session.lastTurnKey = null;
   renderGameFromGame();
   showScreen('game');
 }
@@ -1982,6 +1968,7 @@ function onGamesUpdate(game){
     session.game = null;
     session.gameId = null;
     session.myIdx = -1;
+    session.lastTurnKey = null;
     if (!$('screen-setup').classList.contains('active')){
       renderSetup();
       showScreen('setup');
@@ -2136,6 +2123,7 @@ function renderWaiting(){
     await games.cancel(session.gameId);
     session.game = null;
     session.gameId = null;
+    session.lastTurnKey = null;
     setup.pickedIds = [];
     setup.guestNames = [];
     renderSetup();
@@ -2146,6 +2134,7 @@ function renderWaiting(){
     await games.leave(session.gameId, cloud.user.uid);
     session.game = null;
     session.gameId = null;
+    session.lastTurnKey = null;
     renderSetup();
     showScreen('setup');
   });
@@ -2171,12 +2160,28 @@ function renderGameFromGame(){
   const isGuestTurn = curParticipant?.isGuest && !curForfeited;
   const isMyTurn = session.myIdx === curIdx;
 
+  // ============================================================
+  // FIX #1: Reset pending bid whenever the turn changes
+  //   (game id, item index, and turn index form a unique key)
+  // ============================================================
+  const turnKey = `${m.id}|${game.idx}|${game.turnIdx}`;
+  if (session.lastTurnKey !== turnKey){
+    session.lastTurnKey = turnKey;
+    session.pendingBid = game.currentBid + 1;
+  }
+
   const curPlayer = players[curIdx];
   const minB = game.currentBid + 1;
   const maxB = curPlayer?.money ?? 0;
-  session.pendingBid = clamp(session.pendingBid || minB, minB, Math.max(minB, maxB));
+
+  // Keep pending in range for the current turn
+  if (session.pendingBid < minB) session.pendingBid = minB;
+  if (session.pendingBid > maxB && maxB >= minB) session.pendingBid = maxB;
+  if (session.pendingBid < minB && maxB < minB) session.pendingBid = minB;
 
   const canBid = game.phase === 'bidding' && !curForfeited && (isMyTurn || isGuestTurn) && maxB >= minB;
+  const myParticipant = session.myIdx >= 0 ? participants[session.myIdx] : null;
+  const iHaveForfeited = !!myParticipant?.forfeited;
 
   g.innerHTML = `
     <div class="topbar">
@@ -2235,7 +2240,7 @@ function renderGameFromGame(){
       ${renderTurnLine(curParticipant, isMyTurn, isGuestTurn, curForfeited, game)}
       ${game.phase === 'reveal'
         ? `<div class="cant" style="color:var(--gold)">Settling item…</div>`
-        : renderBidControls(canBid, minB, isGuestTurn, curParticipant, isMyTurn, curForfeited, game)}
+        : renderBidControls(canBid, minB, isGuestTurn, curParticipant, isMyTurn, curForfeited, game, iHaveForfeited, myParticipant)}
     </div>
   `;
 
@@ -2268,15 +2273,48 @@ function renderTurnLine(cur, isMyTurn, isGuestTurn, curForfeited, game){
   return `<div class="turn-line">Waiting for <strong>${esc(cur.name)}</strong>…</div>`;
 }
 
-function renderBidControls(canBid, minB, isGuestTurn, cur, isMyTurn, curForfeited, game){
-  if (!canBid){
-    if (curForfeited) return `<div class="spectator-note">Waiting for next active player…</div>`;
+/* ============================================================
+   FIX #2: renderBidControls now ALWAYS shows a fold button
+   when it's the current player's turn (or it's a guest's turn),
+   even if they can't cover the minimum bid.
+   ============================================================ */
+function renderBidControls(canBid, minB, isGuestTurn, cur, isMyTurn, curForfeited, game, iHaveForfeited, myParticipant){
+  // Forfeited current player — nothing to do, waiting for state to advance
+  if (curForfeited){
+    return `<div class="spectator-note">Waiting for next active player…</div>`;
+  }
+
+  // I've forfeited — I'm a spectator now
+  if (iHaveForfeited){
+    return `<div class="spectator-note">You've forfeited this match. Watching only.</div>`;
+  }
+
+  const isMyAction = isMyTurn || isGuestTurn;
+
+  // Not my turn — show a waiting message, optionally mentioning why
+  if (!isMyAction){
     const curP = game.players[game.turnIdx];
     if (curP && curP.money < minB){
-      return `<div class="cant">Player can't cover $${minB} minimum</div>`;
+      return `<div class="spectator-note">${esc(cur?.name || 'Player')} can't cover $${minB} — waiting for them to fold…</div>`;
     }
     return `<div class="spectator-note">Waiting for your turn…</div>`;
   }
+
+  // It's my turn (or a guest's turn) but I can't cover the minimum.
+  // Show a Pass/Fold button so the auction can continue.
+  if (!canBid){
+    const curP = game.players[game.turnIdx];
+    const money = curP?.money ?? 0;
+    const reason = money < minB
+      ? `You can't cover the $${minB} minimum (you have $${money}). Fold to pass.`
+      : `Waiting…`;
+    return `
+      <div class="cant">${esc(reason)}</div>
+      <button class="btn-fold" data-action="fold">${money < minB ? 'Fold (pass)' : 'Fold'}</button>
+    `;
+  }
+
+  // Normal bid controls
   const label = isGuestTurn ? `BID FOR ${cur.name.toUpperCase()}` : `BID $${session.pendingBid}`;
   return `
     <div class="bid-row">
@@ -2359,6 +2397,7 @@ function openGameMenu(){
     await games.cancel(session.gameId);
     session.game = null;
     session.gameId = null;
+    session.lastTurnKey = null;
     setup.pickedIds = [];
     setup.guestNames = [];
     renderSetup();
@@ -2369,7 +2408,6 @@ function openGameMenu(){
 function confirmForfeit(){
   const m = session.game;
   if (!m) return;
-  const me = session.myIdx >= 0 ? m.participants[session.myIdx] : null;
   const myMoney = (m.game?.players?.[session.myIdx]?.money) ?? 0;
 
   openModal(`
@@ -2460,7 +2498,7 @@ $('screen-game').addEventListener('click', async e => {
   }
 });
 
-/* Local actions (unchanged) */
+/* Local actions */
 function handleLocalAction(btn){
   const g = localGame.game;
   if (g.phase !== 'bidding') return;
@@ -2468,6 +2506,13 @@ function handleLocalAction(btn){
   const curPlayer = g.players[curIdx];
   const minB = g.currentBid + 1;
   const maxB = curPlayer.money;
+
+  // Reset pendingBid on turn change (local)
+  const turnKey = `local|${g.idx}|${g.turnIdx}`;
+  if (session.lastTurnKey !== turnKey){
+    session.lastTurnKey = turnKey;
+    session.pendingBid = g.currentBid + 1;
+  }
 
   if (btn.dataset.action === 'inc'){
     session.pendingBid = Math.min(session.pendingBid + 1, maxB);
@@ -2688,6 +2733,7 @@ function renderResultsFromGame(){
     session.game = null;
     session.gameId = null;
     session.myIdx = -1;
+    session.lastTurnKey = null;
     setup.pickedIds = [];
     setup.guestNames = [];
     renderSetup();
@@ -2734,8 +2780,6 @@ async function maybeRecordElo(m){
   }).sort((a, b) => b.total - a.total);
   ranked.forEach((r, i) => r.placement = i);
 
-  // Forfeited players take an Elo hit as if they finished last in their match,
-  // but they still count for opponents' rating math.
   const identified = ranked.filter(r => !r.isGuest && r.id && registry.isValidId(r.id));
   if (!identified.length) return;
 
