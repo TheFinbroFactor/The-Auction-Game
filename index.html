@@ -36,9 +36,7 @@
     50%{box-shadow:0 0 0 1px rgba(251,191,36,.7), 0 0 32px rgba(251,191,36,.3)}
   }
   @keyframes toastIn{from{opacity:0;transform:translateY(14px) scale(.92)}to{opacity:1;transform:none}}
-  @keyframes slideDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:none}}
   @keyframes spin{to{transform:rotate(360deg)}}
-
   button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;padding:0}
   input,textarea{font-family:inherit}
   ::selection{background:rgba(251,191,36,.28);color:#fff}
@@ -57,6 +55,13 @@
   .brand-name{font-size:15.5px;font-weight:900}
   .brand-sub{font-size:9px;color:var(--muted-2);font-weight:800;letter-spacing:1.8px;text-transform:uppercase}
   .header-right{display:flex;align-items:center;gap:8px}
+  .sync-dot{
+    width:10px;height:10px;border-radius:50%;background:var(--muted-2);
+    flex-shrink:0;transition:.3s;
+  }
+  .sync-dot.live{background:var(--green);animation:pulseDot 2.4s ease-in-out infinite}
+  .sync-dot.polling{background:var(--gold)}
+  .sync-dot.error{background:var(--red)}
   .icon-btn{
     width:38px;height:38px;border-radius:12px;
     background:rgba(255,255,255,.035);border:1px solid var(--border);
@@ -82,7 +87,6 @@
     background:linear-gradient(135deg,#ffffff,#e4e4ed);color:#111117;
     font-size:12px;font-weight:800;box-shadow:0 4px 14px rgba(0,0,0,.35);
   }
-
   .panel{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:18px;margin-bottom:12px}
   .panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
   .panel-title{
@@ -95,7 +99,6 @@
     background:rgba(251,191,36,.14);color:var(--gold);font-size:9.5px;font-weight:900;
   }
   .panel-hint{font-size:10.5px;color:var(--muted-2);font-weight:700}
-
   .btn-primary{
     width:100%;padding:16px;border-radius:16px;font-size:14.5px;font-weight:900;letter-spacing:1.2px;
     background:linear-gradient(135deg,#fcd34d,#fbbf24 40%,#f59e0b);color:#1a1206;
@@ -118,7 +121,6 @@
   .btn-ghost:hover{background:rgba(255,255,255,.05);color:var(--text)}
   .btn-danger{color:var(--red);border-color:rgba(248,113,113,.3)}
   .btn-danger:hover{background:rgba(248,113,113,.08)}
-
   .hero{text-align:center;padding:6px 0 22px}
   .hero h1{margin:0;font-size:40px;font-weight:900;letter-spacing:-1.4px;line-height:1}
   .hero h1 span{
@@ -126,7 +128,6 @@
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
   .hero p{color:var(--muted);font-size:13px;margin:10px 0 0;font-weight:600}
-
   .banner{
     display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:14px;
     background:rgba(96,165,250,.07);border:1px solid rgba(96,165,250,.2);
@@ -134,9 +135,9 @@
   }
   .banner.warn{background:rgba(251,191,36,.07);border-color:rgba(251,191,36,.22);color:#f3d99b}
   .banner.ok{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.22);color:#a7f3d0}
+  .banner.danger{background:rgba(248,113,113,.07);border-color:rgba(248,113,113,.25);color:#fecaca}
   .banner .icon{font-size:15px;flex-shrink:0;line-height:1.4}
   .banner b{color:var(--gold);font-weight:900}
-
   .pack-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .pack{
     position:relative;padding:13px 12px;border-radius:14px;font-size:12.5px;font-weight:800;
@@ -156,10 +157,8 @@
     align-items:center;justify-content:center;text-align:center;
     color:var(--muted);font-weight:900;min-height:62px;flex-direction:row;gap:7px;
   }
-
   .pack-actions{display:flex;gap:6px;margin-top:12px}
   .pack-actions .btn-ghost{flex:1;padding:10px;font-size:11.5px}
-
   .competitors{display:flex;flex-direction:column;gap:8px}
   .comp-row{
     display:flex;align-items:center;gap:11px;padding:12px 14px;border-radius:14px;
@@ -198,7 +197,6 @@
   }
   .add-comp:hover{background:rgba(251,191,36,.04);border-color:rgba(251,191,36,.35);color:var(--gold)}
   .online-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulseDot 2.4s ease-in-out infinite}
-
   .seg{display:flex;gap:6px;background:rgba(0,0,0,.25);padding:4px;border-radius:14px;border:1px solid var(--border)}
   .seg.wrap{flex-wrap:wrap}
   .segbtn{
@@ -216,8 +214,6 @@
   .step-val{font-size:28px;font-weight:900;color:var(--gold);min-width:104px;text-align:center;letter-spacing:-1px;line-height:1}
   .sub-hint{font-size:11px;color:var(--muted);text-align:center;margin-top:10px;font-weight:600;line-height:1.5}
   .sub-hint b{color:var(--gold);font-weight:900}
-
-  /* Waiting screen */
   .waiting-wrap{text-align:center;padding:20px 0 12px}
   .waiting-icon{
     width:78px;height:78px;border-radius:50%;margin:0 auto 20px;
@@ -243,8 +239,6 @@
   .waiting-row .badge.status-accepted{background:rgba(52,211,153,.15);color:var(--green)}
   .waiting-row .badge.status-pending{background:rgba(251,191,36,.15);color:var(--gold)}
   .waiting-row .badge.status-declined{background:rgba(248,113,113,.15);color:var(--red)}
-
-  /* Game */
   .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
   .topic-pill{
     display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;
@@ -379,8 +373,6 @@
     background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.22);
     font-size:12.5px;font-weight:800;color:#bfd4f5;line-height:1.5;
   }
-
-  /* Flash */
   .flash{
     position:fixed;inset:0;z-index:1100;display:flex;align-items:center;justify-content:center;
     background:rgba(3,3,8,.86);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
@@ -400,8 +392,6 @@
   .flash-profit{font-size:12.5px;font-weight:900;margin-top:6px}
   .flash-profit.pos{color:var(--green)}
   .flash-profit.neg{color:var(--red)}
-
-  /* Results */
   .winner-box{
     text-align:center;padding:34px 20px;border-radius:24px;margin-bottom:14px;
     background:
@@ -449,8 +439,6 @@
   .chip .paid{color:var(--muted);font-weight:700;font-size:9.5px}
   .chip .paid.profit{color:var(--green)}
   .chip .paid.loss{color:var(--red)}
-
-  /* Leaderboard */
   .lb-header{text-align:center;padding:14px 0 20px}
   .lb-header h2{
     margin:0;font-size:27px;font-weight:900;letter-spacing:-.6px;
@@ -497,11 +485,8 @@
   .lb-stats{font-size:10.5px;color:var(--muted);font-weight:700;margin-top:3px}
   .lb-elo{font-size:17px;font-weight:900;color:var(--gold);text-align:right;flex-shrink:0;line-height:1}
   .lb-elo small{display:block;font-size:9px;color:var(--muted-2);font-weight:800;letter-spacing:.7px;margin-top:3px}
-
   .empty-state{text-align:center;padding:48px 20px;color:var(--muted);font-size:13px;font-weight:700;line-height:1.65}
   .empty-state .big{font-size:44px;display:block;margin-bottom:16px;opacity:.55}
-
-  /* Modal */
   .overlay{
     position:fixed;inset:0;z-index:1200;display:none;background:rgba(3,3,8,.9);
     -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
@@ -515,7 +500,6 @@
   }
   .modal-title{font-size:19px;font-weight:900;margin-bottom:6px}
   .modal-sub{font-size:12px;color:var(--muted);margin-bottom:20px;font-weight:600;line-height:1.6}
-
   .picker-list{
     display:flex;flex-direction:column;gap:6px;max-height:52vh;overflow-y:auto;
     margin:-4px -6px 14px -4px;padding:4px 6px 4px 4px;
@@ -537,7 +521,6 @@
   }
   .picker-row.sel .picker-check{background:var(--gold);border-color:var(--gold);color:#1a1206}
   .picker-empty{text-align:center;padding:32px 16px;color:var(--muted);font-size:12.5px;font-weight:700;line-height:1.65}
-
   .field{margin-bottom:16px}
   .field-label{font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:9px;display:block}
   .emoji-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
@@ -599,7 +582,6 @@
   .modal-actions{display:flex;gap:8px;margin-top:8px}
   .modal-actions .btn-primary{flex:1.4}
   .modal-actions .btn-ghost{flex:1}
-
   .toast-wrap{
     position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:2000;
     display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;padding:0 16px;
@@ -645,9 +627,6 @@
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script type="module">
-/* ============================================================================
-   FIREBASE CONFIG
-   ========================================================================== */
 const FIREBASE_CONFIG = {
   apiKey:            "AIzaSyD6CAlSkaZdKGCamsBP8UQqZYZahLREznc",
   authDomain:        "auction-wars-fb.firebaseapp.com",
@@ -659,10 +638,8 @@ const FIREBASE_CONFIG = {
 const FIREBASE_ENABLED = !FIREBASE_CONFIG.apiKey.includes('YOUR_');
 const ONLINE_TIMEOUT_MS = 60000;
 const REVEAL_MS = 1800;
+const POLL_INTERVAL_MS = 1200;
 
-/* ============================================================================
-   PACKS
-   ========================================================================== */
 const PACKS = {
   "🍔 Fast Food": [["Big Mac",8],["Large Fries",5],["10pc McNuggets",7],["McFlurry",7],["Filet-O-Fish",4],["Apple Pie",3],["Happy Meal",6],["Quarter Pounder",8],["McChicken",5],["Ice Cream Cone",2],["Chicken Sandwich",6],["Large Coke",2],["Whopper",8],["Crunchwrap Supreme",7],["Doritos Locos Taco",6],["Onion Rings",4],["Chili Cheese Fries",5],["Corn Dog",3],["Mozzarella Sticks",5],["Milkshake",6]],
   "⚡ Pokémon": [["Charizard",10],["Pikachu",8],["Mewtwo",10],["Eevee",7],["Gengar",8],["Snorlax",7],["Blastoise",9],["Dragonite",9],["Magikarp",3],["Mew",10],["Arcanine",8],["Lucario",9],["Garchomp",8],["Gardevoir",7],["Umbreon",8],["Greninja",8],["Rayquaza",10],["Gyarados",8],["Blaziken",7],["Sceptile",7]],
@@ -682,14 +659,12 @@ const ITEM_COUNT_OPTIONS = [5, 10, 15, 20];
 const AVATAR_COLORS = ['#f59e0b','#8b5cf6','#3b82f6','#10b981','#ec4899','#ef4444','#06b6d4','#84cc16'];
 const GUEST_ELO = 1000;
 
-/* ============================================================================
-   HELPERS
-   ========================================================================== */
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const uid = () => 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2,8);
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
 function showScreen(name){
   document.querySelectorAll('.screen').forEach(s => s.classList.toggle('active', s.id === 'screen-' + name));
   window.scrollTo(0, 0);
@@ -720,14 +695,14 @@ function toast(msg, kind){
     el.style.opacity = '0';
     el.style.transform = 'translateY(10px)';
     setTimeout(() => el.remove(), 260);
-  }, 2400);
+  }, 3000);
 }
 function openModal(html){ $('modal').innerHTML = html; $('modal').classList.add('show'); }
 function closeModal(){ $('modal').classList.remove('show'); $('modal').innerHTML = ''; }
 
-/* ============================================================================
+/* ============================================================
    REGISTRY
-   ========================================================================== */
+   ============================================================ */
 const PLAYERS_KEY = 'auctionWars_players_v1';
 const registry = {
   local: {}, loaded: false,
@@ -771,10 +746,10 @@ const registry = {
   }
 };
 
-/* ============================================================================
+/* ============================================================
    CLOUD
-   ========================================================================== */
-const cloud = { enabled: FIREBASE_ENABLED, ready: false, user: null, auth: null, db: null, fb: null, profile: null };
+   ============================================================ */
+const cloud = { enabled: FIREBASE_ENABLED, ready: false, user: null, auth: null, db: null, fb: null, profile: null, healthy: false };
 const PACKS_KEY = 'auctionWars_customPacks_v2';
 const PROFILE_KEY = 'auctionWars_localProfile_v1';
 
@@ -793,10 +768,17 @@ function saveLocalPacks(p){ try { localStorage.setItem(PACKS_KEY, JSON.stringify
 function loadLocalProfile(){ try { return JSON.parse(localStorage.getItem(PROFILE_KEY) || 'null'); } catch(e){ return null; } }
 function saveLocalProfile(p){ try { localStorage.setItem(PROFILE_KEY, JSON.stringify(p)); } catch(e){} }
 
+/* Boot: import Firebase SDK, wire up auth, run smoke test, start polling */
 async function initCloud(){
   registry.load();
-  if (!FIREBASE_ENABLED){ cloud.ready = true; renderHeader(); return; }
+  if (!FIREBASE_ENABLED){
+    cloud.ready = true;
+    console.error('[AuctionWars] Firebase config missing — running in local mode.');
+    renderHeader();
+    return;
+  }
   try {
+    console.log('[AuctionWars] Loading Firebase SDK...');
     const [appMod, authMod, dbMod] = await Promise.all([
       import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js'),
       import('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js'),
@@ -806,32 +788,73 @@ async function initCloud(){
     cloud.auth = authMod.getAuth(app);
     cloud.db = dbMod.getFirestore(app);
     cloud.fb = { authMod, dbMod };
+    console.log('[AuctionWars] Firebase initialized. Project:', FIREBASE_CONFIG.projectId);
 
     authMod.onAuthStateChanged(cloud.auth, async user => {
+      console.log('[AuctionWars] Auth state changed:', user ? user.uid : 'signed out');
       cloud.user = user;
       cloud.ready = true;
+
       if (user){
         await loadUserProfile();
         await pullCloudPacks();
+
+        // Smoke test: verify Firestore read works before starting sync
+        cloud.healthy = await firestoreSmokeTest();
+        if (!cloud.healthy){
+          console.error('[AuctionWars] Firestore smoke test failed — sync will not work.');
+          renderHeader();
+          if ($('screen-setup').classList.contains('active')) renderSetup();
+          return;
+        }
+
         presence.start();
-        // Start the single live-games listener
-        games.stopWatch();
-        session.gameUnsub = games.watchMine(onGamesUpdate);
-        // Auto-fetch any active game
-        const active = await games.findMine();
-        if (active) onGamesUpdate(active);
+        games.stop();
+        games.start(onGamesUpdate);
       } else {
         cloud.profile = loadLocalProfile();
+        cloud.healthy = false;
         presence.stop();
-        games.stopWatch();
+        games.stop();
       }
       renderHeader();
       if ($('screen-setup').classList.contains('active')) renderSetup();
     });
+
+    // Handle auth errors
+    authMod.onIdTokenChanged(cloud.auth, () => {});
   } catch(e){
-    console.warn('[AuctionWars] Firebase init failed:', e);
+    console.error('[AuctionWars] Firebase init FAILED:', e.code || '', e.message || e, e);
     cloud.ready = true;
     renderHeader();
+  }
+}
+
+/* Smoke test — verifies Firestore is reachable and rules allow our read */
+async function firestoreSmokeTest(){
+  try {
+    console.log('[AuctionWars] Smoke test: reading players collection...');
+    const snap = await cloud.fb.dbMod.getDocs(
+      cloud.fb.dbMod.query(cloud.fb.dbMod.collection(cloud.db, 'players'), cloud.fb.dbMod.limit(1))
+    );
+    console.log('[AuctionWars] Firestore smoke test OK — read', snap.size, 'doc(s)');
+    return true;
+  } catch(e) {
+    console.error('[AuctionWars] Firestore smoke test FAILED:', {
+      code: e.code,
+      message: e.message,
+      name: e.name
+    });
+    if (e.code === 'permission-denied'){
+      console.error('[AuctionWars] → Publish your rules in Firebase Console → Firestore → Rules.');
+    } else if (e.code === 'failed-precondition'){
+      console.error('[AuctionWars] → Firestore may not be enabled. Check Firebase Console → Firestore Database.');
+    } else if (e.code === 'unavailable'){
+      console.error('[AuctionWars] → Network can\'t reach Firestore. Check your internet connection or ad blocker.');
+    } else if (e.code === 'not-found'){
+      console.error('[AuctionWars] → Firestore database doesn\'t exist for this project. Create it in Firebase Console.');
+    }
+    return false;
   }
 }
 
@@ -843,9 +866,11 @@ async function signIn(){
     await cloud.fb.authMod.signInWithPopup(cloud.auth, provider);
     toast('Signed in', 'success');
   } catch(e){
+    console.error('[AuctionWars] Sign-in error:', e);
     let msg = 'Sign-in failed';
-    if (e?.code === 'auth/unauthorized-domain') msg = 'Domain not authorized in Firebase';
+    if (e?.code === 'auth/unauthorized-domain') msg = 'Add this domain in Firebase Auth settings';
     if (e?.code === 'auth/popup-blocked') msg = 'Popup blocked';
+    if (e?.code === 'auth/popup-closed-by-user') msg = 'Sign-in cancelled';
     toast(msg, 'error');
   }
 }
@@ -854,7 +879,7 @@ async function signOutUser(){
   try {
     await presence.setOffline();
     presence.stop();
-    games.stopWatch();
+    games.stop();
     await cloud.fb.authMod.signOut(cloud.auth);
     toast('Signed out');
   } catch(e){}
@@ -876,7 +901,9 @@ async function loadUserProfile(){
       cloud.profile = { displayName: cloud.user.displayName || 'Player', photoURL: cloud.user.photoURL || '', playerId: pid, createdAt: Date.now() };
       await cloud.fb.dbMod.setDoc(ref, cloud.profile);
     }
+    console.log('[AuctionWars] Profile loaded. Player ID:', cloud.profile.playerId);
   } catch(e){
+    console.error('[AuctionWars] Profile load failed:', e);
     cloud.profile = loadLocalProfile() || {
       displayName: cloud.user.displayName || 'Player',
       photoURL: cloud.user.photoURL || '',
@@ -903,7 +930,7 @@ async function pullCloudPacks(){
       });
     });
     if (list.length){ setup.myPacks = list; saveLocalPacks(list); }
-  } catch(e){}
+  } catch(e){ console.error('[AuctionWars] Pull packs failed:', e); }
 }
 async function pushPackToCloud(pack){
   if (!cloud.user || !cloud.enabled) return;
@@ -913,7 +940,7 @@ async function pushPackToCloud(pack){
       ownerUid: cloud.user.uid, ownerPlayerId: cloud.profile?.playerId || null,
       ownerName: cloud.profile?.displayName || null, updatedAt: Date.now()
     });
-  } catch(e){}
+  } catch(e){ console.error('[AuctionWars] Push pack failed:', e); }
 }
 async function deletePackFromCloud(id){
   if (!cloud.user || !cloud.enabled) return;
@@ -933,12 +960,12 @@ async function fetchAllPublicPacks(){
       });
     });
     return list;
-  } catch(e){ return []; }
+  } catch(e){ console.error('[AuctionWars] Fetch public packs failed:', e); return []; }
 }
 
-/* ============================================================================
-   PRESENCE (only for the online-player picker)
-   ========================================================================== */
+/* ============================================================
+   PRESENCE
+   ============================================================ */
 const presence = {
   interval: null,
   async push(){
@@ -951,7 +978,7 @@ const presence = {
         online: true, lastSeen: Date.now(),
         ownerUid: cloud.user.uid
       }, { merge: true });
-    } catch(e){}
+    } catch(e){ /* silent — presence is best-effort */ }
   },
   async setOffline(){
     if (!cloud.user || !cloud.profile?.playerId || !cloud.db) return;
@@ -971,15 +998,106 @@ const presence = {
         list.push({ ...data, id: d.id });
       });
       return list;
-    } catch(e){ return []; }
+    } catch(e){ console.error('[AuctionWars] fetchOnline failed:', e); return []; }
   }
 };
 
-/* ============================================================================
-   GAMES — single collection, single listener
-   ========================================================================== */
+/* ============================================================
+   GAMES MODULE — polling primary, listener as bonus
+   ============================================================ */
 const games = {
-  unsub: null,
+  pollTimer: null,
+  listenerUnsub: null,
+  lastFingerprint: null,
+  currentCb: null,
+  status: 'idle', // 'live' | 'polling' | 'error'
+
+  start(cb){
+    this.stop();
+    this.currentCb = cb;
+    this.status = 'polling';
+    updateSyncDot();
+
+    // Fire immediately, then poll
+    this.poll();
+    this.pollTimer = setInterval(() => this.poll(), POLL_INTERVAL_MS);
+
+    // Also try to attach a bonus listener (best-effort; if it fails we just keep polling)
+    this.attachListener();
+  },
+
+  stop(){
+    if (this.pollTimer){ clearInterval(this.pollTimer); this.pollTimer = null; }
+    if (this.listenerUnsub){ try { this.listenerUnsub(); } catch(e){} this.listenerUnsub = null; }
+    this.lastFingerprint = null;
+    this.currentCb = null;
+    this.status = 'idle';
+    updateSyncDot();
+  },
+
+  attachListener(){
+    if (!cloud.enabled || !cloud.db || !cloud.user) return;
+    try {
+      const q = cloud.fb.dbMod.query(
+        cloud.fb.dbMod.collection(cloud.db, 'games'),
+        cloud.fb.dbMod.where('invitedUids', 'array-contains', cloud.user.uid)
+      );
+      this.listenerUnsub = cloud.fb.dbMod.onSnapshot(q,
+        snap => {
+          this.status = 'live';
+          updateSyncDot();
+          this.handleSnapshot(snap);
+        },
+        err => {
+          // Listener died — polling will keep working
+          console.error('[AuctionWars] Live listener unavailable (code', err.code, '). Continuing with polling.');
+          if (this.listenerUnsub){ try { this.listenerUnsub(); } catch(e){} this.listenerUnsub = null; }
+          this.status = 'polling';
+          updateSyncDot();
+        }
+      );
+    } catch(e){
+      console.error('[AuctionWars] Listener setup threw:', e);
+    }
+  },
+
+  async poll(){
+    if (!cloud.user || !cloud.db || !this.currentCb) return;
+    try {
+      const q = cloud.fb.dbMod.query(
+        cloud.fb.dbMod.collection(cloud.db, 'games'),
+        cloud.fb.dbMod.where('invitedUids', 'array-contains', cloud.user.uid)
+      );
+      const snap = await cloud.fb.dbMod.getDocs(q);
+      this.handleSnapshot(snap);
+    } catch(e) {
+      console.error('[AuctionWars] Poll failed:', { code: e.code, message: e.message });
+      this.status = 'error';
+      updateSyncDot();
+    }
+  },
+
+  handleSnapshot(snap){
+    const list = [];
+    snap.forEach(d => list.push({ id: d.id, ...d.data() }));
+    // Prefer running > open > ended, then most recent
+    list.sort((a, b) => {
+      const rank = s => s === 'running' ? 3 : s === 'open' ? 2 : s === 'ended' ? 1 : 0;
+      const ra = rank(a.status), rb = rank(b.status);
+      if (ra !== rb) return rb - ra;
+      return (b.updatedAt || 0) - (a.updatedAt || 0);
+    });
+    const top = list[0] || null;
+
+    // Deduplicate — only fire callback if something material changed
+    const fp = top
+      ? `${top.id}|${top.status}|${top.game?.version || 0}|${top.game?.phase || ''}|${top.updatedAt || 0}`
+      : 'none';
+    if (fp === this.lastFingerprint) return;
+    this.lastFingerprint = fp;
+
+    if (this.currentCb) this.currentCb(top);
+  },
 
   async create(participants, settings, items){
     const gameId = 'game_' + uid();
@@ -1016,53 +1134,6 @@ const games = {
     return gameId;
   },
 
-  /** Single subscription — fires on ANY change to any game I'm in. */
-  watchMine(cb){
-    if (!cloud.enabled || !cloud.db || !cloud.user) return () => {};
-    const q = cloud.fb.dbMod.query(
-      cloud.fb.dbMod.collection(cloud.db, 'games'),
-      cloud.fb.dbMod.where('invitedUids', 'array-contains', cloud.user.uid)
-    );
-    this.unsub = cloud.fb.dbMod.onSnapshot(q, snap => {
-      const list = [];
-      snap.forEach(d => list.push({ id: d.id, ...d.data() }));
-      // Prefer running > open > ended, then most recent
-      list.sort((a, b) => {
-        const rank = s => s === 'running' ? 3 : s === 'open' ? 2 : s === 'ended' ? 1 : 0;
-        const ra = rank(a.status), rb = rank(b.status);
-        if (ra !== rb) return rb - ra;
-        return (b.updatedAt || 0) - (a.updatedAt || 0);
-      });
-      cb(list[0] || null);
-    }, err => {
-      console.warn('games watch error:', err);
-      toast('Live sync error', 'error');
-    });
-    return () => this.stopWatch();
-  },
-
-  stopWatch(){ if (this.unsub){ this.unsub(); this.unsub = null; } },
-
-  async findMine(){
-    if (!cloud.enabled || !cloud.db || !cloud.user) return null;
-    try {
-      const q = cloud.fb.dbMod.query(
-        cloud.fb.dbMod.collection(cloud.db, 'games'),
-        cloud.fb.dbMod.where('invitedUids', 'array-contains', cloud.user.uid)
-      );
-      const snap = await cloud.fb.dbMod.getDocs(q);
-      const list = [];
-      snap.forEach(d => list.push({ id: d.id, ...d.data() }));
-      list.sort((a, b) => {
-        const rank = s => s === 'running' ? 3 : s === 'open' ? 2 : s === 'ended' ? 1 : 0;
-        const ra = rank(a.status), rb = rank(b.status);
-        if (ra !== rb) return rb - ra;
-        return (b.updatedAt || 0) - (a.updatedAt || 0);
-      });
-      return list[0] || null;
-    } catch(e){ return null; }
-  },
-
   async join(gameId, myUid){
     const ref = cloud.fb.dbMod.doc(cloud.db, 'games', gameId);
     await cloud.fb.dbMod.runTransaction(cloud.db, async tx => {
@@ -1089,7 +1160,7 @@ const games = {
         const invitedUids = (data.invitedUids || []).filter(u => u !== myUid);
         tx.update(ref, { participants, invitedUids, updatedAt: Date.now() });
       });
-    } catch(e){}
+    } catch(e){ console.error('[AuctionWars] Decline failed:', e); }
   },
 
   async begin(gameId){
@@ -1261,7 +1332,7 @@ const games = {
           updatedAt: Date.now()
         });
       });
-    } catch(e){}
+    } catch(e){ console.error('[AuctionWars] Advance failed:', e); }
   },
 
   async cancel(gameId){
@@ -1287,23 +1358,29 @@ const games = {
   }
 };
 
-/* ============================================================================
+function updateSyncDot(){
+  const dot = $('syncDot');
+  if (!dot) return;
+  dot.className = 'sync-dot ' + (games.status === 'live' ? 'live' : games.status === 'polling' ? 'polling' : games.status === 'error' ? 'error' : '');
+  dot.title = 'Sync: ' + games.status;
+}
+
+/* ============================================================
    SESSION
-   ========================================================================== */
+   ============================================================ */
 const session = {
   gameId: null,
   game: null,
-  gameUnsub: null,
   myIdx: -1,
   pendingBid: 1,
   advancing: false,
   lastRevealKey: null,
-  inviteModalOpen: false
+  inviteModalOpen: null
 };
 
-/* ============================================================================
+/* ============================================================
    SETUP STATE
-   ========================================================================== */
+   ============================================================ */
 const setup = {
   packId: Object.keys(PACKS)[0],
   myPacks: loadLocalPacks(),
@@ -1315,9 +1392,9 @@ const setup = {
   guestNames: []
 };
 
-/* ============================================================================
+/* ============================================================
    HEADER
-   ========================================================================== */
+   ============================================================ */
 function renderHeader(){
   const el = $('headerRight');
   const onLeaderboard = $('screen-leaderboard').classList.contains('active');
@@ -1342,9 +1419,11 @@ function renderHeader(){
   }
 
   el.innerHTML = `
+    <div class="sync-dot" id="syncDot" title="Sync: idle"></div>
     <button class="icon-btn ${onLeaderboard ? 'active' : ''}" id="lbBtn" title="Leaderboard">🏆</button>
     ${userBlock}
   `;
+  updateSyncDot();
 
   $('lbBtn')?.addEventListener('click', () => {
     if (onLeaderboard){ renderSetup(); showScreen('setup'); }
@@ -1400,9 +1479,9 @@ async function openAccountMenu(){
   });
 }
 
-/* ============================================================================
+/* ============================================================
    SETUP SCREEN
-   ========================================================================== */
+   ============================================================ */
 function getSelectedPack(){
   if (setup.packId.startsWith('custom_')){
     return setup.myPacks.find(p => p.id === setup.packId) || setup.allPublicPacks.find(p => p.id === setup.packId) || null;
@@ -1423,7 +1502,7 @@ async function renderSetup(){
   const available = selected ? selected.items.length : 0;
   const effective = Math.min(setup.itemCount, available);
 
-  if (cloud.user && cloud.enabled){
+  if (cloud.user && cloud.enabled && cloud.healthy){
     setup.onlinePlayers = await presence.fetchOnline();
     setup.allPublicPacks = await fetchAllPublicPacks();
   } else {
@@ -1438,6 +1517,8 @@ async function renderSetup(){
     cloudBanner = `<div class="banner"><span class="icon"><div class="spin"></div></span><span>Connecting to cloud…</span></div>`;
   } else if (!cloud.user){
     cloudBanner = `<div class="banner"><span class="icon">☁️</span><span>Sign in with Google to invite real players, track Elo, and sync packs.</span></div>`;
+  } else if (!cloud.healthy){
+    cloudBanner = `<div class="banner danger"><span class="icon">⚠️</span><span>Firestore isn't reachable. Open the browser console for the exact error, and check <b>Firebase Console → Firestore Database</b> is enabled and rules are published. Falling back to local mode.</span></div>`;
   } else {
     const pid = cloud.profile.playerId || '—';
     cloudBanner = `<div class="banner ok"><span class="icon">✓</span><span>Signed in as <b>${esc(cloud.profile.displayName)}</b> · ID <b style="font-family:ui-monospace,Menlo,monospace;letter-spacing:1px">${esc(pid)}</b></span></div>`;
@@ -1494,7 +1575,7 @@ async function renderSetup(){
         <div class="panel-hint">${totalPlayers} / 4</div>
       </div>
 
-      ${cloud.user ? `
+      ${cloud.user && cloud.healthy ? `
         <div class="competitors">
           <div class="comp-row you">
             <div class="comp-avatar" style="background:${cloud.profile.photoURL ? 'transparent' : colorFor(cloud.profile.displayName || 'You')}">
@@ -1543,7 +1624,7 @@ async function renderSetup(){
         </div>
       ` : `
         <div class="setup-summary" style="font-size:11.5px;color:var(--muted);font-weight:700;padding:10px 12px;background:rgba(0,0,0,.25);border:1px solid var(--border);border-radius:12px">
-          Sign in to invite real players.
+          ${cloud.user ? 'Cloud connection failed — running in local mode.' : 'Sign in to invite real players.'}
         </div>
       `}
     </div>
@@ -1623,8 +1704,7 @@ function openPlayerPicker(){
   const myId = cloud.profile?.playerId;
   const others = setup.onlinePlayers.filter(p => p.id !== myId);
   const taken = new Set(setup.pickedIds);
-  const currentTotal = 1 + setup.pickedIds.length + setup.guestNames.length;
-  const slotsLeft = 4 - currentTotal;
+  const slotsLeft = 4 - (1 + setup.pickedIds.length + setup.guestNames.length);
 
   const rows = others.map(p => {
     const selected = taken.has(p.id);
@@ -1707,16 +1787,16 @@ function openGuestPrompt(){
   $('guestName').addEventListener('keydown', e => { if (e.key === 'Enter') $('guestAdd').click(); });
 }
 
-/* ============================================================================
+/* ============================================================
    CREATE GAME
-   ========================================================================== */
+   ============================================================ */
 async function createGame(){
   const pool = getSelectedItems();
   if (pool.length < 2){ toast('This pack needs at least 2 items', 'error'); return; }
 
   const participants = [];
 
-  if (cloud.user && cloud.profile){
+  if (cloud.user && cloud.profile && cloud.healthy){
     participants.push({
       uid: cloud.user.uid,
       playerId: cloud.profile.playerId,
@@ -1739,7 +1819,7 @@ async function createGame(){
       participants.push({ uid: null, playerId: null, name, photoURL: '', isGuest: true });
     }
   } else {
-    // Local mode — everyone is a guest, no cloud match
+    // Local mode
     const names = setup.guestNames.length ? setup.guestNames : ['Player 1', 'Player 2'];
     for (const n of names) participants.push({ uid: null, playerId: null, name: n, photoURL: '', isGuest: true });
     startLocalGame(participants);
@@ -1753,22 +1833,23 @@ async function createGame(){
   const items = chosen.map(it => ({ name: it.name, value: it.value }));
 
   try {
+    console.log('[AuctionWars] Creating game...');
     const gameId = await games.create(participants, {
       packName: getSelectedLabel(),
       itemCount: count,
       cash: setup.cash
     }, items);
+    console.log('[AuctionWars] Game created:', gameId);
     session.gameId = gameId;
-    // The watch listener will fire and route us
   } catch(e){
-    console.error('Create game failed:', e);
-    toast('Failed to create game — ' + (e.message || 'unknown'), 'error');
+    console.error('[AuctionWars] Create game failed:', e);
+    toast('Failed to create game: ' + (e.code || e.message || 'unknown'), 'error');
   }
 }
 
-/* ============================================================================
+/* ============================================================
    LOCAL SINGLE-DEVICE MODE
-   ========================================================================== */
+   ============================================================ */
 const localGame = { game: null, items: [], participants: [], running: false };
 
 function startLocalGame(participants){
@@ -1801,11 +1882,10 @@ function startLocalGame(participants){
   showScreen('game');
 }
 
-/* ============================================================================
+/* ============================================================
    GAMES SNAPSHOT ROUTER
-   ========================================================================== */
+   ============================================================ */
 function onGamesUpdate(game){
-  // No cloud game — but we might be in local mode
   if (!game){
     if (session.game && session.game.id === 'local') return;
     session.game = null;
@@ -1830,17 +1910,20 @@ function onGamesUpdate(game){
     if (me && me.status === 'invited'){
       showInviteModal(game, me);
     } else if (me && me.status === 'joined'){
+      closeModal(); // close invite if we joined
       renderWaiting();
       showScreen('waiting');
     }
   } else if (game.status === 'running'){
     if (me && me.status === 'joined'){
+      if (session.inviteModalOpen){ session.inviteModalOpen = null; closeModal(); }
       renderGameFromGame();
       showScreen('game');
       scheduleAutoAdvance(game);
     }
   } else if (game.status === 'ended'){
     if (me && me.status === 'joined'){
+      if (session.inviteModalOpen){ session.inviteModalOpen = null; closeModal(); }
       renderResultsFromGame();
       showScreen('results');
       maybeRecordElo(game);
@@ -1848,11 +1931,10 @@ function onGamesUpdate(game){
   }
 }
 
-/* ============================================================================
+/* ============================================================
    INVITE MODAL
-   ========================================================================== */
+   ============================================================ */
 function showInviteModal(game, me){
-  // Don't reopen if already showing
   if (session.inviteModalOpen === game.id) return;
   session.inviteModalOpen = game.id;
 
@@ -1880,7 +1962,7 @@ function showInviteModal(game, me){
   $('inviteJoin').addEventListener('click', async () => {
     try {
       await games.join(game.id, cloud.user.uid);
-      session.inviteModalOpen = false;
+      session.inviteModalOpen = null;
       closeModal();
       toast('Joined', 'success');
     } catch(e){ toast('Failed: ' + (e.message || ''), 'error'); }
@@ -1888,21 +1970,20 @@ function showInviteModal(game, me){
   $('inviteDecline').addEventListener('click', async () => {
     try {
       await games.decline(game.id, cloud.user.uid);
-      session.inviteModalOpen = false;
+      session.inviteModalOpen = null;
       closeModal();
       toast('Declined');
     } catch(e){}
   });
 }
 
-/* Prevent backdrop from closing invite modal */
 $('modal').addEventListener('click', e => {
   if (e.target === $('modal') && !session.inviteModalOpen) closeModal();
 });
 
-/* ============================================================================
+/* ============================================================
    WAITING SCREEN
-   ========================================================================== */
+   ============================================================ */
 function renderWaiting(){
   const el = $('screen-waiting');
   const m = session.game;
@@ -1970,9 +2051,9 @@ function renderWaiting(){
   });
 }
 
-/* ============================================================================
+/* ============================================================
    GAME SCREEN
-   ========================================================================== */
+   ============================================================ */
 function renderGameFromGame(){
   const g = $('screen-game');
   const m = session.game;
@@ -2102,7 +2183,6 @@ $('screen-game').addEventListener('click', async e => {
   const btn = e.target.closest('[data-action]');
   if (!btn) return;
 
-  // Local mode?
   if (session.game?.id === 'local'){
     handleLocalAction(btn);
     return;
@@ -2137,10 +2217,17 @@ $('screen-game').addEventListener('click', async e => {
   } else if (btn.dataset.action === 'bid'){
     const amt = session.pendingBid;
     if (amt <= game.currentBid || amt > curPlayer.money) return;
-    try { await games.bid(m.id, amt, cloud.user.uid); }
+    try {
+      await games.bid(m.id, amt, cloud.user.uid);
+      // Force immediate poll so my own action reflects instantly
+      games.poll();
+    }
     catch(err){ toast(err.message || 'Bid failed', 'error'); }
   } else if (btn.dataset.action === 'fold'){
-    try { await games.fold(m.id, cloud.user.uid); }
+    try {
+      await games.fold(m.id, cloud.user.uid);
+      games.poll();
+    }
     catch(err){ toast(err.message || 'Failed', 'error'); }
   }
 });
@@ -2193,7 +2280,6 @@ function handleLocalAction(btn){
 }
 
 function resolveLocalItem(){
-  const m = session.game;
   const g = localGame.game;
   const active = g.players.map((p, i) => ({ ...p, idx: i })).filter(p => p.inRound);
   let winnerIdx = null, price = 0;
@@ -2240,7 +2326,6 @@ function resolveLocalItem(){
   }, REVEAL_MS);
 }
 
-/* Auto-advance reveal for cloud games */
 function scheduleAutoAdvance(m){
   if (!m.game || m.game.phase !== 'reveal') return;
   if (session.advancing) return;
@@ -2251,9 +2336,6 @@ function scheduleAutoAdvance(m){
   }, REVEAL_MS);
 }
 
-/* ============================================================================
-   REVEAL FLASH
-   ========================================================================== */
 function showRevealFlash(sold, participants){
   const el = $('flashOverlay');
   const winnerName = sold.winnerIdx !== null ? participants[sold.winnerIdx]?.name : null;
@@ -2280,9 +2362,9 @@ function showRevealFlash(sold, participants){
 }
 function hideRevealFlash(){ $('flashOverlay').classList.remove('show'); }
 
-/* ============================================================================
+/* ============================================================
    RESULTS
-   ========================================================================== */
+   ============================================================ */
 const eloRecorded = {};
 
 function renderResultsFromGame(){
@@ -2389,7 +2471,7 @@ function renderResultsFromGame(){
 }
 
 async function maybeRecordElo(m){
-  if (!cloud.enabled || !cloud.user || !m) return;
+  if (!cloud.enabled || !cloud.user || !m || !cloud.healthy) return;
   if (m.id === 'local' || m.eloRecorded) return;
   if (eloRecorded[m.id]) return;
   eloRecorded[m.id] = true;
@@ -2406,7 +2488,7 @@ async function maybeRecordElo(m){
       claimed = true;
     });
     if (!claimed) return;
-  } catch(e){ return; }
+  } catch(e){ console.error('[AuctionWars] Elo claim failed:', e); return; }
 
   const participants = m.participants || [];
   const players = m.game?.players || [];
@@ -2467,9 +2549,9 @@ async function maybeRecordElo(m){
   }
 }
 
-/* ============================================================================
+/* ============================================================
    LEADERBOARD
-   ========================================================================== */
+   ============================================================ */
 let lbSort = 'elo';
 
 async function renderLeaderboard(){
@@ -2533,9 +2615,9 @@ async function renderLeaderboard(){
   $('lbBack3').addEventListener('click', () => { renderSetup(); showScreen('setup'); renderHeader(); });
 }
 
-/* ============================================================================
+/* ============================================================
    PACK EDITOR
-   ========================================================================== */
+   ============================================================ */
 const editor = { id: null, emoji: '✨', name: '', items: [{ name: '', value: 5 }], bulkOpen: false };
 
 function openEditor(id){
@@ -2713,9 +2795,9 @@ async function deleteEditor(){
   toast('Pack deleted');
 }
 
-/* ============================================================================
+/* ============================================================
    BOOT
-   ========================================================================== */
+   ============================================================ */
 (async () => {
   registry.load();
   renderSetup();
