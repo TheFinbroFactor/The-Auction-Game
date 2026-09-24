@@ -40,6 +40,7 @@
   @keyframes pulseBot{0%,100%{box-shadow:0 0 0 0 rgba(167,139,250,.5)}50%{box-shadow:0 0 0 8px rgba(167,139,250,0)}}
   @keyframes toastIn{from{opacity:0;transform:translateY(14px) scale(.92)}to{opacity:1;transform:none}}
   @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes questPop{0%{transform:scale(.4);opacity:0}50%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
   button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;padding:0}
   input,textarea{font-family:inherit}
   ::selection{background:rgba(251,191,36,.28);color:#fff}
@@ -50,14 +51,23 @@
   .brand-text{display:flex;flex-direction:column;line-height:1.05;gap:3px}
   .brand-name{font-size:15.5px;font-weight:900}
   .brand-sub{font-size:9px;color:var(--muted-2);font-weight:800;letter-spacing:1.8px;text-transform:uppercase}
-  .header-right{display:flex;align-items:center;gap:8px}
+  .header-right{display:flex;align-items:center;gap:8px;position:relative}
   .sync-dot{width:10px;height:10px;border-radius:50%;background:var(--muted-2);flex-shrink:0;transition:.3s}
   .sync-dot.live{background:var(--green);animation:pulseDot 2.4s ease-in-out infinite}
   .sync-dot.polling{background:var(--gold)}
   .sync-dot.error{background:var(--red)}
-  .icon-btn{width:38px;height:38px;border-radius:12px;background:var(--raised-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;transition:.15s}
+  .icon-btn{position:relative;width:38px;height:38px;border-radius:12px;background:var(--raised-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;transition:.15s}
   .icon-btn:hover{background:var(--raised)}
   .icon-btn.active{background:rgba(251,191,36,.13);border-color:rgba(251,191,36,.45);color:var(--gold)}
+  .icon-badge{
+    position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;padding:0 5px;
+    border-radius:99px;font-size:10px;font-weight:900;
+    background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(239,68,68,.5);
+    border:2px solid var(--bg);
+  }
+  .icon-badge.ok{background:linear-gradient(135deg,#34d399,#10b981);box-shadow:0 2px 8px rgba(52,211,153,.5)}
   .user-chip{display:flex;align-items:center;gap:8px;padding:4px 12px 4px 4px;border-radius:99px;background:var(--raised-2);border:1px solid var(--border);max-width:170px}
   .user-avatar{width:28px;height:28px;border-radius:50%;flex-shrink:0;background:linear-gradient(145deg,#a78bfa,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;overflow:hidden}
   .user-avatar img{width:100%;height:100%;object-fit:cover}
@@ -87,14 +97,28 @@
   .banner.danger{background:rgba(248,113,113,.07);border-color:rgba(248,113,113,.25);color:#fecaca}
   .banner .icon{font-size:15px;flex-shrink:0;line-height:1.4}
   .banner b{color:var(--gold);font-weight:900}
+  .search-wrap{position:relative;margin-bottom:10px}
+  .search-input{width:100%;padding:11px 38px 11px 36px;border-radius:12px;font-size:13px;font-weight:600;background:var(--input-bg);border:1px solid var(--border);color:var(--text);outline:none;transition:.15s}
+  .search-input:focus{border-color:rgba(251,191,36,.5)}
+  .search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--muted-2);pointer-events:none}
+  .search-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;font-size:14px;font-weight:900;color:var(--muted-2);display:flex;align-items:center;justify-content:center;transition:.15s}
+  .search-clear:hover{background:var(--raised);color:var(--text)}
   .pack-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .pack{position:relative;padding:13px 12px;border-radius:14px;font-size:12.5px;font-weight:800;background:var(--raised-2);border:1px solid var(--border);color:var(--text);text-align:left;display:flex;flex-direction:column;gap:5px;line-height:1.3;transition:.15s}
   .pack:hover{background:var(--raised)}
   .pack.sel{background:linear-gradient(135deg,rgba(251,191,36,.14),rgba(251,191,36,.06));border-color:rgba(251,191,36,.55);color:var(--gold)}
-  .pack .pname{display:block}
+  .pack .pname{display:block;padding-right:24px}
   .pack .pcount{font-size:9.5px;font-weight:800;color:var(--muted-2);letter-spacing:.5px}
   .pack.sel .pcount{color:rgba(251,191,36,.75)}
+  .pack .popular-badge{
+    position:absolute;top:8px;right:8px;
+    font-size:9px;font-weight:900;padding:2px 6px;border-radius:99px;
+    background:linear-gradient(135deg,#f97316,#ef4444);color:#fff;
+    letter-spacing:.5px;
+    box-shadow:0 2px 8px rgba(239,68,68,.4);
+  }
   .pack.new{border-style:dashed;border-color:var(--border-2);align-items:center;justify-content:center;text-align:center;color:var(--muted);font-weight:900;min-height:62px;flex-direction:row;gap:7px}
+  .no-results{text-align:center;padding:26px 16px;color:var(--muted);font-size:12.5px;font-weight:700}
   .pack-actions{display:flex;gap:6px;margin-top:12px}
   .pack-actions .btn-ghost{flex:1;padding:10px;font-size:11.5px}
   .competitors{display:flex;flex-direction:column;gap:8px}
@@ -244,8 +268,9 @@
   .lb-header{text-align:center;padding:14px 0 20px}
   .lb-header h2{margin:0;font-size:27px;font-weight:900;letter-spacing:-.6px;background:linear-gradient(100deg,#fde68a 0%,#fbbf24 45%,#f59e0b 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
   .lb-header p{color:var(--muted);font-size:12px;margin:9px 0 0;font-weight:700}
-  .lb-tabs{display:flex;gap:4px;padding:4px;margin-bottom:14px;background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:14px}
-  .lb-tab{flex:1;padding:10px;border-radius:10px;font-size:12.5px;font-weight:800;color:var(--muted)}
+  .lb-tabs{display:flex;gap:4px;padding:4px;margin-bottom:14px;background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:14px;overflow-x:auto;scrollbar-width:none}
+  .lb-tabs::-webkit-scrollbar{display:none}
+  .lb-tab{flex:1;min-width:70px;padding:10px 8px;border-radius:10px;font-size:12.5px;font-weight:800;color:var(--muted);white-space:nowrap}
   .lb-tab.sel{background:linear-gradient(135deg,rgba(251,191,36,.18),rgba(251,191,36,.08));color:var(--gold)}
   .lb-list{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
   .lb-row{display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:15px;background:var(--surface);border:1px solid var(--border)}
@@ -260,6 +285,7 @@
   .lb-name{font-size:13.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:7px}
   .lb-pid{font-size:9.5px;color:var(--gold);font-weight:900;letter-spacing:.7px;font-family:ui-monospace,Menlo,monospace;opacity:.8;background:rgba(251,191,36,.1);padding:2px 6px;border-radius:5px}
   .lb-you{font-size:8.5px;font-weight:900;letter-spacing:1.2px;padding:2px 6px;border-radius:99px;background:rgba(251,191,36,.15);color:var(--gold)}
+  .lb-streak{font-size:9px;font-weight:900;letter-spacing:.5px;padding:2px 6px;border-radius:99px;background:linear-gradient(135deg,#f97316,#ef4444);color:#fff}
   .lb-stats{font-size:10.5px;color:var(--muted);font-weight:700;margin-top:3px}
   .lb-elo{font-size:17px;font-weight:900;color:var(--gold);text-align:right;flex-shrink:0;line-height:1}
   .lb-elo small{display:block;font-size:9px;color:var(--muted-2);font-weight:800;letter-spacing:.7px;margin-top:3px}
@@ -280,6 +306,106 @@
   .menu-item .mi-icon{font-size:18px;flex-shrink:0}
   .menu-item .mi-text{flex:1;min-width:0}
   .menu-item .mi-sub{font-size:10.5px;color:var(--muted-2);font-weight:700;margin-top:2px}
+
+  /* ============================================================
+     DAILY QUESTS
+     ============================================================ */
+  .quest-header{
+    display:flex;align-items:center;gap:14px;
+    padding:16px;border-radius:16px;
+    background:linear-gradient(135deg,rgba(251,191,36,.14),rgba(168,85,247,.08));
+    border:1px solid rgba(251,191,36,.28);
+    margin-bottom:16px;
+  }
+  .quest-header-icon{
+    width:52px;height:52px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(145deg,#fde68a,#fbbf24 40%,#d97706);
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;
+    box-shadow:0 6px 20px rgba(251,191,36,.4);
+  }
+  .quest-header-info{flex:1;min-width:0}
+  .quest-header-title{font-size:17px;font-weight:900;letter-spacing:-.3px}
+  .quest-header-meta{font-size:11.5px;color:var(--muted);font-weight:700;margin-top:4px}
+  .quest-streak{
+    display:inline-flex;align-items:center;gap:4px;
+    padding:3px 8px;border-radius:99px;
+    background:linear-gradient(135deg,#f97316,#ef4444);color:#fff;
+    font-size:10px;font-weight:900;letter-spacing:.5px;
+    margin-left:6px;
+  }
+  .quest-list{display:flex;flex-direction:column;gap:10px;margin-bottom:8px}
+  .quest-card{
+    padding:14px;border-radius:14px;
+    background:var(--raised-2);border:1px solid var(--border);
+    transition:.2s;
+  }
+  .quest-card.done{
+    background:linear-gradient(135deg,rgba(52,211,153,.10),rgba(52,211,153,.03));
+    border-color:rgba(52,211,153,.4);
+  }
+  .quest-card.ready{
+    background:linear-gradient(135deg,rgba(251,191,36,.10),rgba(251,191,36,.03));
+    border-color:rgba(251,191,36,.4);
+  }
+  .quest-card-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .quest-emoji{font-size:22px;flex-shrink:0}
+  .quest-info{flex:1;min-width:0}
+  .quest-title{font-size:13.5px;font-weight:900;letter-spacing:-.05px}
+  .quest-desc{font-size:11px;color:var(--muted);font-weight:700;margin-top:3px}
+  .quest-reward{
+    display:flex;flex-direction:column;align-items:flex-end;
+    font-size:10.5px;font-weight:900;letter-spacing:.3px;
+    flex-shrink:0;
+  }
+  .quest-reward .rp-elo{color:var(--gold)}
+  .quest-reward .rp-xp{color:var(--purple)}
+  .quest-bar{
+    height:8px;border-radius:99px;
+    background:var(--raised);overflow:hidden;
+    margin-top:6px;
+  }
+  .quest-bar-fill{
+    height:100%;border-radius:99px;
+    background:linear-gradient(90deg,#fbbf24,#f59e0b);
+    transition:width .5s cubic-bezier(.3,.9,.4,1);
+    box-shadow:0 0 8px rgba(251,191,36,.4);
+  }
+  .quest-bar-fill.done{
+    background:linear-gradient(90deg,#34d399,#10b981);
+    box-shadow:0 0 8px rgba(52,211,153,.4);
+  }
+  .quest-progress-text{
+    font-size:10px;color:var(--muted-2);font-weight:800;
+    margin-top:6px;display:flex;justify-content:space-between;
+  }
+  .quest-badge-done{
+    display:inline-flex;align-items:center;gap:4px;
+    font-size:9.5px;font-weight:900;letter-spacing:.8px;
+    color:#34d399;
+    padding:2px 8px;border-radius:99px;
+    background:rgba(52,211,153,.15);
+  }
+
+  /* Quest completion toast */
+  .quest-toast{
+    padding:14px 20px;border-radius:16px;
+    background:linear-gradient(135deg,rgba(251,191,36,.95),rgba(245,158,11,.95));
+    color:#1a1206;
+    box-shadow:0 14px 44px rgba(251,191,36,.5), 0 0 60px rgba(251,191,36,.3);
+    font-weight:900;text-align:center;
+    animation:questPop .5s cubic-bezier(.2,1.5,.5,1);
+    max-width:92vw;
+    border:2px solid rgba(255,255,255,.3);
+  }
+  .quest-toast-title{
+    font-size:10.5px;letter-spacing:2px;opacity:.75;
+    margin-bottom:4px;
+  }
+  .quest-toast-name{font-size:15px;margin-bottom:6px}
+  .quest-toast-reward{font-size:12px;letter-spacing:.5px;opacity:.9}
+
+  /* Bot difficulty picker */
   .picker-list{display:flex;flex-direction:column;gap:6px;max-height:52vh;overflow-y:auto;margin:-4px -6px 14px -4px;padding:4px 6px 4px 4px}
   .picker-list::-webkit-scrollbar{width:5px}
   .picker-list::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:99px}
@@ -386,6 +512,14 @@
   html[data-theme="light"] .lb-row.me{border-color:rgba(180,83,9,.45);background:linear-gradient(135deg,rgba(180,83,9,.07),rgba(180,83,9,.02))}
   html[data-theme="light"] .lb-pid{background:rgba(180,83,9,.10)}
   html[data-theme="light"] .lb-you{background:rgba(180,83,9,.15)}
+  html[data-theme="light"] .quest-card.ready{background:linear-gradient(135deg,rgba(180,83,9,.10),rgba(180,83,9,.03));border-color:rgba(180,83,9,.4)}
+  html[data-theme="light"] .quest-card.done{background:linear-gradient(135deg,rgba(5,150,105,.10),rgba(5,150,105,.03));border-color:rgba(5,150,105,.4)}
+  html[data-theme="light"] .quest-bar-fill{background:linear-gradient(90deg,#d97706,#b45309);box-shadow:0 0 8px rgba(180,83,9,.3)}
+  html[data-theme="light"] .quest-bar-fill.done{background:linear-gradient(90deg,#059669,#047857);box-shadow:0 0 8px rgba(5,150,105,.3)}
+  html[data-theme="light"] .quest-reward .rp-elo{color:var(--gold)}
+  html[data-theme="light"] .quest-reward .rp-xp{color:var(--purple)}
+  html[data-theme="light"] .quest-toast{background:linear-gradient(135deg,#fcd34d,#fbbf24);color:#1a1206;box-shadow:0 14px 44px rgba(180,83,9,.4)}
+  html[data-theme="light"] .pack .popular-badge{background:linear-gradient(135deg,#ea580c,#dc2626)}
   .toast-wrap{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:2000;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;padding:0 16px}
   .toast{padding:12px 19px;border-radius:99px;font-size:12.5px;font-weight:800;background:var(--toast-bg);border:1px solid var(--border-2);color:var(--text);box-shadow:var(--shadow-md);animation:toastIn .3s cubic-bezier(.2,1.3,.5,1);max-width:92vw;text-align:center}
   .toast.success{border-color:rgba(52,211,153,.4)}
@@ -431,7 +565,8 @@ const FIREBASE_ENABLED = !FIREBASE_CONFIG.apiKey.includes('YOUR_');
 const ONLINE_TIMEOUT_MS = 60000;
 const REVEAL_MS = 1800;
 const POLL_INTERVAL_MS = 1200;
-const BOT_ELO_WEIGHT = 0.35; // Bot opponents count for 35% of a human opponent
+const BOT_ELO_WEIGHT = 0.35;
+const DAILY_QUEST_COUNT = 3;
 
 const PACKS = {
   "🍔 Fast Food": [["Big Mac",8],["Large Fries",5],["10pc McNuggets",7],["McFlurry",7],["Filet-O-Fish",4],["Apple Pie",3],["Happy Meal",6],["Quarter Pounder",8],["McChicken",5],["Ice Cream Cone",2],["Chicken Sandwich",6],["Large Coke",2],["Whopper",8],["Crunchwrap Supreme",7],["Doritos Locos Taco",6],["Onion Rings",4],["Chili Cheese Fries",5],["Corn Dog",3],["Mozzarella Sticks",5],["Milkshake",6]],
@@ -492,11 +627,23 @@ function toast(msg, kind){
     setTimeout(() => el.remove(), 260);
   }, 3000);
 }
+function questToast(title, name, reward){
+  const el = document.createElement('div');
+  el.className = 'quest-toast';
+  el.innerHTML = `<div class="quest-toast-title">DAILY QUEST COMPLETE</div><div class="quest-toast-name">${esc(name)}</div><div class="quest-toast-reward">${esc(reward)}</div>`;
+  $('toastWrap').appendChild(el);
+  setTimeout(() => {
+    el.style.transition = 'opacity .3s, transform .3s';
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(10px)';
+    setTimeout(() => el.remove(), 320);
+  }, 3600);
+}
 function openModal(html){ $('modal').innerHTML = html; $('modal').classList.add('show'); }
 function closeModal(){ $('modal').classList.remove('show'); $('modal').innerHTML = ''; }
 
 /* ============================================================
-   BOT NAMING & CONFIG
+   BOT NAMES
    ============================================================ */
 const BOT_FIRST_NAMES = {
   easy: ['Bumbles', 'Snoozy', 'Dopey', 'Clumsy', 'Silly', 'Noodle', 'Doodle', 'Pickles', 'Waffles', 'Muffin'],
@@ -509,11 +656,314 @@ const BOT_DIFFICULTY_DESC = {
   medium: 'Balanced. Bids up to ~70% of value.',
   hard: 'Aggressive. Bids near or past true value.'
 };
-
 function randomBotName(difficulty){
   const pool = BOT_FIRST_NAMES[difficulty] || BOT_FIRST_NAMES.medium;
   return pool[Math.floor(Math.random() * pool.length)];
 }
+
+/* ============================================================
+   DAILY QUESTS
+   ============================================================ */
+const QUESTS_KEY = 'auctionWars_quests_v1';
+
+const QUEST_POOL = [
+  { id: 'play_1', type: 'play_match', title: 'Warm Up', desc: 'Play 1 match today', target: 1, rewardElo: 5, rewardXp: 25, emoji: '🎯' },
+  { id: 'play_3', type: 'play_match', title: 'Frequent Flyer', desc: 'Play 3 matches today', target: 3, rewardElo: 12, rewardXp: 60, emoji: '✈️' },
+  { id: 'win_1', type: 'win_match', title: 'Champion', desc: 'Win a match', target: 1, rewardElo: 15, rewardXp: 75, emoji: '🏆' },
+  { id: 'win_2', type: 'win_match', title: 'Double Down', desc: 'Win 2 matches today', target: 2, rewardElo: 25, rewardXp: 120, emoji: '⚔️' },
+  { id: 'win_hard_bot', type: 'win_hard_bot', title: 'Giant Slayer', desc: 'Beat a Hard bot in a match', target: 1, rewardElo: 20, rewardXp: 100, emoji: '👹' },
+  { id: 'win_5_items', type: 'win_5_items', title: 'Collector', desc: 'Win 5+ items in one match', target: 1, rewardElo: 15, rewardXp: 75, emoji: '💎' },
+  { id: 'win_margin_20', type: 'win_margin_20', title: 'Dominant', desc: 'Win a match by 20+ points', target: 1, rewardElo: 18, rewardXp: 90, emoji: '📈' },
+  { id: 'play_4p', type: 'play_4p', title: 'Full House', desc: 'Play a 4-player match', target: 1, rewardElo: 10, rewardXp: 50, emoji: '👥' },
+  { id: 'bid_50', type: 'bid_50', title: 'High Roller', desc: 'Place a single bid of $50+', target: 1, rewardElo: 8, rewardXp: 40, emoji: '💰' },
+  { id: 'create_pack', type: 'create_pack', title: 'Curator', desc: 'Create a custom pack', target: 1, rewardElo: 10, rewardXp: 50, emoji: '📦' },
+  { id: 'no_forfeit_3', type: 'no_forfeit_3', title: 'Iron Will', desc: 'Finish 3 matches without forfeiting', target: 3, rewardElo: 14, rewardXp: 70, emoji: '🛡️' },
+];
+
+function dateKeyUTC(){
+  const d = new Date();
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`;
+}
+function seededShuffle(arr, seed){
+  const out = arr.slice();
+  let s = 0;
+  for (let i = 0; i < String(seed).length; i++) s = (s * 31 + String(seed).charCodeAt(i)) >>> 0;
+  for (let i = out.length - 1; i > 0; i--){
+    s = (s * 1103515245 + 12345) & 0x7fffffff;
+    const j = s % (i + 1);
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
+const quests = {
+  local: null,   // { dateKey, quests: [...], streak, lastCompletedKey, totalQuestPoints, questsCompletedTotal, claimedEloTotal }
+  cloudRef: null,
+  loaded: false,
+
+  load(){
+    try {
+      const raw = localStorage.getItem(QUESTS_KEY);
+      if (raw) this.local = JSON.parse(raw);
+    } catch(e){ this.local = null; }
+    this.loaded = true;
+    this.ensureToday();
+  },
+  save(){
+    if (this.local){ try { localStorage.setItem(QUESTS_KEY, JSON.stringify(this.local)); } catch(e){} }
+  },
+  async pushToCloud(){
+    if (!cloud.user || !cloud.db || !this.local) return;
+    try {
+      const ref = cloud.fb.dbMod.doc(cloud.db, 'quests', cloud.user.uid);
+      await cloud.fb.dbMod.setDoc(ref, this.local, { merge: true });
+    } catch(e){}
+  },
+  async pullFromCloud(){
+    if (!cloud.user || !cloud.db) return null;
+    try {
+      const snap = await cloud.fb.dbMod.getDoc(cloud.fb.dbMod.doc(cloud.db, 'quests', cloud.user.uid));
+      return snap.exists() ? snap.data() : null;
+    } catch(e){ return null; }
+  },
+
+  ensureToday(){
+    const today = dateKeyUTC();
+    const uidSeed = (cloud.profile?.playerId || 'local') + '|' + today;
+    if (!this.local){
+      this.local = this.rollDaily(today, uidSeed, 0, null, 0, 0, 0);
+      this.save();
+      return;
+    }
+    if (this.local.dateKey !== today){
+      // Check if yesterday was completed for streak calculation
+      const hadCompletionYesterday = this.local.lastCompletedKey &&
+        this.isYesterday(this.local.lastCompletedKey, today);
+      const newStreak = hadCompletionYesterday ? (this.local.streak || 0) : 0;
+      // Roll new quests; streak preserved only if yesterday had completion
+      this.local = this.rollDaily(
+        today, uidSeed, newStreak,
+        this.local.lastCompletedKey,
+        this.local.totalQuestPoints || 0,
+        this.local.questsCompletedTotal || 0,
+        this.local.claimedEloTotal || 0
+      );
+      this.save();
+      this.pushToCloud();
+    }
+  },
+  isYesterday(a, todayKey){
+    const [y1,m1,d1] = a.split('-').map(Number);
+    const [y2,m2,d2] = todayKey.split('-').map(Number);
+    const da = Date.UTC(y1, m1-1, d1);
+    const db = Date.UTC(y2, m2-1, d2);
+    return Math.round((db - da) / 86400000) === 1;
+  },
+  rollDaily(dateKey, seed, streak, lastCompletedKey, totalQuestPoints, questsCompletedTotal, claimedEloTotal){
+    const picks = seededShuffle(QUEST_POOL, seed).slice(0, DAILY_QUEST_COUNT);
+    const list = picks.map(q => ({
+      id: q.id, type: q.type, title: q.title, desc: q.desc,
+      target: q.target, progress: 0,
+      rewardElo: q.rewardElo, rewardXp: q.rewardXp,
+      emoji: q.emoji, claimed: false
+    }));
+    return {
+      dateKey, quests: list,
+      streak: streak || 0,
+      lastCompletedKey: lastCompletedKey || null,
+      totalQuestPoints: totalQuestPoints || 0,
+      questsCompletedTotal: questsCompletedTotal || 0,
+      claimedEloTotal: claimedEloTotal || 0
+    };
+  },
+
+  /**
+   * Progress a quest type. `amount` defaults to 1.
+   * Auto-claims and awards Elo & XP when target is hit.
+   */
+  progress(type, amount = 1){
+    if (!this.local) this.load();
+    this.ensureToday();
+    const list = this.local.quests || [];
+    let changed = false;
+    let totalEloAwarded = 0;
+    const completed = [];
+
+    for (const q of list){
+      if (q.type !== type) continue;
+      if (q.claimed) continue;
+      q.progress = Math.min(q.target, (q.progress || 0) + amount);
+      changed = true;
+      if (q.progress >= q.target && !q.claimed){
+        q.claimed = true;
+        totalEloAwarded += q.rewardElo;
+        this.local.totalQuestPoints = (this.local.totalQuestPoints || 0) + q.rewardXp;
+        this.local.questsCompletedTotal = (this.local.questsCompletedTotal || 0) + 1;
+        completed.push(q);
+        // Update streak on first completion today
+        const today = dateKeyUTC();
+        if (this.local.lastCompletedKey !== today){
+          if (this.local.lastCompletedKey && this.isYesterday(this.local.lastCompletedKey, today)){
+            this.local.streak = (this.local.streak || 0) + 1;
+          } else {
+            this.local.streak = 1;
+          }
+          this.local.lastCompletedKey = today;
+        }
+      }
+    }
+
+    if (changed){
+      // Apply Elo bonus + streak bonus to player
+      const streakBonus = Math.min(Math.max((this.local.streak || 1) - 1, 0), 5) * 2;
+      const totalBonus = totalEloAwarded + (completed.length ? streakBonus : 0);
+      if (totalBonus > 0){
+        this.local.claimedEloTotal = (this.local.claimedEloTotal || 0) + totalBonus;
+        this.applyEloBonus(totalBonus);
+      }
+
+      this.save();
+      this.pushToCloud();
+      this.updateHeaderBadge();
+
+      // Show toasts for each completed quest
+      completed.forEach((q, i) => {
+        const rewardText = `+${q.rewardElo} Elo · +${q.rewardXp} XP${completed.length > 1 && i === completed.length - 1 && streakBonus > 0 ? ` · +${streakBonus} streak` : (completed.length === 1 && streakBonus > 0 ? ` · +${streakBonus} streak` : '')}`;
+        setTimeout(() => questToast('Daily Quest Complete', q.title, rewardText), i * 900);
+      });
+
+      // If we're on the results screen, refresh the Elo display
+      if (completed.length && session.game && session.game.status === 'ended'){
+        // Small refresh of header to show updated Elo on next leaderboard visit
+      }
+    }
+    return completed;
+  },
+
+  async applyEloBonus(amount){
+    if (!cloud.user || !cloud.profile?.playerId) return;
+    const pid = cloud.profile.playerId;
+    try {
+      const rec = await registry.get(pid);
+      const cur = intElo(rec?.elo ?? 1000);
+      const next = clamp(cur + amount, 100, 4000);
+      await registry.upsert(pid, {
+        name: cloud.profile.displayName || 'Player',
+        elo: next,
+        wins: rec?.wins || 0,
+        games: rec?.games || 0,
+        totalValue: rec?.totalValue || 0,
+        questPoints: (rec?.questPoints || 0) + 0,
+        streak: this.local?.streak || 0,
+        ownerUid: cloud.user.uid
+      });
+    } catch(e){}
+  },
+
+  doneTodayCount(){
+    if (!this.local) return 0;
+    return (this.local.quests || []).filter(q => q.claimed).length;
+  },
+
+  updateHeaderBadge(){
+    const el = $('questBadge');
+    if (!el) return;
+    const total = (this.local?.quests || []).length;
+    const done = this.doneTodayCount();
+    if (total === 0){ el.style.display = 'none'; return; }
+    el.style.display = '';
+    el.textContent = `${done}/${total}`;
+    el.classList.toggle('ok', done === total);
+  },
+
+  onMatchComplete(m, ranked, myIdx){
+    if (myIdx < 0) return;
+    const me = ranked[myIdx];
+    if (!me) return;
+    if (me.isBot || me.isGuest) return;
+
+    // Play match
+    this.progress('play_match', 1);
+
+    // Win match
+    if (me.placement === 0 && !me.forfeited){
+      this.progress('win_match', 1);
+    }
+
+    // Play 4 player match
+    if ((m.participants || []).length >= 4){
+      this.progress('play_4p', 1);
+    }
+
+    // Win 5+ items
+    if ((me.items || []).length >= 5){
+      this.progress('win_5_items', 1);
+    }
+
+    // Win by 20+ margin
+    if (me.placement === 0 && ranked.length > 1){
+      const second = ranked[1];
+      if ((me.total - second.total) >= 20){
+        this.progress('win_margin_20', 1);
+      }
+    }
+
+    // Beat a hard bot in the same match
+    if (me.placement === 0){
+      const hadHardBot = (m.participants || []).some((p, i) =>
+        p.isBot && p.botDifficulty === 'hard' && ranked[i] && ranked[i].placement > 0
+      );
+      if (hadHardBot) this.progress('win_hard_bot', 1);
+    }
+
+    // No forfeit streak
+    if (!me.forfeited){
+      this.progress('no_forfeit_3', 1);
+    }
+  }
+};
+
+/* ============================================================
+   PACK STATS (for popularity)
+   ============================================================ */
+const PACK_STATS_KEY = 'auctionWars_packStats_v1';
+const packStats = {
+  local: {},
+  loaded: false,
+  async load(){
+    try {
+      const raw = localStorage.getItem(PACK_STATS_KEY);
+      this.local = raw ? JSON.parse(raw) : {};
+    } catch(e){ this.local = {}; }
+    this.loaded = true;
+  },
+  save(){ try { localStorage.setItem(PACK_STATS_KEY, JSON.stringify(this.local)); } catch(e){} },
+  record(packId){
+    if (!packId) return;
+    this.local[packId] = (this.local[packId] || 0) + 1;
+    this.save();
+    this.pushToCloud(packId);
+  },
+  async pushToCloud(packId){
+    if (!cloud.user || !cloud.db) return;
+    try {
+      const ref = cloud.fb.dbMod.doc(cloud.db, 'packStats', packId);
+      const mod = cloud.fb.dbMod;
+      await mod.updateDoc(ref, { playCount: mod.increment(1), updatedAt: Date.now() }).catch(async () => {
+        await mod.setDoc(ref, { playCount: 1, updatedAt: Date.now() }, { merge: true });
+      });
+    } catch(e){}
+  },
+  async fetchAllCloud(){
+    if (!cloud.user || !cloud.db) return {};
+    try {
+      const snap = await cloud.fb.dbMod.getDocs(cloud.fb.dbMod.collection(cloud.db, 'packStats'));
+      const map = {};
+      snap.forEach(d => { const data = d.data(); map[d.id] = data.playCount || 0; });
+      return map;
+    } catch(e){ return {}; }
+  }
+};
 
 /* ============================================================
    SETTINGS
@@ -542,9 +992,7 @@ const settings = {
   set(key, value){ this[key] = value; this.save(); this.apply(); },
   apply(){
     let t = this.theme;
-    if (t === 'auto'){
-      t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    }
+    if (t === 'auto') t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', t);
     document.documentElement.setAttribute('data-reduce-motion', this.reduceMotion ? 'true' : 'false');
     const dot = $('syncDot');
@@ -636,6 +1084,7 @@ function saveLocalProfile(p){ try { localStorage.setItem(PROFILE_KEY, JSON.strin
 
 async function initCloud(){
   registry.load();
+  quests.load();
   if (!FIREBASE_ENABLED){ cloud.ready = true; renderHeader(); return; }
   try {
     const [appMod, authMod, dbMod] = await Promise.all([
@@ -647,6 +1096,7 @@ async function initCloud(){
     cloud.auth = authMod.getAuth(app);
     cloud.db = dbMod.getFirestore(app);
     cloud.fb = { authMod, dbMod };
+    await packStats.load();
 
     authMod.onAuthStateChanged(cloud.auth, async user => {
       cloud.user = user;
@@ -655,6 +1105,17 @@ async function initCloud(){
         await loadUserProfile();
         await pullCloudPacks();
         await migrateOwnPacksToShared();
+        // Load quests from cloud, merge if newer
+        const cloudQuest = await quests.pullFromCloud();
+        if (cloudQuest && cloudQuest.dateKey){
+          // Prefer cloud if same date, has more completions, or local is stale
+          const local = quests.local;
+          if (!local || cloudQuest.dateKey !== local.dateKey || (cloudQuest.questsCompletedTotal || 0) > (local.questsCompletedTotal || 0)){
+            quests.local = cloudQuest;
+            quests.save();
+            quests.ensureToday();
+          }
+        }
         cloud.healthy = await firestoreSmokeTest();
         if (!cloud.healthy){ renderHeader(); if ($('screen-setup').classList.contains('active')) renderSetup(); return; }
         presence.start();
@@ -829,7 +1290,7 @@ const presence = {
 };
 
 /* ============================================================
-   GAMES MODULE (with bot support)
+   GAMES MODULE
    ============================================================ */
 const games = {
   pollTimer: null, listenerUnsub: null, lastFingerprint: null, currentCb: null, status: 'idle',
@@ -852,7 +1313,6 @@ const games = {
       this.listenerUnsub = cloud.fb.dbMod.onSnapshot(q,
         snap => { this.status = 'live'; updateSyncDot(); this.handleSnapshot(snap); },
         err => {
-          console.error('[AuctionWars] Live listener unavailable. Polling only.');
           if (this.listenerUnsub){ try { this.listenerUnsub(); } catch(e){} this.listenerUnsub = null; }
           this.status = 'polling'; updateSyncDot();
         });
@@ -957,7 +1417,6 @@ const games = {
       const curIdx = g.turnIdx;
       const cur = data.participants[curIdx];
       const myIdx = data.participants.findIndex(p => p.uid === myUid);
-      // Allow guest OR bot turns to be played by anyone
       const isActableByAnyone = cur.isGuest || cur.isBot;
       if (cur.forfeited) throw new Error('That player has forfeited');
       if (!isActableByAnyone && myIdx !== curIdx) throw new Error('Not your turn');
@@ -974,6 +1433,18 @@ const games = {
         'game.version': (g.version || 0) + 1, 'game.updatedAt': Date.now(), updatedAt: Date.now()
       });
     });
+    // Quest hook: big bid
+    if (amount >= 50){
+      const m = session.game;
+      if (m && session.myIdx >= 0){
+        const cur = m.participants[m.game?.turnIdx];
+        const myP = m.participants[session.myIdx];
+        // Only count if the bid was placed by the player's own seat or on their behalf
+        if (myP && (!cur || cur.isBot || cur.isGuest || m.game?.turnIdx === session.myIdx)){
+          quests.progress('bid_50', 1);
+        }
+      }
+    }
   },
   async fold(gameId, myUid){
     const ref = cloud.fb.dbMod.doc(cloud.db, 'games', gameId);
@@ -1108,56 +1579,31 @@ function updateSyncDot(){
 }
 
 /* ============================================================
-   BOT DECISION ENGINE
+   BOT AI
    ============================================================ */
 function botDecide(m, g, item, botIdx){
   const bot = g.players[botIdx];
   const participant = m.participants[botIdx];
   const difficulty = participant?.botDifficulty || 'medium';
   const minB = g.currentBid + 1;
-
-  // Can't afford minimum
-  if (minB > bot.money) return { action: 'fold', reason: 'no funds' };
-
-  // If we're already the high bidder, fold to end the item
-  if (g.highBidderIdx === botIdx) return { action: 'fold', reason: 'already winning' };
-
-  // Bot's "valuation" of the item — bots know the true value but apply noise
+  if (minB > bot.money) return { action: 'fold' };
+  if (g.highBidderIdx === botIdx) return { action: 'fold' };
   const trueValue = item.value;
   let multiplier, foldChance;
   switch (difficulty){
-    case 'easy':
-      multiplier = 0.28 + Math.random() * 0.22;  // 28–50%
-      foldChance = 0.38;
-      break;
-    case 'medium':
-      multiplier = 0.55 + Math.random() * 0.25;  // 55–80%
-      foldChance = 0.18;
-      break;
-    case 'hard':
-      multiplier = 0.85 + Math.random() * 0.35;  // 85–120%
-      foldChance = 0.06;
-      break;
-    default:
-      multiplier = 0.6;
-      foldChance = 0.2;
+    case 'easy': multiplier = 0.28 + Math.random() * 0.22; foldChance = 0.38; break;
+    case 'medium': multiplier = 0.55 + Math.random() * 0.25; foldChance = 0.18; break;
+    case 'hard': multiplier = 0.85 + Math.random() * 0.35; foldChance = 0.06; break;
+    default: multiplier = 0.6; foldChance = 0.2;
   }
-
   const botMax = Math.max(1, Math.round(trueValue * multiplier));
-
-  // If minimum exceeds valuation
   if (minB > botMax){
-    // Hard bots occasionally bluff once
     if (difficulty === 'hard' && Math.random() < 0.14 && minB <= bot.money){
       return { action: 'bid', amount: Math.min(minB, bot.money) };
     }
-    return { action: 'fold', reason: 'too expensive' };
+    return { action: 'fold' };
   }
-
-  // Random disinterest fold
-  if (Math.random() < foldChance) return { action: 'fold', reason: 'uninterested' };
-
-  // Compute bid amount
+  if (Math.random() < foldChance) return { action: 'fold' };
   let bidAmount = minB;
   if (difficulty === 'hard' && Math.random() < 0.35){
     const jump = 1 + Math.floor(Math.random() * 3);
@@ -1165,24 +1611,20 @@ function botDecide(m, g, item, botIdx){
   } else if (difficulty === 'medium' && Math.random() < 0.18){
     bidAmount = Math.min(minB + 1, botMax, bot.money);
   }
-
   bidAmount = Math.max(minB, Math.min(bidAmount, botMax, bot.money));
   if (bidAmount <= g.currentBid) return { action: 'fold' };
   return { action: 'bid', amount: bidAmount };
 }
 
-/* Schedule the current bot's turn — only fires once per turn */
 function scheduleBotTurn(m){
   if (!m || m.status !== 'running' || !m.game) return;
   const g = m.game;
   if (g.phase !== 'bidding') return;
   const cur = m.participants[g.turnIdx];
   if (!cur || !cur.isBot || cur.forfeited) return;
-
   const key = `${m.id}|${g.idx}|${g.turnIdx}|${g.version || 0}`;
   if (session.botScheduledKey === key) return;
   session.botScheduledKey = key;
-
   const delay = 900 + Math.random() * 1300;
   setTimeout(async () => {
     const m2 = session.game;
@@ -1192,21 +1634,14 @@ function scheduleBotTurn(m){
     if (!g2 || g2.phase !== 'bidding') return;
     const cur2 = m2.participants[g2.turnIdx];
     if (!cur2 || !cur2.isBot || cur2.forfeited) return;
-
     const item = m2.items[g2.idx];
     if (!item) return;
-
     const decision = botDecide(m2, g2, item, g2.turnIdx);
     try {
-      if (decision.action === 'fold'){
-        await games.fold(m.id, null);
-      } else if (decision.action === 'bid'){
-        await games.bid(m.id, decision.amount, null);
-      }
+      if (decision.action === 'fold') await games.fold(m.id, null);
+      else if (decision.action === 'bid') await games.bid(m.id, decision.amount, null);
       games.poll();
-    } catch(e){
-      // turn already moved — ignore
-    }
+    } catch(e){}
   }, delay);
 }
 
@@ -1216,13 +1651,15 @@ function scheduleBotTurn(m){
 const session = {
   gameId: null, game: null, myIdx: -1, pendingBid: 1, lastTurnKey: null,
   advancing: false, lastRevealKey: null, inviteModalOpen: null,
-  menuOpen: false, settingsOpen: false, botScheduledKey: null
+  menuOpen: false, settingsOpen: false, questsOpen: false, botScheduledKey: null,
+  questProcessedGameId: null
 };
 
 const setup = {
   packId: Object.keys(PACKS)[0], myPacks: loadLocalPacks(), allPublicPacks: [],
-  cash: 20, itemCount: 10, onlinePlayers: [], pickedIds: [], guests: []
-  // guests is now an array of { name, isBot, botDifficulty }
+  cash: 20, itemCount: 10, onlinePlayers: [], pickedIds: [], guests: [],
+  searchQuery: '',
+  packPlayCounts: {}  // packId -> count
 };
 
 /* ============================================================
@@ -1249,13 +1686,22 @@ function renderHeader(){
   } else {
     userBlock = `<div class="user-chip" style="cursor:default;opacity:.55"><div class="user-avatar" style="background:linear-gradient(145deg,#5f5f6e,#3f3f4a)">?</div><div class="user-name">Local</div></div>`;
   }
+  const questDone = quests.doneTodayCount();
+  const questTotal = (quests.local?.quests || []).length;
+  const streak = quests.local?.streak || 0;
+  const showQuestBadge = questTotal > 0;
   el.innerHTML = `
     <div class="sync-dot" id="syncDot" title="Sync: idle"></div>
+    <button class="icon-btn" id="questsBtn" title="Daily quests">
+      🎯
+      <span class="icon-badge ${questDone === questTotal ? 'ok' : ''}" id="questBadge" style="${showQuestBadge ? '' : 'display:none'}">${questDone}/${questTotal}</span>
+    </button>
     <button class="icon-btn ${onLeaderboard ? 'active' : ''}" id="lbBtn" title="Leaderboard">🏆</button>
     <button class="icon-btn" id="settingsBtn" title="Settings">⚙️</button>
     ${userBlock}
   `;
   updateSyncDot();
+  $('questsBtn')?.addEventListener('click', openQuests);
   $('lbBtn')?.addEventListener('click', () => {
     if (onLeaderboard){ renderSetup(); showScreen('setup'); }
     else { renderLeaderboard(); showScreen('leaderboard'); }
@@ -1270,6 +1716,7 @@ async function openAccountMenu(){
   const p = cloud.profile || {};
   const rec = p.playerId ? await registry.get(p.playerId) : null;
   const elo = intElo(rec?.elo ?? 1000);
+  const qp = rec?.questPoints || quests.local?.totalQuestPoints || 0;
   openModal(`
     <div class="modal" style="max-width:420px">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
@@ -1279,6 +1726,7 @@ async function openAccountMenu(){
         <div style="flex:1;min-width:0">
           <div style="font-size:16px;font-weight:900">${esc(p.displayName || 'Player')}</div>
           <div style="font-size:12px;color:var(--muted);font-weight:700;margin-top:4px">Elo ${elo} · ${rec?.wins ?? 0}W / ${rec?.games ?? 0}G</div>
+          ${qp > 0 ? `<div style="font-size:11px;color:var(--purple);font-weight:800;margin-top:2px">${qp} quest points</div>` : ''}
         </div>
       </div>
       <div class="field">
@@ -1303,13 +1751,84 @@ async function openAccountMenu(){
       await registry.upsert(pid, {
         name: cloud.profile.displayName || 'Player',
         elo: intElo(rec?.elo ?? 1000), wins: rec?.wins ?? 0, games: rec?.games ?? 0,
-        totalValue: rec?.totalValue ?? 0, ownerUid: cloud.user.uid
+        totalValue: rec?.totalValue ?? 0, questPoints: rec?.questPoints ?? 0,
+        ownerUid: cloud.user.uid
       });
       await presence.push();
     }
     closeModal(); renderHeader(); renderSetup();
     toast('Player ID saved', 'success');
   });
+}
+
+/* ============================================================
+   DAILY QUESTS UI
+   ============================================================ */
+function openQuests(){
+  quests.ensureToday();
+  session.questsOpen = true;
+  renderQuestsModal();
+}
+function renderQuestsModal(){
+  const q = quests.local;
+  const streak = q?.streak || 0;
+  const done = quests.doneTodayCount();
+  const total = (q?.quests || []).length;
+  const qp = q?.totalQuestPoints || 0;
+  const cardStyle = (quest) => {
+    if (quest.claimed) return 'done';
+    return '';
+  };
+  openModal(`
+    <div class="modal">
+      <div class="quest-header">
+        <div class="quest-header-icon">🎯</div>
+        <div class="quest-header-info">
+          <div class="quest-header-title">
+            Daily Quests
+            ${streak > 0 ? `<span class="quest-streak">🔥 ${streak} day${streak === 1 ? '' : 's'}</span>` : ''}
+          </div>
+          <div class="quest-header-meta">${done}/${total} complete · ${qp} lifetime quest points</div>
+        </div>
+      </div>
+
+      <div class="quest-list">
+        ${(q?.quests || []).map(quest => {
+          const pct = Math.min(100, Math.round(((quest.progress || 0) / quest.target) * 100));
+          const claimed = quest.claimed;
+          return `
+            <div class="quest-card ${cardStyle(quest)}">
+              <div class="quest-card-head">
+                <div class="quest-emoji">${quest.emoji}</div>
+                <div class="quest-info">
+                  <div class="quest-title">${esc(quest.title)} ${claimed ? '<span class="quest-badge-done">✓ DONE</span>' : ''}</div>
+                  <div class="quest-desc">${esc(quest.desc)}</div>
+                </div>
+                <div class="quest-reward">
+                  <div class="rp-elo">+${quest.rewardElo} Elo</div>
+                  <div class="rp-xp">+${quest.rewardXp} XP</div>
+                </div>
+              </div>
+              <div class="quest-bar">
+                <div class="quest-bar-fill ${claimed ? 'done' : ''}" style="width:${pct}%"></div>
+              </div>
+              <div class="quest-progress-text">
+                <span>${Math.min(quest.progress || 0, quest.target)} / ${quest.target}</span>
+                <span>${pct}%</span>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+
+      <div style="font-size:11px;color:var(--muted-2);font-weight:700;text-align:center;margin-top:14px;line-height:1.6">
+        Quests reset daily at midnight UTC. Streak bonus adds +2 Elo per consecutive day (max +10). Elo from quests counts toward the leaderboard.
+      </div>
+
+      <button class="btn-ghost" id="questsClose" style="width:100%;margin-top:14px">Close</button>
+    </div>
+  `);
+  $('questsClose').addEventListener('click', () => { session.questsOpen = false; closeModal(); });
 }
 
 /* ============================================================
@@ -1357,7 +1876,7 @@ function renderSettingsModal(){
         <div class="settings-group-title">Data</div>
         <button class="menu-item danger" id="resetLocal">
           <span class="mi-icon">🗑️</span>
-          <span class="mi-text">Reset local data<div class="mi-sub">Clears cached player records, packs, and preferences on this device.</div></span>
+          <span class="mi-text">Reset local data<div class="mi-sub">Clears cached player records, packs, quests, and preferences on this device.</div></span>
         </button>
       </div>
       <button class="btn-ghost" id="settingsClose" style="width:100%;margin-top:12px">Close</button>
@@ -1371,7 +1890,7 @@ function renderSettingsModal(){
   $('syncToggle')?.addEventListener('click', () => { settings.set('showSyncDot', !settings.showSyncDot); renderSettingsModal(); });
   $('resetLocal')?.addEventListener('click', () => {
     if (!confirm('Reset all local data?')) return;
-    try { localStorage.removeItem(PLAYERS_KEY); localStorage.removeItem(PACKS_KEY); localStorage.removeItem(PROFILE_KEY); localStorage.removeItem(SETTINGS_KEY); } catch(e){}
+    try { localStorage.removeItem(PLAYERS_KEY); localStorage.removeItem(PACKS_KEY); localStorage.removeItem(PROFILE_KEY); localStorage.removeItem(SETTINGS_KEY); localStorage.removeItem(QUESTS_KEY); localStorage.removeItem(PACK_STATS_KEY); } catch(e){}
     toast('Local data cleared. Reloading…');
     setTimeout(() => window.location.reload(), 800);
   });
@@ -1400,15 +1919,25 @@ async function renderSetup(){
   if (cloud.user && cloud.enabled && cloud.healthy){
     setup.onlinePlayers = await presence.fetchOnline();
     setup.allPublicPacks = await fetchAllPublicPacks();
+    // Pull cloud pack play counts and merge with local
+    const cloudCounts = await packStats.fetchAllCloud();
+    setup.packPlayCounts = { ...packStats.local, ...cloudCounts };
+    // Sum duplicated keys (local + cloud) — prefer max
+    for (const k in setup.packPlayCounts){
+      const l = packStats.local[k] || 0;
+      const c = cloudCounts[k] || 0;
+      setup.packPlayCounts[k] = Math.max(l, c);
+    }
   } else {
     setup.onlinePlayers = [];
     setup.allPublicPacks = [];
+    setup.packPlayCounts = { ...packStats.local };
   }
 
   let cloudBanner = '';
   if (!cloud.enabled) cloudBanner = `<div class="banner warn"><span class="icon">⚠️</span><span>Cloud not configured. Single-device mode only.</span></div>`;
   else if (!cloud.ready) cloudBanner = `<div class="banner"><span class="icon"><div class="spin"></div></span><span>Connecting to cloud…</span></div>`;
-  else if (!cloud.user) cloudBanner = `<div class="banner"><span class="icon">☁️</span><span>Sign in with Google to share packs, invite players, and track Elo.</span></div>`;
+  else if (!cloud.user) cloudBanner = `<div class="banner"><span class="icon">☁️</span><span>Sign in with Google to share packs, invite players, track Elo, and save quests.</span></div>`;
   else if (!cloud.healthy) cloudBanner = `<div class="banner danger"><span class="icon">⚠️</span><span>Firestore isn't reachable. Falling back to local mode.</span></div>`;
   else {
     const pid = cloud.profile.playerId || '—';
@@ -1421,14 +1950,27 @@ async function renderSetup(){
   setup.pickedIds = setup.pickedIds.filter(id => onlineOthers.some(p => p.id === id));
   const totalPlayers = 1 + setup.pickedIds.length + setup.guests.length;
 
+  // Build pack list with play counts
   const seenPackIds = new Set();
-  const packList = [];
-  for (const k of Object.keys(PACKS)) packList.push({ id: k, label: k, count: PACKS[k].length, custom: false, pack: null });
+  const rawList = [];
+  for (const k of Object.keys(PACKS)) rawList.push({ id: k, label: k, count: PACKS[k].length, custom: false, pack: null });
   for (const p of [...setup.myPacks, ...setup.allPublicPacks]){
     if (seenPackIds.has(p.id)) continue;
     seenPackIds.add(p.id);
-    packList.push({ id: p.id, label: `${p.emoji} ${p.name}`, count: p.items.length, custom: true, pack: p });
+    rawList.push({ id: p.id, label: `${p.emoji} ${p.name}`, count: p.items.length, custom: true, pack: p });
   }
+  // Attach play counts
+  rawList.forEach(x => { x.plays = setup.packPlayCounts[x.id] || 0; });
+
+  // Sort by play count desc (stable)
+  const sorted = rawList.slice().sort((a, b) => (b.plays || 0) - (a.plays || 0));
+
+  // Filter by search
+  const q = (setup.searchQuery || '').trim().toLowerCase();
+  const packList = q
+    ? sorted.filter(x => x.label.toLowerCase().includes(q))
+    : sorted;
+
   const sharedCount = setup.allPublicPacks.filter(p => p.ownerUid !== cloud.user?.uid).length;
 
   el.innerHTML = `
@@ -1438,20 +1980,35 @@ async function renderSetup(){
     <div class="panel">
       <div class="panel-head">
         <div class="panel-title"><span class="num">1</span>Topic</div>
-        <div class="panel-hint">${sharedCount > 0 ? `${sharedCount} shared pack${sharedCount === 1 ? '' : 's'}` : `${packList.length} packs`}</div>
+        <div class="panel-hint">${sharedCount > 0 ? `${sharedCount} shared pack${sharedCount === 1 ? '' : 's'}` : `${rawList.length} packs`}</div>
       </div>
-      <div class="pack-grid">
-        ${packList.map(x => {
-          const isMine = x.custom && x.pack && x.pack.ownerUid === cloud.user?.uid;
-          const ownerLabel = !x.custom ? '' : (isMine ? ' · yours' : (x.pack?.ownerName ? ` · by ${esc(x.pack.ownerName)}` : ' · shared'));
-          return `
-            <button class="pack ${setup.packId === x.id ? 'sel' : ''}" data-pack="${esc(x.id)}">
-              <span class="pname">${esc(x.label)}</span>
-              <span class="pcount">${x.count} items${ownerLabel}</span>
-            </button>`;
-        }).join('')}
-        <button class="pack new" data-newpack="1">＋ Create pack</button>
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input id="packSearch" class="search-input" type="text" placeholder="Search topics…"
+               value="${esc(setup.searchQuery || '')}" autocomplete="off">
+        ${setup.searchQuery ? `<button class="search-clear" id="searchClear" title="Clear">×</button>` : ''}
       </div>
+      ${packList.length === 0 ? `
+        <div class="no-results">
+          <div style="font-size:36px;opacity:.5;margin-bottom:8px">🔍</div>
+          No topics match "${esc(setup.searchQuery)}"
+        </div>
+      ` : `
+        <div class="pack-grid">
+          ${packList.map(x => {
+            const isMine = x.custom && x.pack && x.pack.ownerUid === cloud.user?.uid;
+            const ownerLabel = !x.custom ? '' : (isMine ? ' · yours' : (x.pack?.ownerName ? ` · by ${esc(x.pack.ownerName)}` : ' · shared'));
+            const popular = x.plays >= 3;
+            return `
+              <button class="pack ${setup.packId === x.id ? 'sel' : ''}" data-pack="${esc(x.id)}">
+                ${popular ? '<span class="popular-badge">🔥 ' + x.plays + '</span>' : ''}
+                <span class="pname">${esc(x.label)}</span>
+                <span class="pcount">${x.count} items${ownerLabel}</span>
+              </button>`;
+          }).join('')}
+          <button class="pack new" data-newpack="1">＋ Create pack</button>
+        </div>
+      `}
       ${selectedIsCustom && selected && isOwner(selected) ? `
         <div class="pack-actions">
           <button class="btn-ghost" data-editpack="${esc(selected.id)}">✏️ Edit pack</button>
@@ -1553,9 +2110,50 @@ async function renderSetup(){
 
     <button class="btn-primary" id="startBtn" ${(!selected || available < 2) ? 'disabled' : ''}>Start Auction</button>
     <p style="color:var(--muted);font-size:11.5px;text-align:center;line-height:1.7;margin:16px 6px 0;font-weight:600">
-      Bots bid automatically. Beating bots gives reduced Elo (${Math.round(BOT_ELO_WEIGHT*100)}% of a human opponent).
+      Complete daily quests for bonus Elo. Beating bots gives reduced Elo (${Math.round(BOT_ELO_WEIGHT*100)}% of a human).
     </p>
   `;
+
+  // Preserve search input focus and cursor
+  const searchInput = $('packSearch');
+  if (searchInput){
+    searchInput.addEventListener('input', e => {
+      setup.searchQuery = e.target.value;
+      // Don't re-render whole screen; just filter the grid
+      filterPackGrid();
+    });
+    // Re-focus if it had been focused
+    if (session.packSearchFocused){
+      searchInput.focus();
+      try { searchInput.setSelectionRange(searchInput.value.length, searchInput.value.length); } catch(e){}
+    }
+  }
+  $('searchClear')?.addEventListener('click', () => {
+    setup.searchQuery = '';
+    renderSetup();
+    setTimeout(() => $('packSearch')?.focus(), 30);
+  });
+}
+
+function filterPackGrid(){
+  const input = $('packSearch');
+  if (!input) return;
+  const q = (setup.searchQuery || '').trim().toLowerCase();
+  // Re-render just the pack grid portion by calling renderSetup's inner logic
+  // Simpler: full re-render but keep focus
+  session.packSearchFocused = true;
+  const focused = document.activeElement === input;
+  const selStart = input.selectionStart;
+  const selEnd = input.selectionEnd;
+  renderSetup();
+  // Restore focus after render
+  requestAnimationFrame(() => {
+    const ni = $('packSearch');
+    if (ni && focused){
+      ni.focus();
+      try { ni.setSelectionRange(selStart, selEnd); } catch(e){}
+    }
+  });
 }
 
 $('screen-setup').addEventListener('click', async e => {
@@ -1680,28 +2278,19 @@ function openBotDifficultyPicker(){
   openModal(`
     <div class="modal" style="max-width:420px">
       <div class="modal-title">Add bot</div>
-      <div class="modal-sub">Bots play automatically and count as opponents. Beating bots gives ${Math.round(BOT_ELO_WEIGHT*100)}% of the Elo you'd earn for beating a human.</div>
+      <div class="modal-sub">Bots play automatically. Beating bots gives ${Math.round(BOT_ELO_WEIGHT*100)}% of the Elo you'd earn for beating a human.</div>
       <div class="menu-list">
         <button class="menu-item bot-option" data-bot-diff="easy">
           <span class="mi-icon">🐣</span>
-          <span class="mi-text">
-            Easy bot
-            <div class="mi-sub">${esc(BOT_DIFFICULTY_DESC.easy)}</div>
-          </span>
+          <span class="mi-text">Easy bot<div class="mi-sub">${esc(BOT_DIFFICULTY_DESC.easy)}</div></span>
         </button>
         <button class="menu-item bot-option" data-bot-diff="medium">
           <span class="mi-icon">🤖</span>
-          <span class="mi-text">
-            Medium bot
-            <div class="mi-sub">${esc(BOT_DIFFICULTY_DESC.medium)}</div>
-          </span>
+          <span class="mi-text">Medium bot<div class="mi-sub">${esc(BOT_DIFFICULTY_DESC.medium)}</div></span>
         </button>
         <button class="menu-item bot-option" data-bot-diff="hard">
           <span class="mi-icon">👹</span>
-          <span class="mi-text">
-            Hard bot
-            <div class="mi-sub">${esc(BOT_DIFFICULTY_DESC.hard)}</div>
-          </span>
+          <span class="mi-text">Hard bot<div class="mi-sub">${esc(BOT_DIFFICULTY_DESC.hard)}</div></span>
         </button>
       </div>
       <button class="btn-ghost" id="botCancel" style="width:100%;margin-top:8px">Cancel</button>
@@ -1743,7 +2332,6 @@ async function createGame(){
       });
     }
   } else {
-    // Local mode — everything as guest/bot
     if (setup.guests.length){
       for (const g of setup.guests) participants.push({ uid: null, playerId: null, name: g.name, photoURL: '', isGuest: !g.isBot, isBot: !!g.isBot, botDifficulty: g.botDifficulty || null });
     } else {
@@ -1757,6 +2345,8 @@ async function createGame(){
   const count = Math.min(setup.itemCount, pool.length);
   const chosen = shuffle(pool).slice(0, count);
   const items = chosen.map(it => ({ name: it.name, value: it.value }));
+  // Record pack play count for popularity
+  packStats.record(setup.packId);
   try {
     const gameId = await games.create(participants, { packName: getSelectedLabel(), itemCount: count, cash: setup.cash }, items);
     session.gameId = gameId;
@@ -1785,6 +2375,8 @@ function startLocalGame(participants){
     settings: { packName: getSelectedLabel(), cash: setup.cash }, game: localGame.game
   };
   session.myIdx = 0; session.lastTurnKey = null; session.botScheduledKey = null;
+  session.questProcessedGameId = null;
+  packStats.record(setup.packId);
   renderGameFromGame(); showScreen('game');
   scheduleBotTurn(session.game);
 }
@@ -1795,7 +2387,8 @@ function startLocalGame(participants){
 function onGamesUpdate(game){
   if (!game){
     if (session.game && session.game.id === 'local') return;
-    session.game = null; session.gameId = null; session.myIdx = -1; session.lastTurnKey = null; session.botScheduledKey = null;
+    session.game = null; session.gameId = null; session.myIdx = -1; session.lastTurnKey = null;
+    session.botScheduledKey = null; session.questProcessedGameId = null;
     if (!$('screen-setup').classList.contains('active')){ renderSetup(); showScreen('setup'); }
     return;
   }
@@ -1853,7 +2446,7 @@ function showInviteModal(game, me){
 }
 
 $('modal').addEventListener('click', e => {
-  if (e.target === $('modal') && !session.inviteModalOpen && !session.menuOpen && !session.settingsOpen) closeModal();
+  if (e.target === $('modal') && !session.inviteModalOpen && !session.menuOpen && !session.settingsOpen && !session.questsOpen) closeModal();
 });
 
 /* ============================================================
@@ -1879,13 +2472,9 @@ function renderWaiting(){
         const statusCls = status === 'joined' ? 'status-accepted' : status === 'declined' ? 'status-declined' : 'status-pending';
         const isMe = session.myIdx === p.idx;
         let badge;
-        if (p.isBot){
-          badge = `<div class="badge bot-badge">🤖 ${esc(BOT_DIFFICULTY_LABELS[p.botDifficulty] || 'BOT')}</div>`;
-        } else if (p.isGuest){
-          badge = '<div class="badge guest-badge">GUEST</div>';
-        } else {
-          badge = `<div class="badge ${statusCls}">${status === 'joined' ? 'accepted' : status}</div>`;
-        }
+        if (p.isBot) badge = `<div class="badge bot-badge">🤖 ${esc(BOT_DIFFICULTY_LABELS[p.botDifficulty] || 'BOT')}</div>`;
+        else if (p.isGuest) badge = '<div class="badge guest-badge">GUEST</div>';
+        else badge = `<div class="badge ${statusCls}">${status === 'joined' ? 'accepted' : status}</div>`;
         return `
           <div class="waiting-row ${p.uid === m.hostUid ? 'host' : ''}">
             ${p.isBot ? `<div class="lb-avatar" style="width:38px;height:38px;background:linear-gradient(145deg,#60a5fa,#3b82f6)">🤖</div>` : avatarBlock(p.name, p.photoURL, 38)}
@@ -2033,10 +2622,7 @@ function renderTurnLine(cur, isMyTurn, isGuestTurn, isBotTurn, curForfeited, gam
   if (isMyTurn) return `<div class="turn-line you">🔥 <strong>Your turn</strong> — make a bid</div>`;
   return `<div class="turn-line">Waiting for <strong>${esc(cur.name)}</strong>…</div>`;
 }
-
-function renderBotThinking(){
-  return `<div class="bot-thinking"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span style="margin-left:6px">Bot is deciding…</span></div>`;
-}
+function renderBotThinking(){ return `<div class="bot-thinking"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span style="margin-left:6px">Bot is deciding…</span></div>`; }
 
 function renderBidControls(canBid, minB, isGuestTurn, cur, isMyTurn, curForfeited, game, iHaveForfeited){
   if (curForfeited) return `<div class="spectator-note">Waiting for next active player…</div>`;
@@ -2156,7 +2742,7 @@ $('screen-game').addEventListener('click', async e => {
   const isBotTurn = cur?.isBot && !curForfeited;
   const isGuestTurn = cur?.isGuest && !curForfeited;
   const isMyTurn = session.myIdx === curIdx;
-  if (isBotTurn) return; // handled automatically
+  if (isBotTurn) return;
   if (!isMyTurn && !isGuestTurn) return;
   const me = m.participants[session.myIdx];
   if (me?.forfeited) return;
@@ -2205,6 +2791,7 @@ function handleLocalAction(btn){
     g.currentBid = amt; g.highBidderIdx = curIdx;
     const n = g.players.length;
     for (let k = 1; k <= n; k++){ const j = (curIdx + k) % n; if (g.players[j].inRound){ g.turnIdx = j; break; } }
+    if (amt >= 50) quests.progress('bid_50', 1);
     renderGameFromGame(); scheduleBotTurn(session.game);
   } else if (btn.dataset.action === 'fold'){
     g.players[curIdx].inRound = false;
@@ -2312,7 +2899,13 @@ function renderResultsFromGame(){
   const top = ranked[0];
   const tie = ranked.length > 1 && ranked[1].total === top.total && ranked[1].money === top.money;
   const medals = ['🥇','🥈','🥉','4️⃣'];
-  // Count opponents for Elo preview
+
+  // Process daily quests once per match
+  if (session.questProcessedGameId !== m.id && session.myIdx >= 0){
+    session.questProcessedGameId = m.id;
+    try { quests.onMatchComplete(m, ranked, session.myIdx); } catch(e){ console.warn('quest hook failed', e); }
+  }
+
   const me = ranked.find(r => r.isYou);
   let eloNote = '';
   if (me && !me.isBot && !me.isGuest && me.id && registry.isValidId(me.id)){
@@ -2328,6 +2921,13 @@ function renderResultsFromGame(){
     }
   }
 
+  // Quest status hint for the results screen
+  const qTotal = (quests.local?.quests || []).length;
+  const qDone = quests.doneTodayCount();
+  const questHint = qTotal > 0
+    ? `<div style="font-size:11px;color:var(--muted-2);margin-top:6px;font-weight:700;text-align:center">Daily quests: ${qDone}/${qTotal} done${qDone < qTotal ? ' · keep playing' : ' · all complete! 🎉'}</div>`
+    : '';
+
   $('screen-results').innerHTML = `
     <div class="winner-box">
       <div class="crown">${tie ? '🤝' : '👑'}</div>
@@ -2335,6 +2935,7 @@ function renderResultsFromGame(){
       <div class="wname">${esc(top.name)}</div>
       <div class="wsub">${top.total} total value · $${top.money} left</div>
       ${eloNote}
+      ${questHint}
     </div>
     <div class="rank-list">
       ${ranked.map((r, i) => {
@@ -2377,7 +2978,8 @@ function renderResultsFromGame(){
   $('againBtn').addEventListener('click', async () => {
     if (m.id !== 'local'){ try { await games.leave(m.id, cloud.user.uid); } catch(e){} }
     localGame.running = false;
-    session.game = null; session.gameId = null; session.myIdx = -1; session.lastTurnKey = null; session.botScheduledKey = null;
+    session.game = null; session.gameId = null; session.myIdx = -1; session.lastTurnKey = null;
+    session.botScheduledKey = null; session.questProcessedGameId = null;
     setup.pickedIds = []; setup.guests = [];
     renderSetup(); showScreen('setup');
   });
@@ -2406,24 +3008,18 @@ async function maybeRecordElo(m){
   const participants = m.participants || [];
   const players = m.game?.players || [];
   const items = m.items || [];
-
   const ranked = participants.map((p, i) => {
     const pg = players[i] || { items: [] };
     const total = (pg.items || []).reduce((s, it) => { const itm = items[it.idx] || { value: 0 }; return s + itm.value; }, 0);
     return { id: p.playerId, name: p.name, isGuest: p.isGuest, isBot: p.isBot, forfeited: !!p.forfeited, total, placement: 0 };
   }).sort((a, b) => b.total - a.total);
   ranked.forEach((r, i) => r.placement = i);
-
-  // Only real humans with valid IDs get Elo
   const identified = ranked.filter(r => !r.isGuest && !r.isBot && r.id && registry.isValidId(r.id));
   if (!identified.length) return;
-
   const records = await Promise.all(identified.map(async r => {
     const data = await registry.get(r.id);
     return { id: r.id, name: r.name, placement: r.placement, elo: intElo(data?.elo ?? 1000), prev: data || null };
   }));
-
-  // Rating map: humans = their Elo, bots/guests = 1000
   const ratings = ranked.map(r => {
     if (!r.isGuest && !r.isBot && r.id && registry.isValidId(r.id)){
       const rec = records.find(x => x.id === r.id);
@@ -2431,8 +3027,6 @@ async function maybeRecordElo(m){
     }
     return { rating: GUEST_ELO, placement: r.placement, isBot: r.isBot, isHuman: false };
   });
-
-  // Compute Elo with bot weighting. Bots count as 0.35 of a human opponent.
   const K = 32, n = ratings.length;
   const deltas = ratings.map(() => 0);
   for (let i = 0; i < n; i++){
@@ -2447,7 +3041,6 @@ async function maybeRecordElo(m){
       deltas[i] += (K / (n - 1)) * weight * (Sa - Ea);
     }
   }
-
   for (const rec of records){
     const idx = ranked.findIndex(r => r.id === rec.id);
     const delta = Math.round(deltas[idx]);
@@ -2459,6 +3052,8 @@ async function maybeRecordElo(m){
       wins: (prev.wins || 0) + (won ? 1 : 0),
       games: (prev.games || 0) + 1,
       totalValue: (prev.totalValue || 0) + (ranked[idx]?.total || 0),
+      questPoints: prev.questPoints || 0,
+      streak: quests.local?.streak || prev.streak || 0,
       ownerUid: prev.ownerUid || null
     });
   }
@@ -2478,9 +3073,13 @@ async function renderLeaderboard(){
   $('lbBack').addEventListener('click', () => { renderSetup(); showScreen('setup'); renderHeader(); });
   let list = (await registry.listAll()).filter(u => u && u.id);
   list.forEach(u => { if (typeof u.elo === 'number') u.elo = intElo(u.elo); });
+
   if (lbSort === 'wins') list.sort((a, b) => (b.wins || 0) - (a.wins || 0) || (b.elo || 0) - (a.elo || 0));
   else if (lbSort === 'games') list.sort((a, b) => (b.games || 0) - (a.games || 0) || (b.elo || 0) - (a.elo || 0));
+  else if (lbSort === 'quests') list.sort((a, b) => (b.questPoints || 0) - (a.questPoints || 0) || (b.elo || 0) - (a.elo || 0));
+  else if (lbSort === 'streak') list.sort((a, b) => (b.streak || 0) - (a.streak || 0) || (b.elo || 0) - (a.elo || 0));
   else list.sort((a, b) => (b.elo || 0) - (a.elo || 0));
+
   const myId = cloud.profile?.playerId;
   if (!list.length){
     el.innerHTML = `
@@ -2491,10 +3090,16 @@ async function renderLeaderboard(){
     $('lbBack2').addEventListener('click', () => { renderSetup(); showScreen('setup'); renderHeader(); });
     return;
   }
+
+  const myLocalQp = quests.local?.totalQuestPoints || 0;
+  const myLocalStreak = quests.local?.streak || 0;
+
   el.innerHTML = `
     <div class="lb-header"><h2>Leaderboard</h2><p>${list.length} tracked player${list.length === 1 ? '' : 's'}</p></div>
     <div class="lb-tabs">
       <button class="lb-tab ${lbSort === 'elo' ? 'sel' : ''}" data-sort="elo">Elo</button>
+      <button class="lb-tab ${lbSort === 'quests' ? 'sel' : ''}" data-sort="quests">Quests</button>
+      <button class="lb-tab ${lbSort === 'streak' ? 'sel' : ''}" data-sort="streak">Streak</button>
       <button class="lb-tab ${lbSort === 'wins' ? 'sel' : ''}" data-sort="wins">Wins</button>
       <button class="lb-tab ${lbSort === 'games' ? 'sel' : ''}" data-sort="games">Games</button>
     </div>
@@ -2505,15 +3110,27 @@ async function renderLeaderboard(){
         const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
         const isMe = myId && u.id === myId;
         const name = u.name || 'Player';
+        const qp = isMe ? Math.max(u.questPoints || 0, myLocalQp) : (u.questPoints || 0);
+        const st = isMe ? Math.max(u.streak || 0, myLocalStreak) : (u.streak || 0);
+        const eloVal = intElo(u.elo || 1000);
+        let primary;
+        if (lbSort === 'quests') primary = `<div class="lb-elo" style="color:var(--purple)">${qp}<small>QP</small></div>`;
+        else if (lbSort === 'streak') primary = `<div class="lb-elo" style="color:#f97316">${st}<small>🔥 DAYS</small></div>`;
+        else primary = `<div class="lb-elo">${eloVal}<small>ELO</small></div>`;
         return `
           <div class="lb-row ${isMe ? 'me' : ''}">
             <div class="lb-rank ${rankCls}">${medal}</div>
             <div class="lb-avatar" style="background:${colorFor(name)}">${esc(initialsOf(name))}</div>
             <div class="lb-info">
-              <div class="lb-name">${esc(name)}<span class="lb-pid">${esc(u.id)}</span>${isMe ? '<span class="lb-you">You</span>' : ''}</div>
-              <div class="lb-stats">${u.wins || 0}W · ${u.games || 0}G · ${(u.totalValue || 0)} total value</div>
+              <div class="lb-name">
+                ${esc(name)}
+                <span class="lb-pid">${esc(u.id)}</span>
+                ${st > 0 ? `<span class="lb-streak">🔥 ${st}</span>` : ''}
+                ${isMe ? '<span class="lb-you">You</span>' : ''}
+              </div>
+              <div class="lb-stats">${eloVal} Elo · ${u.wins || 0}W · ${qp} QP${st > 0 ? ` · 🔥 ${st}` : ''}</div>
             </div>
-            <div class="lb-elo">${intElo(u.elo || 1000)}<small>ELO</small></div>
+            ${primary}
           </div>`;
       }).join('')}
     </div>
@@ -2647,6 +3264,7 @@ async function saveEditor(){
   const items = editor.items.map(it => ({ name: it.name.trim(), value: clamp(it.value, 1, 99) })).filter(it => it.name);
   if (!name){ toast('Give your pack a name', 'error'); return; }
   if (items.length < 2){ toast('Add at least 2 items', 'error'); return; }
+  let isNew = false;
   if (editor.id){
     const p = setup.myPacks.find(x => x.id === editor.id);
     if (!p || !isOwner(p)){ toast('You can only edit your own packs', 'error'); return; }
@@ -2664,11 +3282,17 @@ async function saveEditor(){
     setup.myPacks.push(newPack);
     setup.packId = newPack.id;
     await pushPackToCloud(newPack);
+    isNew = true;
   }
   saveLocalPacks(setup.myPacks);
   closeModal();
   renderSetup();
-  toast(cloud.user ? 'Pack saved and shared' : 'Pack saved locally', 'success');
+  if (isNew){
+    quests.progress('create_pack', 1);
+    toast(cloud.user ? 'Pack saved and shared' : 'Pack saved locally', 'success');
+  } else {
+    toast('Pack updated', 'success');
+  }
 }
 
 async function deleteEditor(){
@@ -2691,6 +3315,8 @@ async function deleteEditor(){
 (async () => {
   settings.load();
   registry.load();
+  quests.load();
+  packStats.load();
   renderSetup();
   renderHeader();
   initCloud();
