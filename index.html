@@ -55,7 +55,7 @@
   }
   @keyframes pulseGold{
     0%,100%{box-shadow:0 0 0 1px rgba(251,191,36,.4), 0 0 24px rgba(251,191,36,.15)}
-    50%{box-shadow:0 0 0 1px rgba(251,191,36,.7), 0 0 32px rgba(251,191,36,.28)}
+    50%{box-shadow:0 0 0 1px rgba(251,191,36,.7), 0 0 32px rgba(251,191,36,.3)}
   }
   @keyframes toastIn{from{opacity:0;transform:translateY(14px) scale(.92)}to{opacity:1;transform:none}}
   @keyframes spin{to{transform:rotate(360deg)}}
@@ -65,7 +65,6 @@
   ::selection{background:rgba(251,191,36,.28);color:#fff}
   input::placeholder,textarea::placeholder{color:var(--muted-2)}
 
-  /* ============ HEADER ============ */
   .app-header{
     display:flex;align-items:center;justify-content:space-between;
     gap:12px;padding:2px 2px 18px;
@@ -121,7 +120,6 @@
   .signin-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.4)}
   .signin-btn:active{transform:translateY(0) scale(.98)}
 
-  /* ============ CARDS / PANELS ============ */
   .panel{
     background:var(--surface);
     border:1px solid var(--border);
@@ -147,7 +145,6 @@
   }
   .panel-hint{font-size:10.5px;color:var(--muted-2);font-weight:700;letter-spacing:.2px}
 
-  /* ============ BUTTONS ============ */
   .btn-primary{
     width:100%;padding:16px;border-radius:16px;font-size:14.5px;font-weight:900;letter-spacing:1.2px;
     background:linear-gradient(135deg,#fcd34d,#fbbf24 40%,#f59e0b);
@@ -172,13 +169,9 @@
     transition:.15s;
   }
   .btn-ghost:hover{background:rgba(255,255,255,.05);color:var(--text);border-color:var(--border-2)}
-  .btn-danger{
-    color:var(--red);border-color:rgba(248,113,113,.3);
-  }
+  .btn-danger{color:var(--red);border-color:rgba(248,113,113,.3)}
   .btn-danger:hover{background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.5)}
-  .btn-sm{
-    padding:9px 13px;border-radius:11px;font-size:11.5px;font-weight:800;letter-spacing:.3px;
-  }
+  .btn-sm{padding:9px 13px;border-radius:11px;font-size:11.5px;font-weight:800;letter-spacing:.3px}
   .rules{
     color:var(--muted);font-size:11.5px;text-align:center;line-height:1.7;
     margin:16px 6px 0;font-weight:600;
@@ -186,11 +179,8 @@
   .muted{color:var(--muted)}
   .muted-2{color:var(--muted-2)}
 
-  /* ============ HERO ============ */
   .hero{text-align:center;padding:6px 0 22px}
-  .hero h1{
-    margin:0;font-size:40px;font-weight:900;letter-spacing:-1.4px;line-height:1;
-  }
+  .hero h1{margin:0;font-size:40px;font-weight:900;letter-spacing:-1.4px;line-height:1}
   .hero h1 span{
     background:linear-gradient(100deg,#fde68a 0%,#fbbf24 45%,#f59e0b 100%);
     -webkit-background-clip:text;background-clip:text;color:transparent;
@@ -198,7 +188,6 @@
   }
   .hero p{color:var(--muted);font-size:13px;margin:10px 0 0;font-weight:600;letter-spacing:.1px}
 
-  /* ============ CLOUD BANNER ============ */
   .banner{
     display:flex;align-items:flex-start;gap:10px;
     padding:12px 14px;border-radius:14px;
@@ -211,7 +200,6 @@
   .banner .icon{font-size:15px;flex-shrink:0;line-height:1.4}
   .banner b{color:var(--gold);font-weight:900}
 
-  /* ============ PACK GRID ============ */
   .pack-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .pack{
     position:relative;padding:13px 12px;border-radius:14px;
@@ -234,13 +222,6 @@
     display:flex;align-items:center;gap:5px;
   }
   .pack.sel .pcount{color:rgba(251,191,36,.75)}
-  .pack .ownertag{
-    display:inline-flex;align-items:center;
-    font-size:8.5px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;
-    padding:2px 6px;border-radius:99px;
-    background:rgba(167,139,250,.15);color:#c4b5fd;
-    width:fit-content;
-  }
   .pack.new{
     border-style:dashed;border-color:rgba(255,255,255,.14);
     align-items:center;justify-content:center;text-align:center;
@@ -252,7 +233,6 @@
   .pack-actions{display:flex;gap:6px;margin-top:12px}
   .pack-actions .btn-ghost{flex:1;padding:10px;font-size:11.5px}
 
-  /* ============ PLAYER ROWS / COMPETITORS ============ */
   .competitors{display:flex;flex-direction:column;gap:8px;margin-top:2px}
   .comp-row{
     display:flex;align-items:center;gap:11px;
@@ -263,6 +243,10 @@
   .comp-row.you{
     background:linear-gradient(135deg,rgba(251,191,36,.09),rgba(251,191,36,.03));
     border-color:rgba(251,191,36,.3);
+  }
+  .comp-row.guest{
+    background:rgba(167,139,250,.04);
+    border-color:rgba(167,139,250,.2);
   }
   .comp-avatar{
     width:36px;height:36px;border-radius:50%;flex-shrink:0;
@@ -287,6 +271,10 @@
     letter-spacing:.8px;color:var(--gold);font-weight:900;
     opacity:.8;
   }
+  .comp-meta .guest-tag{
+    color:#c4b5fd;background:rgba(167,139,250,.14);
+    padding:1px 6px;border-radius:5px;font-weight:900;letter-spacing:.6px;font-size:9px;
+  }
   .comp-remove{
     width:28px;height:28px;border-radius:9px;flex-shrink:0;
     background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.22);
@@ -297,8 +285,9 @@
   .comp-remove:hover{background:rgba(248,113,113,.18)}
   .comp-remove:active{transform:scale(.93)}
 
+  .add-buttons{display:flex;gap:8px;margin-top:2px}
   .add-comp{
-    width:100%;padding:14px;border-radius:14px;
+    flex:1;padding:14px;border-radius:14px;
     background:rgba(255,255,255,.02);
     border:1.5px dashed rgba(255,255,255,.16);
     color:var(--muted);font-size:12.5px;font-weight:800;letter-spacing:.3px;
@@ -309,26 +298,17 @@
     background:rgba(251,191,36,.04);border-color:rgba(251,191,36,.35);
     color:var(--gold);
   }
-  .add-comp:disabled{opacity:.35;pointer-events:none;border-style:solid}
+  .add-comp.guest:hover{
+    background:rgba(167,139,250,.06);border-color:rgba(167,139,250,.4);
+    color:#c4b5fd;
+  }
 
   .online-dot{
     width:8px;height:8px;border-radius:50%;background:var(--green);
     flex-shrink:0;animation:pulseDot 2.4s ease-in-out infinite;
   }
-  .online-dot.away{background:var(--gold);animation:none}
-  .online-dot.offline{background:var(--muted-2);animation:none}
-
-  /* ============ SETUP FOOTER ============ */
-  .setup-summary{
-    display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;
-    background:rgba(0,0,0,.25);border:1px solid var(--border);margin-top:2px;
-    font-size:11.5px;font-weight:700;color:var(--muted);
-  }
-  .setup-summary .v{color:var(--gold);font-weight:900}
 
   .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-
-  /* ============ SEGMENTED CONTROLS ============ */
   .seg{display:flex;gap:6px;background:rgba(0,0,0,.25);padding:4px;border-radius:14px;border:1px solid var(--border)}
   .seg.wrap{flex-wrap:wrap}
   .segbtn{
@@ -342,7 +322,6 @@
     color:var(--gold);
     box-shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 4px 12px rgba(251,191,36,.15);
   }
-
   .stepper{display:flex;align-items:center;justify-content:center;gap:18px}
   .step{
     width:46px;height:46px;border-radius:14px;font-size:20px;font-weight:700;
@@ -357,7 +336,6 @@
     letter-spacing:-1px;line-height:1;
   }
 
-  /* ============ LOBBY / PLAYING WITH ============ */
   .lobby-wrap{text-align:center;padding:24px 0 12px}
   .lobby-icon{
     width:78px;height:78px;border-radius:50%;margin:0 auto 20px;
@@ -369,9 +347,7 @@
   }
   .lobby-title{font-size:24px;font-weight:900;letter-spacing:-.6px;line-height:1.15}
   .lobby-sub{color:var(--muted);font-size:12.5px;margin-top:8px;font-weight:600;line-height:1.6}
-  .lobby-players{
-    display:flex;flex-direction:column;gap:8px;margin:22px 0 16px;text-align:left;
-  }
+  .lobby-players{display:flex;flex-direction:column;gap:8px;margin:22px 0 16px;text-align:left}
   .lobby-row{
     display:flex;align-items:center;gap:11px;padding:12px 14px;
     background:var(--surface);border:1px solid var(--border);border-radius:14px;
@@ -382,6 +358,7 @@
     padding:3px 8px;border-radius:99px;
     background:rgba(251,191,36,.15);color:var(--gold);flex-shrink:0;
   }
+  .lobby-row .badge.guest{background:rgba(167,139,250,.15);color:#c4b5fd}
   .lobby-note{
     font-size:11.5px;color:var(--muted);font-weight:700;
     padding:12px 14px;background:rgba(96,165,250,.06);
@@ -389,7 +366,6 @@
     line-height:1.6;text-align:left;margin-bottom:14px;
   }
 
-  /* ============ MODAL / OVERLAY ============ */
   .overlay{
     position:fixed;inset:0;z-index:1000;display:none;
     background:rgba(3,3,8,.9);
@@ -407,7 +383,6 @@
   .modal-title{font-size:19px;font-weight:900;letter-spacing:-.3px;margin-bottom:6px}
   .modal-sub{font-size:12px;color:var(--muted);margin-bottom:20px;font-weight:600;line-height:1.6}
 
-  /* ============ PLAYER PICKER ============ */
   .picker-list{
     display:flex;flex-direction:column;gap:6px;
     max-height:52vh;overflow-y:auto;
@@ -442,8 +417,15 @@
     text-align:center;padding:32px 16px;color:var(--muted);
     font-size:12.5px;font-weight:700;line-height:1.65;
   }
+  .picker-divider{
+    font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--muted-2);padding:14px 4px 6px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .picker-divider::before,.picker-divider::after{
+    content:'';flex:1;height:1px;background:var(--border);
+  }
 
-  /* ============ PACK EDITOR ============ */
   .field{margin-bottom:16px}
   .field-label{
     font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;
@@ -538,11 +520,7 @@
   .modal-actions .btn-primary{flex:1.4}
   .modal-actions .btn-ghost{flex:1}
 
-  /* ============ GAME ============ */
-  .topbar{
-    display:flex;justify-content:space-between;align-items:center;
-    gap:10px;margin-bottom:10px;
-  }
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
   .topic-pill{
     display:inline-flex;align-items:center;gap:7px;
     padding:6px 12px;border-radius:99px;
@@ -550,9 +528,7 @@
     font-size:11.5px;font-weight:900;letter-spacing:.3px;color:var(--gold);
     max-width:60%;overflow:hidden;
   }
-  .topic-pill span{
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  }
+  .topic-pill span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .counter{font-size:11.5px;color:var(--muted);font-weight:800;letter-spacing:.3px;flex-shrink:0}
   .progress{
     height:5px;border-radius:99px;background:rgba(255,255,255,.05);overflow:hidden;
@@ -567,20 +543,15 @@
 
   .item-card{
     position:relative;border-radius:26px;padding:36px 24px;text-align:center;overflow:hidden;
-    background:
-      linear-gradient(160deg,rgba(251,191,36,.14) 0%,rgba(168,85,247,.12) 55%,rgba(96,165,250,.08) 100%);
+    background:linear-gradient(160deg,rgba(251,191,36,.14) 0%,rgba(168,85,247,.12) 55%,rgba(96,165,250,.08) 100%);
     border:1px solid rgba(251,191,36,.28);
-    box-shadow:
-      0 16px 50px rgba(0,0,0,.4),
-      inset 0 1px 0 rgba(255,255,255,.08);
+    box-shadow:0 16px 50px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08);
     margin-bottom:12px;
   }
   .item-card::before{
     content:'';position:absolute;inset:0;
     background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.06) 50%,transparent 60%);
-    background-size:500px 100%;
-    animation:shimmer 4s linear infinite;
-    pointer-events:none;
+    background-size:500px 100%;animation:shimmer 4s linear infinite;pointer-events:none;
   }
   .item-label{
     font-size:9.5px;letter-spacing:3.5px;color:var(--muted);font-weight:900;
@@ -633,6 +604,7 @@
     margin-top:2px;font-family:ui-monospace,Menlo,Consolas,monospace;opacity:.72;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   }
+  .pid.guest{color:#c4b5fd;opacity:.9}
   .pmoney{font-size:16px;font-weight:900;color:var(--green);margin-top:4px;letter-spacing:-.3px}
   .pitems{font-size:9.5px;color:var(--muted);margin-top:2px;font-weight:800;letter-spacing:.3px}
   .pbadge{
@@ -692,7 +664,6 @@
     padding:16px 0;margin-bottom:9px;letter-spacing:.2px;
   }
 
-  /* ============ FLASH ============ */
   .flash{
     position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;
     background:rgba(3,3,8,.86);
@@ -718,7 +689,6 @@
   .flash-profit.pos{color:var(--green)}
   .flash-profit.neg{color:var(--red)}
 
-  /* ============ RESULTS ============ */
   .winner-box{
     text-align:center;padding:34px 20px;border-radius:24px;margin-bottom:14px;
     background:
@@ -759,6 +729,7 @@
     border-color:rgba(251,191,36,.4);
     background:linear-gradient(135deg,rgba(251,191,36,.08),rgba(251,191,36,.02));
   }
+  .rank-row.guest{opacity:.9}
   .rank-head{display:flex;align-items:center;gap:10px}
   .medal{font-size:18px;width:24px;text-align:center;flex-shrink:0}
   .rname{
@@ -769,6 +740,11 @@
   .rname .rid{
     font-size:9.5px;font-weight:900;color:var(--gold);letter-spacing:.8px;
     font-family:ui-monospace,Menlo,Consolas,monospace;opacity:.85;
+  }
+  .rname .guest-tag{
+    font-size:8.5px;font-weight:900;letter-spacing:1.2px;
+    padding:2px 6px;border-radius:99px;
+    background:rgba(167,139,250,.15);color:#c4b5fd;
   }
   .rval{font-weight:900;color:var(--gold);font-size:15px;letter-spacing:-.3px}
   .rline{font-size:11px;color:var(--muted);margin:7px 0 10px 34px;font-weight:700}
@@ -783,7 +759,6 @@
   .chip .paid.profit{color:var(--green)}
   .chip .paid.loss{color:var(--red)}
 
-  /* ============ LEADERBOARD ============ */
   .lb-header{text-align:center;padding:14px 0 20px}
   .lb-header h2{
     margin:0;font-size:27px;font-weight:900;letter-spacing:-.6px;
@@ -854,7 +829,6 @@
   }
   .empty-state .big{font-size:44px;display:block;margin-bottom:16px;opacity:.55}
 
-  /* ============ TOAST ============ */
   .toast-wrap{
     position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
     z-index:2000;display:flex;flex-direction:column;gap:8px;align-items:center;
@@ -939,6 +913,7 @@ const PACKS = {
 const EMOJI_CHOICES = ['✨','🍔','⚡','🦸','🎲','🐘','🎮','🍬','🌍','🎬','😂','🏆','🎵','🚗','💼','😊','🪐','🔥','💎','👑','🍕','🧟','🧙','🐉','🏰','⚔️','🎨','🚀'];
 const ITEM_COUNT_OPTIONS = [5, 10, 15, 20];
 const AVATAR_COLORS = ['#f59e0b','#8b5cf6','#3b82f6','#10b981','#ec4899','#ef4444','#06b6d4','#84cc16'];
+const GUEST_ELO = 1000;
 
 /* ============================================================================
    HELPERS
@@ -975,9 +950,7 @@ function colorFor(seed){
 }
 function avatarBlock(name, photoURL, size){
   const sz = size || 40;
-  if (photoURL){
-    return `<div class="lb-avatar" style="width:${sz}px;height:${sz}px"><img src="${esc(photoURL)}" alt=""></div>`;
-  }
+  if (photoURL) return `<div class="lb-avatar" style="width:${sz}px;height:${sz}px"><img src="${esc(photoURL)}" alt=""></div>`;
   return `<div class="lb-avatar" style="width:${sz}px;height:${sz}px;background:${colorFor(name)}">${esc(initialsOf(name))}</div>`;
 }
 function toast(msg, kind){
@@ -1090,12 +1063,8 @@ function loadLocalPacks(){
     const arr = raw ? JSON.parse(raw) : [];
     if (!Array.isArray(arr)) return [];
     return arr.filter(p => p && p.id && Array.isArray(p.items)).map(p => ({
-      id: p.id,
-      name: String(p.name || 'Untitled'),
-      emoji: p.emoji || '✨',
-      ownerUid: p.ownerUid || null,
-      ownerPlayerId: p.ownerPlayerId || null,
-      ownerName: p.ownerName || null,
+      id: p.id, name: String(p.name || 'Untitled'), emoji: p.emoji || '✨',
+      ownerUid: p.ownerUid || null, ownerPlayerId: p.ownerPlayerId || null, ownerName: p.ownerName || null,
       items: p.items.map(it => ({
         name: String((it && it.name) || '').trim(),
         value: clamp(parseInt(it && it.value, 10) || 1, 1, 99)
@@ -1227,9 +1196,7 @@ async function pullCloudPacks(){
         value: clamp(parseInt(it.value, 10) || 1, 1, 99)
       })).filter(it => it.name) : [];
       if (items.length) list.push({
-        id: d.id,
-        name: String(data.name || 'Untitled'),
-        emoji: data.emoji || '✨',
+        id: d.id, name: String(data.name || 'Untitled'), emoji: data.emoji || '✨',
         ownerUid: data.ownerUid || cloud.user.uid,
         ownerPlayerId: data.ownerPlayerId || null,
         ownerName: data.ownerName || null,
@@ -1275,9 +1242,7 @@ async function fetchAllPublicPacks(){
         value: clamp(parseInt(it.value, 10) || 1, 1, 99)
       })).filter(it => it.name) : [];
       if (items.length) list.push({
-        id: d.id,
-        name: String(data.name || 'Untitled'),
-        emoji: data.emoji || '✨',
+        id: d.id, name: String(data.name || 'Untitled'), emoji: data.emoji || '✨',
         ownerUid: data.ownerUid || null,
         ownerPlayerId: data.ownerPlayerId || null,
         ownerName: data.ownerName || null,
@@ -1285,20 +1250,14 @@ async function fetchAllPublicPacks(){
       });
     });
     return list;
-  } catch(e){
-    console.warn('pack fetch failed', e);
-    return [];
-  }
+  } catch(e){ return []; }
 }
 
 /* ============================================================================
-   PRESENCE MODULE
+   PRESENCE
    ========================================================================== */
 const presence = {
   interval: null,
-  watchingSelf: null,
-  myRef: null,
-
   async push(){
     if (!cloud.user || !cloud.profile?.playerId || !cloud.db) return;
     try {
@@ -1312,9 +1271,8 @@ const presence = {
         currentLobby: session.lobbyId || null,
         ownerUid: cloud.user.uid
       }, { merge: true });
-    } catch(e){ console.warn('presence push failed', e); }
+    } catch(e){}
   },
-
   async setOffline(){
     if (!cloud.user || !cloud.profile?.playerId || !cloud.db) return;
     try {
@@ -1322,7 +1280,6 @@ const presence = {
       await cloud.fb.dbMod.updateDoc(ref, { online: false, lastSeen: Date.now(), currentLobby: null });
     } catch(e){}
   },
-
   async setLobby(lobbyId){
     if (!cloud.user || !cloud.profile?.playerId || !cloud.db) return;
     try {
@@ -1330,21 +1287,16 @@ const presence = {
       await cloud.fb.dbMod.updateDoc(ref, { currentLobby: lobbyId || null, lastSeen: Date.now() });
     } catch(e){}
   },
-
   start(){
     this.stop();
     this.push();
     this.interval = setInterval(() => this.push(), 20000);
     window.addEventListener('beforeunload', () => { this.setOffline(); });
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) this.push();
-    });
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) this.push(); });
   },
-
   stop(){
     if (this.interval){ clearInterval(this.interval); this.interval = null; }
   },
-
   async fetchOnline(){
     if (!cloud.enabled || !cloud.db || !cloud.user) return [];
     try {
@@ -1359,15 +1311,12 @@ const presence = {
         list.push({ ...data, id: d.id });
       });
       return list;
-    } catch(e){
-      console.warn('fetchOnline failed', e);
-      return [];
-    }
+    } catch(e){ return []; }
   }
 };
 
 /* ============================================================================
-   LOBBY MODULE
+   LOBBY
    ========================================================================== */
 const lobby = {
   async create(host, players){
@@ -1384,19 +1333,19 @@ const lobby = {
         players: players.map(p => ({
           id: p.id,
           name: p.name,
-          photoURL: p.photoURL || ''
+          photoURL: p.photoURL || '',
+          isGuest: !!p.isGuest
         })),
         status: 'in_progress',
         createdAt: Date.now()
       });
-      // Set currentLobby on every participant's presence doc
+      // Stamp presence for online (non-guest) players only
       for (const p of players){
+        if (p.isGuest || !p.id) continue;
         try {
           const pref = cloud.fb.dbMod.doc(cloud.db, 'presence', p.id);
           await cloud.fb.dbMod.setDoc(pref, {
-            currentLobby: lobbyId,
-            lastSeen: Date.now(),
-            online: true
+            currentLobby: lobbyId, lastSeen: Date.now(), online: true
           }, { merge: true });
         } catch(e){}
       }
@@ -1406,23 +1355,18 @@ const lobby = {
       return null;
     }
   },
-
   async leave(lobbyId, playerId){
     if (!cloud.enabled || !cloud.db) return;
     try {
       const ref = cloud.fb.dbMod.doc(cloud.db, 'lobbies', lobbyId);
       const snap = await cloud.fb.dbMod.getDoc(ref);
-      if (!snap.exists()){
-        await this._clearPresence(playerId);
-        return;
-      }
+      if (!snap.exists()){ await this._clearPresence(playerId); return; }
       const data = snap.data();
       const remaining = (data.players || []).filter(p => p.id !== playerId);
       if (remaining.length < 2 || playerId === data.hostId){
-        // dissolve if host leaves or fewer than 2 players remain
         await cloud.fb.dbMod.deleteDoc(ref);
         for (const p of (data.players || [])){
-          await this._clearPresence(p.id);
+          if (!p.isGuest && p.id) await this._clearPresence(p.id);
         }
       } else {
         await cloud.fb.dbMod.updateDoc(ref, { players: remaining });
@@ -1430,7 +1374,6 @@ const lobby = {
       }
     } catch(e){ console.warn('leave failed', e); }
   },
-
   async dissolve(lobbyId){
     if (!cloud.enabled || !cloud.db || !lobbyId) return;
     try {
@@ -1439,19 +1382,18 @@ const lobby = {
       if (!snap.exists()) return;
       const data = snap.data();
       for (const p of (data.players || [])){
-        await this._clearPresence(p.id);
+        if (!p.isGuest && p.id) await this._clearPresence(p.id);
       }
       await cloud.fb.dbMod.deleteDoc(ref);
     } catch(e){}
   },
-
   async _clearPresence(playerId){
+    if (!playerId) return;
     try {
       const ref = cloud.fb.dbMod.doc(cloud.db, 'presence', playerId);
       await cloud.fb.dbMod.updateDoc(ref, { currentLobby: null });
     } catch(e){}
   },
-
   async get(lobbyId){
     if (!cloud.enabled || !cloud.db || !lobbyId) return null;
     try {
@@ -1460,7 +1402,6 @@ const lobby = {
       return snap.exists() ? snap.data() : null;
     } catch(e){ return null; }
   },
-
   watch(lobbyId, cb){
     if (!cloud.enabled || !cloud.db) return () => {};
     const ref = cloud.fb.dbMod.doc(cloud.db, 'lobbies', lobbyId);
@@ -1471,15 +1412,15 @@ const lobby = {
 };
 
 /* ============================================================================
-   SESSION STATE (lobby tracking for the current tab)
+   SESSION
    ========================================================================== */
 const session = {
   lobbyId: null,
   hostingLobbyId: null,
   lobbyWatchUnsub: null,
-  selfPresenceUnsub: null,
   onlinePlayers: [],
-  pickedIds: [] // competitors currently selected in setup
+  pickedIds: [],   // player IDs of online real players
+  guestNames: []   // guest display names (no ID, not tracked)
 };
 
 /* ============================================================================
@@ -1489,19 +1430,16 @@ const setup = {
   packId: Object.keys(PACKS)[0],
   myPacks: loadLocalPacks(),
   allPublicPacks: [],
-  playerCount: 2, // total including self
   cash: 20,
   itemCount: 10
 };
 
 async function refreshSetupScreen(){
-  if ($('screen-setup').classList.contains('active')){
-    await renderSetup();
-  }
+  if ($('screen-setup').classList.contains('active')) await renderSetup();
 }
 
 /* ============================================================================
-   HEADER RENDER
+   HEADER
    ========================================================================== */
 function renderHeader(){
   const el = $('headerRight');
@@ -1536,13 +1474,8 @@ function renderHeader(){
   `;
 
   $('lbBtn')?.addEventListener('click', () => {
-    if (onLeaderboard){
-      renderSetup();
-      showScreen('setup');
-    } else {
-      renderLeaderboard();
-      showScreen('leaderboard');
-    }
+    if (onLeaderboard){ renderSetup(); showScreen('setup'); }
+    else { renderLeaderboard(); showScreen('leaderboard'); }
     renderHeader();
   });
   $('signInBtn')?.addEventListener('click', signIn);
@@ -1564,21 +1497,17 @@ async function openAccountMenu(){
         </div>
         <div style="flex:1;min-width:0">
           <div style="font-size:16px;font-weight:900;letter-spacing:-.2px">${esc(p.displayName || 'Player')}</div>
-          <div style="font-size:12px;color:var(--muted);font-weight:700;margin-top:4px">
-            Elo ${elo} · ${wins}W / ${games}G
-          </div>
+          <div style="font-size:12px;color:var(--muted);font-weight:700;margin-top:4px">Elo ${elo} · ${wins}W / ${games}G</div>
         </div>
       </div>
-
       <div class="field">
         <label class="field-label">Your player ID</label>
         <input id="acctPid" class="editor-input" maxlength="10" value="${esc(p.playerId || '')}"
                style="font-family:ui-monospace,Menlo,Consolas,monospace;letter-spacing:2px;text-transform:uppercase;text-align:center;font-weight:900">
         <div style="font-size:10.5px;color:var(--muted-2);margin-top:8px;font-weight:700;line-height:1.55">
-          Use this ID so other players can add you to matches. Format: 2–4 letters + digits, e.g. <b style="color:var(--gold)">FB0001</b>.
+          Use this ID so other players can add you. Format: 2–4 letters + digits, e.g. <b style="color:var(--gold)">FB0001</b>.
         </div>
       </div>
-
       <button class="btn-primary" id="acctSavePid" style="margin-bottom:8px">Save Player ID</button>
       <button class="btn-ghost" id="acctClose" style="width:100%;margin-bottom:8px">Close</button>
       <button class="btn-ghost btn-danger" id="acctSignOut" style="width:100%">Sign out</button>
@@ -1588,8 +1517,7 @@ async function openAccountMenu(){
   $('acctClose').addEventListener('click', closeModal);
   $('acctSignOut').addEventListener('click', () => { closeModal(); signOutUser(); });
   $('acctSavePid').addEventListener('click', async () => {
-    const raw = $('acctPid').value;
-    const pid = registry.normalizeId(raw);
+    const pid = registry.normalizeId($('acctPid').value);
     if (!registry.isValidId(pid)){ toast('Invalid ID — use e.g. FB0001', 'error'); return; }
     const oldPid = cloud.profile.playerId;
     cloud.profile.playerId = pid;
@@ -1618,14 +1546,11 @@ async function openAccountMenu(){
 function getSelectedPack(){
   if (setup.packId.startsWith('custom_')){
     return setup.myPacks.find(p => p.id === setup.packId)
-        || setup.allPublicPacks.find(p => p.id === setup.packId)
-        || null;
+        || setup.allPublicPacks.find(p => p.id === setup.packId) || null;
   }
   if (PACKS[setup.packId]){
-    return {
-      name: setup.packId, emoji: '', ownerUid: null,
-      items: PACKS[setup.packId].map(([name, value]) => ({ name, value }))
-    };
+    return { name: setup.packId, emoji: '', ownerUid: null,
+      items: PACKS[setup.packId].map(([name, value]) => ({ name, value })) };
   }
   return null;
 }
@@ -1650,7 +1575,6 @@ async function renderSetup(){
   const available = selected ? selected.items.length : 0;
   const effective = Math.min(setup.itemCount, available);
 
-  // Refresh online players when signed in
   if (cloud.user && cloud.enabled){
     session.onlinePlayers = await presence.fetchOnline();
     setup.allPublicPacks = await fetchAllPublicPacks();
@@ -1659,7 +1583,6 @@ async function renderSetup(){
     setup.allPublicPacks = [];
   }
 
-  // Build the header info block
   let cloudBanner = '';
   if (!cloud.enabled){
     cloudBanner = `<div class="banner warn"><span class="icon">⚠️</span><span>Cloud not configured. Running in local mode — packs and stats save to this device only.</span></div>`;
@@ -1672,19 +1595,14 @@ async function renderSetup(){
     cloudBanner = `<div class="banner ok"><span class="icon">✓</span><span>Signed in as <b>${esc(cloud.profile.displayName)}</b> · ID <b style="font-family:ui-monospace,Menlo,monospace;letter-spacing:1px">${esc(pid)}</b></span></div>`;
   }
 
-  // Competitor slots
   const onlineMap = new Map(session.onlinePlayers.map(p => [p.id, p]));
   const myId = cloud.profile?.playerId;
   const onlineOthers = session.onlinePlayers.filter(p => p.id !== myId && !p.currentLobby);
-
-  // Restrict pickedIds to valid ones still online
   session.pickedIds = session.pickedIds.filter(id => onlineOthers.some(p => p.id === id));
 
-  // Combined pickable count
+  const totalPlayers = 1 + session.pickedIds.length + session.guestNames.length;
   const maxCompetitors = 3;
-  const totalPlayers = 1 + session.pickedIds.length;
 
-  // Packs I can pick from (built-ins + all public packs)
   const seenPackIds = new Set();
   const packList = [];
   for (const k of Object.keys(PACKS)){
@@ -1693,13 +1611,7 @@ async function renderSetup(){
   for (const p of [...setup.myPacks, ...setup.allPublicPacks]){
     if (seenPackIds.has(p.id)) continue;
     seenPackIds.add(p.id);
-    packList.push({
-      id: p.id,
-      label: `${p.emoji} ${p.name}`,
-      count: p.items.length,
-      custom: true,
-      pack: p
-    });
+    packList.push({ id: p.id, label: `${p.emoji} ${p.name}`, count: p.items.length, custom: true, pack: p });
   }
 
   el.innerHTML = `
@@ -1713,7 +1625,7 @@ async function renderSetup(){
     <div class="panel">
       <div class="panel-head">
         <div class="panel-title"><span class="num">1</span>Topic</div>
-        <div class="panel-hint">${packList.filter(x => x.custom).length + Object.keys(PACKS).length} packs</div>
+        <div class="panel-hint">${packList.length} packs</div>
       </div>
       <div class="pack-grid">
         ${packList.map(x => {
@@ -1722,15 +1634,12 @@ async function renderSetup(){
           return `
             <button class="pack ${isSel ? 'sel' : ''}" data-pack="${esc(x.id)}">
               <span class="pname">${esc(x.label)}</span>
-              <span class="pcount">
-                ${x.count} items${x.custom ? (owns ? ' · yours' : ' · shared') : ''}
-              </span>
+              <span class="pcount">${x.count} items${x.custom ? (owns ? ' · yours' : ' · shared') : ''}</span>
             </button>
           `;
         }).join('')}
         <button class="pack new" data-newpack="1">＋ Create pack</button>
       </div>
-
       ${selectedIsCustom && selected && isOwner(selected) ? `
         <div class="pack-actions">
           <button class="btn-ghost" data-editpack="${esc(selected.id)}">✏️ Edit pack</button>
@@ -1774,15 +1683,25 @@ async function renderSetup(){
             `;
           }).join('')}
 
-          ${session.pickedIds.length < maxCompetitors ? `
-            <button class="add-comp" id="addCompBtn">
-              <span style="font-size:16px">＋</span> Add competitor${onlineOthers.length ? ` (${onlineOthers.length} online)` : ''}
-            </button>
-          ` : ''}
+          ${session.guestNames.map((name, i) => `
+            <div class="comp-row guest">
+              <div class="comp-avatar" style="background:${colorFor('guest' + i + name)}">${esc(initialsOf(name))}</div>
+              <div class="comp-info">
+                <div class="comp-name">${esc(name)}</div>
+                <div class="comp-meta"><span class="guest-tag">GUEST</span><span>No Elo · not ranked</span></div>
+              </div>
+              <button class="comp-remove" data-remove-guest="${i}" title="Remove">×</button>
+            </div>
+          `).join('')}
 
-          ${session.pickedIds.length === 0 && onlineOthers.length === 0 ? `
-            <div class="setup-summary" style="margin-top:6px">
-              <span>No other players are online right now. Ask a friend to sign in and keep the tab open.</span>
+          ${totalPlayers < 4 ? `
+            <div class="add-buttons">
+              <button class="add-comp" id="addCompBtn">
+                <span style="font-size:16px">＋</span> Add player${onlineOthers.length ? ` (${onlineOthers.length} online)` : ''}
+              </button>
+              <button class="add-comp guest" id="addGuestBtn">
+                <span style="font-size:16px">👤</span> Add guest
+              </button>
             </div>
           ` : ''}
         </div>
@@ -1791,18 +1710,19 @@ async function renderSetup(){
           <span>Sign in to add real players. Playing offline with local names is also supported.</span>
         </div>
         <div class="competitors" style="margin-top:12px">
-          ${Array.from({length: setup.playerCount}, (_, i) => `
-            <div class="comp-row">
-              <div class="comp-avatar" style="background:${colorFor('P' + i)}">${i + 1}</div>
+          ${Array.from({length: (setup.localNames?.length || 2)}, (_, i) => `
+            <div class="comp-row guest">
+              <div class="comp-avatar" style="background:${colorFor('guest' + i)}">${esc(initialsOf(setup.localNames?.[i] || ('Player ' + (i+1))))}</div>
               <div class="comp-info">
                 <input class="editor-input" style="padding:8px 10px;font-size:12.5px" data-local-name="${i}"
                        placeholder="Player ${i + 1} name" value="${esc(setup.localNames?.[i] || '')}">
               </div>
+              ${(setup.localNames?.length || 2) > 2 ? `<button class="comp-remove" data-remove-local="${i}">×</button>` : ''}
             </div>
           `).join('')}
         </div>
-        <div class="seg" style="margin-top:12px">
-          ${[2,3,4].map(n => `<button class="segbtn ${setup.playerCount === n ? 'sel' : ''}" data-count="${n}">${n}</button>`).join('')}
+        <div class="add-buttons" style="margin-top:10px">
+          ${((setup.localNames?.length) || 2) < 4 ? `<button class="add-comp guest" id="addLocalBtn">＋ Add player</button>` : ''}
         </div>
       `}
     </div>
@@ -1840,12 +1760,12 @@ async function renderSetup(){
     <button class="btn-primary" id="startBtn" ${(!selected || available < 2) ? 'disabled' : ''}>Start Auction</button>
     <p class="rules">
       Item values are fixed by the pack and hidden until the end.<br>
-      Highest total value wins. Game ends when every item is sold — or only one player still has cash.
+      Highest total value wins. Guests play normally but don't earn Elo.
     </p>
   `;
 }
 
-/* ---- Setup event handlers ---- */
+/* Setup event handlers */
 $('screen-setup').addEventListener('click', async e => {
   const btn = e.target.closest('button');
   if (!btn) return;
@@ -1873,10 +1793,20 @@ $('screen-setup').addEventListener('click', async e => {
   } else if (btn.dataset.removeComp){
     session.pickedIds = session.pickedIds.filter(id => id !== btn.dataset.removeComp);
     renderSetup();
+  } else if (btn.dataset.removeGuest !== undefined){
+    session.guestNames.splice(+btn.dataset.removeGuest, 1);
+    renderSetup();
+  } else if (btn.dataset.removeLocal !== undefined){
+    const i = +btn.dataset.removeLocal;
+    if (setup.localNames) setup.localNames.splice(i, 1);
+    renderSetup();
   } else if (btn.id === 'addCompBtn'){
     openPlayerPicker();
-  } else if (btn.dataset.count){
-    setup.playerCount = +btn.dataset.count;
+  } else if (btn.id === 'addGuestBtn'){
+    openGuestPrompt();
+  } else if (btn.id === 'addLocalBtn'){
+    if (!setup.localNames) setup.localNames = ['Player 1', 'Player 2'];
+    if (setup.localNames.length < 4) setup.localNames.push('Player ' + (setup.localNames.length + 1));
     renderSetup();
   } else if (btn.dataset.cash){
     setup.cash = clamp(setup.cash + (+btn.dataset.cash), 10, 500);
@@ -1897,11 +1827,13 @@ $('screen-setup').addEventListener('input', e => {
   }
 });
 
-/* ---- Player picker modal ---- */
+/* Player picker modal — real online players only */
 function openPlayerPicker(){
   const myId = cloud.profile?.playerId;
   const others = session.onlinePlayers.filter(p => p.id !== myId);
   const taken = new Set(session.pickedIds);
+  const currentTotal = 1 + session.pickedIds.length + session.guestNames.length;
+  const slotsLeft = 4 - currentTotal;
 
   const rows = others.map(p => {
     const inOtherLobby = p.currentLobby && p.currentLobby !== session.lobbyId;
@@ -1931,17 +1863,15 @@ function openPlayerPicker(){
 
   openModal(`
     <div class="modal">
-      <div class="modal-title">Add competitors</div>
-      <div class="modal-sub">Only online players who aren't already in a match can be added.</div>
+      <div class="modal-title">Add player</div>
+      <div class="modal-sub">Only online players who aren't already in a match can be added. ${slotsLeft} slot${slotsLeft === 1 ? '' : 's'} left.</div>
       ${others.length ? `
-        <div class="picker-list" id="pickerList">
-          ${rows}
-        </div>
+        <div class="picker-list" id="pickerList">${rows}</div>
       ` : `
         <div class="picker-empty">
           <span style="font-size:36px;display:block;margin-bottom:12px;opacity:.5">👥</span>
           No other players are online right now.<br>
-          Ask a friend to sign in and keep their tab open.
+          Add a guest instead, or ask a friend to sign in.
         </div>
       `}
       <div class="modal-actions">
@@ -1953,7 +1883,6 @@ function openPlayerPicker(){
 
   $('pickerCancel').addEventListener('click', closeModal);
   $('pickerDone').addEventListener('click', closeModal);
-
   $('pickerList')?.addEventListener('click', e => {
     const row = e.target.closest('[data-pick-id]');
     if (!row || row.disabled) return;
@@ -1962,10 +1891,44 @@ function openPlayerPicker(){
       session.pickedIds = session.pickedIds.filter(x => x !== id);
       row.classList.remove('sel');
     } else {
-      if (session.pickedIds.length >= 3){ toast('Max 3 competitors', 'error'); return; }
+      const total = 1 + session.pickedIds.length + session.guestNames.length;
+      if (total >= 4){ toast('Max 4 players', 'error'); return; }
       session.pickedIds.push(id);
       row.classList.add('sel');
     }
+  });
+}
+
+/* Guest name prompt */
+function openGuestPrompt(){
+  openModal(`
+    <div class="modal" style="max-width:420px">
+      <div class="modal-title">Add guest</div>
+      <div class="modal-sub">Guests don't need an account. They play in this match only and are never written to the leaderboard.</div>
+      <div class="field">
+        <label class="field-label" for="guestName">Guest name</label>
+        <input id="guestName" class="editor-input" maxlength="14" placeholder="e.g. Alex" autofocus>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-ghost" id="guestCancel">Cancel</button>
+        <button class="btn-primary" id="guestAdd">Add guest</button>
+      </div>
+    </div>
+  `);
+
+  setTimeout(() => $('guestName')?.focus(), 60);
+  $('guestCancel').addEventListener('click', closeModal);
+  $('guestAdd').addEventListener('click', () => {
+    const name = ($('guestName').value || '').trim();
+    if (!name){ toast('Enter a name', 'error'); return; }
+    const total = 1 + session.pickedIds.length + session.guestNames.length;
+    if (total >= 4){ toast('Max 4 players', 'error'); return; }
+    session.guestNames.push(name);
+    closeModal();
+    renderSetup();
+  });
+  $('guestName').addEventListener('keydown', e => {
+    if (e.key === 'Enter') $('guestAdd').click();
   });
 }
 
@@ -1999,9 +1962,7 @@ function renderEditor(){
       <div class="field">
         <label class="field-label">Icon</label>
         <div class="emoji-row" id="emojiRow">
-          ${EMOJI_CHOICES.map(e => `
-            <button class="emoji-opt ${e === editor.emoji ? 'sel' : ''}" data-emoji="${e}">${e}</button>
-          `).join('')}
+          ${EMOJI_CHOICES.map(e => `<button class="emoji-opt ${e === editor.emoji ? 'sel' : ''}" data-emoji="${e}">${e}</button>`).join('')}
         </div>
       </div>
 
@@ -2060,7 +2021,6 @@ function renderEditor(){
   });
   $('edSave').addEventListener('click', saveEditor);
   $('edDelete')?.addEventListener('click', deleteEditor);
-
   $('emojiRow').addEventListener('click', e => {
     const b = e.target.closest('[data-emoji]');
     if (!b) return;
@@ -2090,24 +2050,16 @@ function renderItemRows(){
   list.innerHTML = editor.items.map((it, i) => `
     <div class="item-row">
       <input class="item-name-in" maxlength="40" placeholder="Item name" value="${esc(it.name)}" data-i="${i}">
-      <div class="val-wrap">
-        <input class="item-val-in" type="number" min="1" max="99" inputmode="numeric" value="${it.value}" data-i="${i}">
-      </div>
+      <div class="val-wrap"><input class="item-val-in" type="number" min="1" max="99" inputmode="numeric" value="${it.value}" data-i="${i}"></div>
       <button class="item-del" data-i="${i}">×</button>
     </div>
   `).join('');
 
   list.querySelectorAll('.item-name-in').forEach(inp => {
-    inp.addEventListener('input', e => {
-      editor.items[+e.target.dataset.i].name = e.target.value;
-      updateEditorMeta();
-    });
+    inp.addEventListener('input', e => { editor.items[+e.target.dataset.i].name = e.target.value; updateEditorMeta(); });
   });
   list.querySelectorAll('.item-val-in').forEach(inp => {
-    inp.addEventListener('input', e => {
-      editor.items[+e.target.dataset.i].value = clamp(parseInt(e.target.value, 10) || 1, 1, 99);
-      updateEditorMeta();
-    });
+    inp.addEventListener('input', e => { editor.items[+e.target.dataset.i].value = clamp(parseInt(e.target.value, 10) || 1, 1, 99); updateEditorMeta(); });
     inp.addEventListener('blur', e => {
       const v = clamp(parseInt(e.target.value, 10) || 1, 1, 99);
       e.target.value = v;
@@ -2138,7 +2090,6 @@ async function saveEditor(){
   const items = editor.items.map(it => ({ name: it.name.trim(), value: clamp(it.value, 1, 99) })).filter(it => it.name);
   if (!name){ toast('Give your pack a name', 'error'); return; }
   if (items.length < 2){ toast('Add at least 2 items', 'error'); return; }
-
   const ownerUid = cloud.user?.uid || null;
   const ownerPlayerId = cloud.profile?.playerId || null;
   const ownerName = cloud.profile?.displayName || 'Local';
@@ -2149,11 +2100,7 @@ async function saveEditor(){
     p.name = name; p.emoji = editor.emoji; p.items = items;
     await pushPackToCloud(p);
   } else {
-    const newPack = {
-      id: 'custom_' + uid(),
-      name, emoji: editor.emoji, items,
-      ownerUid, ownerPlayerId, ownerName
-    };
+    const newPack = { id: 'custom_' + uid(), name, emoji: editor.emoji, items, ownerUid, ownerPlayerId, ownerName };
     setup.myPacks.push(newPack);
     setup.packId = newPack.id;
     await pushPackToCloud(newPack);
@@ -2179,7 +2126,7 @@ async function deleteEditor(){
 }
 
 /* ============================================================================
-   LOBBY CHECK (called after sign-in)
+   LOBBY CHECK
    ========================================================================== */
 async function checkCurrentLobby(){
   if (!cloud.user || !cloud.profile?.playerId) return;
@@ -2195,12 +2142,10 @@ async function checkCurrentLobby(){
         return;
       }
       if (lb.hostUid === cloud.user.uid){
-        // We're the host; we lost our game state, dissolve the lobby.
         await lobby.dissolve(data.currentLobby);
         await presence.setLobby(null);
         return;
       }
-      // We're a participant in someone else's lobby
       session.lobbyId = data.currentLobby;
       renderLobby(lb);
       showScreen('lobby');
@@ -2209,12 +2154,11 @@ async function checkCurrentLobby(){
 }
 
 /* ============================================================================
-   LOBBY SCREEN (non-host view)
+   LOBBY SCREEN
    ========================================================================== */
 function renderLobby(lobbyData){
   const el = $('screen-lobby');
   if (!lobbyData){
-    // Lobby disappeared
     session.lobbyId = null;
     presence.setLobby(null);
     renderSetup();
@@ -2223,8 +2167,6 @@ function renderLobby(lobbyData){
   }
 
   const others = (lobbyData.players || []).filter(p => p.id !== cloud.profile.playerId);
-  const host = (lobbyData.players || []).find(p => p.id === lobbyData.hostId);
-
   const othersLabel = others.length === 1
     ? others[0].name
     : `${others[0]?.name || ''} and ${others.length - 1} other${others.length - 1 === 1 ? '' : 's'}`;
@@ -2246,17 +2188,18 @@ function renderLobby(lobbyData){
               ${p.id === cloud.profile.playerId ? '<span class="lb-you">You</span>' : ''}
             </div>
             <div style="font-size:10.5px;color:var(--muted-2);margin-top:3px;font-weight:800;display:flex;gap:6px">
-              <span style="font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--gold);letter-spacing:.6px">${esc(p.id)}</span>
+              ${p.isGuest
+                ? '<span style="color:#c4b5fd;background:rgba(167,139,250,.14);padding:1px 6px;border-radius:5px;font-weight:900;letter-spacing:.6px">GUEST</span>'
+                : `<span style="font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--gold);letter-spacing:.6px">${esc(p.id)}</span>`}
             </div>
           </div>
           ${p.id === lobbyData.hostId ? '<div class="badge">HOST</div>' : ''}
+          ${p.isGuest ? '<div class="badge guest">GUEST</div>' : ''}
         </div>
       `).join('')}
     </div>
 
-    <div class="lobby-note">
-      While this match is in progress, you can't start or join another one. Leave to return to the setup screen.
-    </div>
+    <div class="lobby-note">While this match is in progress, you can't start or join another one. Leave to return to the setup screen.</div>
 
     <button class="btn-ghost btn-danger" id="leaveLobby" style="width:100%">Leave match</button>
   `;
@@ -2273,12 +2216,10 @@ function renderLobby(lobbyData){
   });
 }
 
-/* Watch the lobby for changes */
 function startLobbyWatch(lobbyId){
   stopLobbyWatch();
   session.lobbyWatchUnsub = lobby.watch(lobbyId, lb => {
     if (!lb){
-      // Dissolved
       session.lobbyId = null;
       presence.setLobby(null);
       if ($('screen-lobby').classList.contains('active')){
@@ -2296,67 +2237,53 @@ function startLobbyWatch(lobbyId){
   });
 }
 function stopLobbyWatch(){
-  if (session.lobbyWatchUnsub){
-    session.lobbyWatchUnsub();
-    session.lobbyWatchUnsub = null;
-  }
+  if (session.lobbyWatchUnsub){ session.lobbyWatchUnsub(); session.lobbyWatchUnsub = null; }
 }
 
 /* ============================================================================
    GAME STATE
    ========================================================================== */
 const state = {
-  topicName: '',
-  players: [],
-  items: [],
-  idx: 0,
-  currentBid: 0,
-  highBidder: null,
-  turn: 0,
-  pendingBid: 1,
-  locked: false
+  topicName: '', players: [], items: [],
+  idx: 0, currentBid: 0, highBidder: null,
+  turn: 0, pendingBid: 1, locked: false
 };
 
 async function startGame(){
   const pool = getSelectedItems();
   if (pool.length < 2){ toast('This pack needs at least 2 items', 'error'); return; }
 
-  // Collect participants
-  let participants = [];
+  const participants = [];
 
   if (cloud.user && cloud.profile){
-    // Signed-in mode: self + picked competitors
-    const me = {
+    // Self
+    participants.push({
       id: cloud.profile.playerId,
       name: cloud.profile.displayName || 'You',
-      photoURL: cloud.profile.photoURL || ''
-    };
-    participants.push(me);
-
+      photoURL: cloud.profile.photoURL || '',
+      isGuest: false
+    });
+    // Picked real players
     const onlineMap = new Map(session.onlinePlayers.map(p => [p.id, p]));
     for (const id of session.pickedIds){
       const p = onlineMap.get(id);
-      if (p){
-        participants.push({ id: p.id, name: p.name, photoURL: p.photoURL || '' });
-      }
+      if (p) participants.push({ id: p.id, name: p.name, photoURL: p.photoURL || '', isGuest: false });
+    }
+    // Guests
+    for (const name of session.guestNames){
+      participants.push({ id: null, name, photoURL: '', isGuest: true });
     }
 
-    if (participants.length < 2){
-      toast('Add at least 1 competitor to start', 'error');
-      return;
-    }
+    if (participants.length < 2){ toast('Add at least 1 competitor', 'error'); return; }
   } else {
-    // Offline mode: use local names
-    for (let i = 0; i < setup.playerCount; i++){
-      participants.push({
-        id: null,
-        name: (setup.localNames?.[i] || '').trim() || ('Player ' + (i + 1)),
-        photoURL: ''
-      });
+    // Offline mode — all local players count as guests
+    const names = setup.localNames?.length ? setup.localNames : ['Player 1', 'Player 2'];
+    for (const n of names){
+      participants.push({ id: null, name: (n || '').trim() || 'Guest', photoURL: '', isGuest: true });
     }
   }
 
-  // Create lobby for online mode
+  // Create lobby if signed in
   if (cloud.user && cloud.enabled && cloud.db){
     const lobbyId = await lobby.create(
       { id: cloud.profile.playerId, name: cloud.profile.displayName, photoURL: cloud.profile.photoURL },
@@ -2370,7 +2297,6 @@ async function startGame(){
     }
   }
 
-  // Start the auction
   const count = Math.min(setup.itemCount, pool.length);
   const chosen = shuffle(pool).slice(0, count);
   state.items = chosen.map(it => ({ name: it.name, value: it.value, winner: null, price: null }));
@@ -2380,6 +2306,7 @@ async function startGame(){
     playerId: p.id,
     name: p.name,
     photoURL: p.photoURL,
+    isGuest: !!p.isGuest,
     money: setup.cash,
     items: [],
     inRound: true
@@ -2409,7 +2336,6 @@ function startItem(){
   }
   state.turn = found;
   if (found === -1){ resolveItem(); return; }
-
   state.pendingBid = Math.min(state.currentBid + 1, state.players[found].money);
   renderGame();
 }
@@ -2463,7 +2389,6 @@ function renderGame(){
   const minB = state.currentBid + 1;
   const maxB = cur ? cur.money : 0;
   const canBid = cur && maxB >= minB;
-
   if (canBid) state.pendingBid = clamp(state.pendingBid, minB, maxB);
 
   g.innerHTML = `
@@ -2497,7 +2422,9 @@ function renderGame(){
             ${badge}
             <div class="p-avatar" style="background:${colorFor(p.name)}">${esc(initialsOf(p.name))}</div>
             <div class="pname">${esc(p.name)}</div>
-            ${p.playerId ? `<div class="pid">${esc(p.playerId)}</div>` : ''}
+            ${p.isGuest
+              ? '<div class="pid guest">GUEST</div>'
+              : (p.playerId ? `<div class="pid">${esc(p.playerId)}</div>` : '')}
             <div class="pmoney">$${p.money}</div>
             <div class="pitems">${p.items.length} item${p.items.length === 1 ? '' : 's'}</div>
           </div>
@@ -2519,9 +2446,7 @@ function renderGame(){
           <button data-action="quick" data-v="all">All in</button>
         </div>
         <button class="btn-bid" data-action="bid">BID $${state.pendingBid}</button>
-      ` : `
-        <div class="cant">Can't cover the minimum bid of $${minB}</div>
-      `}
+      ` : `<div class="cant">Can't cover the minimum bid of $${minB}</div>`}
       <button class="btn-fold" data-action="fold">Fold</button>
     </div>
   `;
@@ -2609,10 +2534,16 @@ function computeElo(players, K){
   return deltas.map(d => Math.round(d));
 }
 
+/**
+ * Record match results. Only players with valid IDs and NOT guests are persisted.
+ * Guests count in the Elo calculation as rating 1000, but their record is never written.
+ */
 async function recordMatchResults(ranked){
   const identified = ranked
     .map((r, i) => ({ ...r, idx: i }))
-    .filter(r => r.id && registry.isValidId(r.id));
+    .filter(r => !r.isGuest && r.id && registry.isValidId(r.id));
+
+  // Even if no identified players, we can still return null
   if (!identified.length) return null;
 
   const records = await Promise.all(identified.map(async r => {
@@ -2624,12 +2555,14 @@ async function recordMatchResults(ranked){
     };
   }));
 
-  const participants = ranked.map(r => ({
-    rating: r.id && registry.isValidId(r.id)
-      ? (records.find(x => x.id === r.id)?.elo ?? 1000)
-      : 1000,
-    placement: r.placement
-  }));
+  // Calculate deltas across ALL players (guests use default 1000 rating)
+  const participants = ranked.map(r => {
+    if (!r.isGuest && r.id && registry.isValidId(r.id)){
+      const rec = records.find(x => x.id === r.id);
+      return { rating: rec ? rec.elo : 1000, placement: r.placement };
+    }
+    return { rating: GUEST_ELO, placement: r.placement };
+  });
   const deltas = computeElo(participants, 32);
 
   for (const rec of records){
@@ -2653,12 +2586,7 @@ async function recordMatchResults(ranked){
     const myRec = records.find(r => r.id === myId);
     if (myRec){
       const delta = deltas[myRec.idx];
-      return {
-        delta,
-        oldElo: myRec.elo,
-        newElo: clamp(myRec.elo + delta, 100, 4000),
-        playerId: myId
-      };
+      return { delta, oldElo: myRec.elo, newElo: clamp(myRec.elo + delta, 100, 4000), playerId: myId };
     }
   }
   return null;
@@ -2675,6 +2603,7 @@ async function endGame(){
     name: p.name,
     id: p.playerId,
     photoURL: p.photoURL,
+    isGuest: p.isGuest,
     money: p.money,
     items: p.items,
     total: p.items.reduce((s, it) => s + it.value, 0),
@@ -2684,7 +2613,6 @@ async function endGame(){
 
   ranked.forEach((r, i) => r.placement = i);
 
-  // Dissolve lobby
   if (session.hostingLobbyId){
     await lobby.dissolve(session.hostingLobbyId);
     session.lobbyId = null;
@@ -2726,10 +2654,16 @@ function renderResults(ranked, eloResult){
 
     <div class="rank-list">
       ${ranked.map((r, i) => `
-        <div class="rank-row ${i === 0 ? 'first' : ''}">
+        <div class="rank-row ${i === 0 ? 'first' : ''} ${r.isGuest ? 'guest' : ''}">
           <div class="rank-head">
             <span class="medal">${medals[i] || ''}</span>
-            <span class="rname">${esc(r.name)}${r.id ? `<span class="rid">${esc(r.id)}</span>` : ''}${r.isYou ? '<span class="lb-you">You</span>' : ''}</span>
+            <span class="rname">
+              ${esc(r.name)}
+              ${r.isGuest
+                ? '<span class="guest-tag">GUEST</span>'
+                : (r.id ? `<span class="rid">${esc(r.id)}</span>` : '')}
+              ${r.isYou ? '<span class="lb-you">You</span>' : ''}
+            </span>
             <span class="rval">${r.total} pts</span>
           </div>
           <div class="rline">$${r.money} left · spent $${r.spent} · ${r.items.length} item${r.items.length === 1 ? '' : 's'}</div>
@@ -2762,6 +2696,8 @@ function renderResults(ranked, eloResult){
   `;
 
   $('againBtn').addEventListener('click', () => {
+    session.pickedIds = [];
+    session.guestNames = [];
     renderSetup();
     showScreen('setup');
     renderHeader();
@@ -2774,7 +2710,7 @@ function renderResults(ranked, eloResult){
 }
 
 /* ============================================================================
-   LEADERBOARD
+   LEADERBOARD  (real players only — guests never appear here)
    ========================================================================== */
 let lbSort = 'elo';
 
@@ -2801,7 +2737,8 @@ async function renderLeaderboard(){
       <div class="lb-header"><h2>Leaderboard</h2><p>No games recorded yet</p></div>
       <div class="empty-state">
         <span class="big">🏆</span>
-        Play a match to claim the top spot.
+        Play a match to claim the top spot.<br>
+        <span style="font-size:11.5px;color:var(--muted-2);margin-top:8px;display:inline-block">Guests don't appear here</span>
       </div>
       <button class="btn-secondary" id="lbBack2">Back</button>
     `;
@@ -2857,6 +2794,7 @@ async function renderLeaderboard(){
    ========================================================================== */
 (async () => {
   registry.load();
+  if (!setup.localNames) setup.localNames = ['Player 1', 'Player 2'];
   renderSetup();
   renderHeader();
   initCloud();
