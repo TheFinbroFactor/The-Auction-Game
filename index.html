@@ -51,7 +51,6 @@
   input,textarea{font-family:inherit}
   ::selection{background:rgba(251,191,36,.28);color:#fff}
   input::placeholder,textarea::placeholder{color:var(--muted-2)}
-
   .app-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:2px 2px 18px}
   .brand{display:flex;align-items:center;gap:11px}
   .brand-mark{
@@ -65,16 +64,12 @@
   .brand-name{font-size:15.5px;font-weight:900}
   .brand-sub{font-size:9px;color:var(--muted-2);font-weight:800;letter-spacing:1.8px;text-transform:uppercase}
   .header-right{display:flex;align-items:center;gap:8px}
-  .sync-dot{
-    width:10px;height:10px;border-radius:50%;background:var(--muted-2);
-    flex-shrink:0;transition:.3s;
-  }
+  .sync-dot{width:10px;height:10px;border-radius:50%;background:var(--muted-2);flex-shrink:0;transition:.3s}
   .sync-dot.live{background:var(--green);animation:pulseDot 2.4s ease-in-out infinite}
   .sync-dot.polling{background:var(--gold)}
   .sync-dot.error{background:var(--red)}
   .icon-btn{
-    width:38px;height:38px;border-radius:12px;
-    background:var(--raised-2);border:1px solid var(--border);
+    width:38px;height:38px;border-radius:12px;background:var(--raised-2);border:1px solid var(--border);
     display:flex;align-items:center;justify-content:center;font-size:16px;transition:.15s;
   }
   .icon-btn:hover{background:var(--raised)}
@@ -86,8 +81,8 @@
   .user-avatar{
     width:28px;height:28px;border-radius:50%;flex-shrink:0;
     background:linear-gradient(145deg,#a78bfa,#7c3aed);
-    display:flex;align-items:center;justify-content:center;
-    font-size:11px;font-weight:900;color:#fff;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;
+    color:#fff;overflow:hidden;
   }
   .user-avatar img{width:100%;height:100%;object-fit:cover}
   .user-name{font-size:12px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -99,15 +94,8 @@
   }
   .panel{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:18px;margin-bottom:12px}
   .panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
-  .panel-title{
-    font-size:11px;font-weight:900;letter-spacing:1.7px;text-transform:uppercase;color:var(--text-2);
-    display:flex;align-items:center;gap:8px;
-  }
-  .panel-title .num{
-    display:inline-flex;align-items:center;justify-content:center;
-    width:18px;height:18px;border-radius:50%;
-    background:rgba(251,191,36,.14);color:var(--gold);font-size:9.5px;font-weight:900;
-  }
+  .panel-title{font-size:11px;font-weight:900;letter-spacing:1.7px;text-transform:uppercase;color:var(--text-2);display:flex;align-items:center;gap:8px}
+  .panel-title .num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:rgba(251,191,36,.14);color:var(--gold);font-size:9.5px;font-weight:900}
   .panel-hint{font-size:10.5px;color:var(--muted-2);font-weight:700}
   .btn-primary{
     width:100%;padding:16px;border-radius:16px;font-size:14.5px;font-weight:900;letter-spacing:1.2px;
@@ -123,7 +111,6 @@
     background:var(--raised);border:1px solid var(--border-2);color:var(--text);
     display:flex;align-items:center;justify-content:center;gap:8px;transition:.15s;
   }
-  .btn-secondary:hover{background:var(--raised)}
   .btn-ghost{
     padding:13px 16px;border-radius:14px;font-size:13px;font-weight:800;
     background:transparent;border:1px solid var(--border);color:var(--text-2);transition:.15s;
@@ -133,10 +120,7 @@
   .btn-danger:hover{background:rgba(248,113,113,.08)}
   .hero{text-align:center;padding:6px 0 22px}
   .hero h1{margin:0;font-size:40px;font-weight:900;letter-spacing:-1.4px;line-height:1}
-  .hero h1 span{
-    background:linear-gradient(100deg,#fde68a 0%,#fbbf24 45%,#f59e0b 100%);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
+  .hero h1 span{background:linear-gradient(100deg,#fde68a 0%,#fbbf24 45%,#f59e0b 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
   .hero p{color:var(--muted);font-size:13px;margin:10px 0 0;font-weight:600}
   .banner{
     display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:14px;
@@ -155,565 +139,246 @@
     text-align:left;display:flex;flex-direction:column;gap:5px;line-height:1.3;transition:.15s;
   }
   .pack:hover{background:var(--raised)}
-  .pack.sel{
-    background:linear-gradient(135deg,rgba(251,191,36,.14),rgba(251,191,36,.06));
-    border-color:rgba(251,191,36,.55);color:var(--gold);
-  }
+  .pack.sel{background:linear-gradient(135deg,rgba(251,191,36,.14),rgba(251,191,36,.06));border-color:rgba(251,191,36,.55);color:var(--gold)}
   .pack .pname{display:block}
   .pack .pcount{font-size:9.5px;font-weight:800;color:var(--muted-2);letter-spacing:.5px}
   .pack.sel .pcount{color:rgba(251,191,36,.75)}
-  .pack.new{
-    border-style:dashed;border-color:var(--border-2);
-    align-items:center;justify-content:center;text-align:center;
-    color:var(--muted);font-weight:900;min-height:62px;flex-direction:row;gap:7px;
-  }
+  .pack.new{border-style:dashed;border-color:var(--border-2);align-items:center;justify-content:center;text-align:center;color:var(--muted);font-weight:900;min-height:62px;flex-direction:row;gap:7px}
   .pack-actions{display:flex;gap:6px;margin-top:12px}
   .pack-actions .btn-ghost{flex:1;padding:10px;font-size:11.5px}
   .competitors{display:flex;flex-direction:column;gap:8px}
-  .comp-row{
-    display:flex;align-items:center;gap:11px;padding:12px 14px;border-radius:14px;
-    background:var(--raised-2);border:1px solid var(--border);
-  }
+  .comp-row{display:flex;align-items:center;gap:11px;padding:12px 14px;border-radius:14px;background:var(--raised-2);border:1px solid var(--border)}
   .comp-row.you{background:linear-gradient(135deg,rgba(251,191,36,.09),rgba(251,191,36,.03));border-color:rgba(251,191,36,.3)}
   .comp-row.guest{background:rgba(167,139,250,.04);border-color:rgba(167,139,250,.2)}
-  .comp-avatar{
-    width:36px;height:36px;border-radius:50%;flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;
-    font-weight:900;font-size:13px;color:#fff;overflow:hidden;
-  }
+  .comp-avatar{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#fff;overflow:hidden}
   .comp-avatar img{width:100%;height:100%;object-fit:cover}
   .comp-info{flex:1;min-width:0}
-  .comp-name{
-    font-size:13.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-    display:flex;align-items:center;gap:7px;
-  }
+  .comp-name{font-size:13.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:7px}
   .comp-meta{font-size:10px;color:var(--muted-2);font-weight:800;margin-top:3px;display:flex;align-items:center;gap:7px}
   .comp-meta .pid{font-family:ui-monospace,Menlo,monospace;letter-spacing:.8px;color:var(--gold);font-weight:900;opacity:.8}
-  .comp-meta .guest-tag{
-    color:#c4b5fd;background:rgba(167,139,250,.14);
-    padding:1px 6px;border-radius:5px;font-weight:900;letter-spacing:.6px;font-size:9px;
-  }
-  .comp-remove{
-    width:28px;height:28px;border-radius:9px;flex-shrink:0;
-    background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.22);
-    color:var(--red);font-size:15px;font-weight:900;
-    display:flex;align-items:center;justify-content:center;
-  }
+  .comp-meta .guest-tag{color:#c4b5fd;background:rgba(167,139,250,.14);padding:1px 6px;border-radius:5px;font-weight:900;letter-spacing:.6px;font-size:9px}
+  .comp-remove{width:28px;height:28px;border-radius:9px;flex-shrink:0;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.22);color:var(--red);font-size:15px;font-weight:900;display:flex;align-items:center;justify-content:center}
   .add-buttons{display:flex;gap:8px;margin-top:2px}
-  .add-comp{
-    flex:1;padding:14px;border-radius:14px;background:rgba(255,255,255,.02);
-    border:1.5px dashed var(--border-2);color:var(--muted);
-    font-size:12.5px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;
-  }
+  .add-comp{flex:1;padding:14px;border-radius:14px;background:rgba(255,255,255,.02);border:1.5px dashed var(--border-2);color:var(--muted);font-size:12.5px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px}
   .add-comp:hover{background:rgba(251,191,36,.04);border-color:rgba(251,191,36,.35);color:var(--gold)}
   .online-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulseDot 2.4s ease-in-out infinite}
   .seg{display:flex;gap:6px;background:rgba(0,0,0,.25);padding:4px;border-radius:14px;border:1px solid var(--border)}
   .seg.wrap{flex-wrap:wrap}
-  .segbtn{
-    flex:1;padding:11px 6px;border-radius:10px;font-weight:800;font-size:13px;
-    background:transparent;color:var(--muted);min-width:44px;
-  }
+  .segbtn{flex:1;padding:11px 6px;border-radius:10px;font-weight:800;font-size:13px;background:transparent;color:var(--muted);min-width:44px}
   .segbtn.sel{background:linear-gradient(135deg,rgba(251,191,36,.2),rgba(251,191,36,.1));color:var(--gold)}
   .stepper{display:flex;align-items:center;justify-content:center;gap:18px}
-  .step{
-    width:46px;height:46px;border-radius:14px;font-size:20px;font-weight:700;
-    background:var(--raised);border:1px solid var(--border-2);
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  }
-  .step:hover{background:var(--raised)}
+  .step{width:46px;height:46px;border-radius:14px;font-size:20px;font-weight:700;background:var(--raised);border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .step-val{font-size:28px;font-weight:900;color:var(--gold);min-width:104px;text-align:center;letter-spacing:-1px;line-height:1}
   .sub-hint{font-size:11px;color:var(--muted);text-align:center;margin-top:10px;font-weight:600;line-height:1.5}
   .sub-hint b{color:var(--gold);font-weight:900}
   .waiting-wrap{text-align:center;padding:20px 0 12px}
-  .waiting-icon{
-    width:78px;height:78px;border-radius:50%;margin:0 auto 20px;
-    background:radial-gradient(circle at 50% 30%, rgba(251,191,36,.28), rgba(251,191,36,.06));
-    border:1px solid rgba(251,191,36,.35);
-    display:flex;align-items:center;justify-content:center;font-size:34px;
-    box-shadow:0 12px 40px rgba(251,191,36,.2);animation:pulseGold 3s ease-in-out infinite;
-  }
+  .waiting-icon{width:78px;height:78px;border-radius:50%;margin:0 auto 20px;background:radial-gradient(circle at 50% 30%, rgba(251,191,36,.28), rgba(251,191,36,.06));border:1px solid rgba(251,191,36,.35);display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 12px 40px rgba(251,191,36,.2);animation:pulseGold 3s ease-in-out infinite}
   .waiting-title{font-size:22px;font-weight:900;letter-spacing:-.5px;line-height:1.2}
   .waiting-sub{color:var(--muted);font-size:12.5px;margin-top:8px;font-weight:600;line-height:1.6}
   .waiting-list{display:flex;flex-direction:column;gap:8px;margin:22px 0 16px;text-align:left}
-  .waiting-row{
-    display:flex;align-items:center;gap:11px;padding:12px 14px;
-    background:var(--surface);border:1px solid var(--border);border-radius:14px;
-  }
+  .waiting-row{display:flex;align-items:center;gap:11px;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:14px}
   .waiting-row.host{border-color:rgba(251,191,36,.28);background:linear-gradient(135deg,rgba(251,191,36,.07),rgba(251,191,36,.02))}
-  .waiting-row .badge{
-    font-size:8.5px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;
-    padding:3px 8px;border-radius:99px;flex-shrink:0;
-  }
+  .waiting-row .badge{font-size:8.5px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;padding:3px 8px;border-radius:99px;flex-shrink:0}
   .waiting-row .badge.host-badge{background:rgba(251,191,36,.15);color:var(--gold)}
   .waiting-row .badge.guest-badge{background:rgba(167,139,250,.15);color:#c4b5fd}
   .waiting-row .badge.status-accepted{background:rgba(52,211,153,.15);color:var(--green)}
   .waiting-row .badge.status-pending{background:rgba(251,191,36,.15);color:var(--gold)}
   .waiting-row .badge.status-declined{background:rgba(248,113,113,.15);color:var(--red)}
   .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
-  .topic-pill{
-    display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;
-    background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.24);
-    font-size:11.5px;font-weight:900;color:var(--gold);max-width:50%;overflow:hidden;
-  }
+  .topic-pill{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.24);font-size:11.5px;font-weight:900;color:var(--gold);max-width:50%;overflow:hidden}
   .topic-pill span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .topbar-right{display:flex;align-items:center;gap:6px}
-  .live-pill{
-    display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;
-    background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.28);
-    font-size:10px;font-weight:900;letter-spacing:1.2px;color:var(--green);text-transform:uppercase;
-  }
+  .live-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.28);font-size:10px;font-weight:900;letter-spacing:1.2px;color:var(--green);text-transform:uppercase}
   .live-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulseDot 1.6s ease-in-out infinite}
-  .menu-btn{
-    width:32px;height:32px;border-radius:10px;flex-shrink:0;
-    background:var(--raised-2);border:1px solid var(--border);
-    display:flex;align-items:center;justify-content:center;
-    font-size:16px;font-weight:900;color:var(--muted);transition:.15s;
-    line-height:1;
-  }
+  .menu-btn{width:32px;height:32px;border-radius:10px;flex-shrink:0;background:var(--raised-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:var(--muted);transition:.15s;line-height:1}
   .menu-btn:hover{background:var(--raised);color:var(--text)}
-  .menu-btn:active{transform:scale(.94)}
   .counter{font-size:11.5px;color:var(--muted);font-weight:800}
   .progress{height:5px;border-radius:99px;background:var(--raised);overflow:hidden;margin-bottom:16px}
-  .progress>div{
-    height:100%;border-radius:99px;background:linear-gradient(90deg,#fbbf24,#f59e0b);
-    transition:width .5s cubic-bezier(.3,.9,.4,1);box-shadow:0 0 12px rgba(251,191,36,.5);
-  }
-  .item-card{
-    position:relative;border-radius:26px;padding:36px 24px;text-align:center;overflow:hidden;
-    background:var(--item-card-bg);
-    border:1px solid rgba(251,191,36,.28);
-    box-shadow:0 16px 50px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08);
-    margin-bottom:12px;
-  }
-  .item-card::before{
-    content:'';position:absolute;inset:0;
-    background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.06) 50%,transparent 60%);
-    background-size:500px 100%;animation:shimmer 4s linear infinite;pointer-events:none;
-  }
+  .progress>div{height:100%;border-radius:99px;background:linear-gradient(90deg,#fbbf24,#f59e0b);transition:width .5s cubic-bezier(.3,.9,.4,1);box-shadow:0 0 12px rgba(251,191,36,.5)}
+  .item-card{position:relative;border-radius:26px;padding:36px 24px;text-align:center;overflow:hidden;background:var(--item-card-bg);border:1px solid rgba(251,191,36,.28);box-shadow:0 16px 50px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08);margin-bottom:12px}
+  .item-card::before{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.06) 50%,transparent 60%);background-size:500px 100%;animation:shimmer 4s linear infinite;pointer-events:none}
   .item-label{font-size:9.5px;letter-spacing:3.5px;color:var(--muted);font-weight:900;margin-bottom:14px;position:relative}
   .item-name{font-size:clamp(22px,6.6vw,33px);font-weight:900;line-height:1.12;word-break:break-word;position:relative;letter-spacing:-.7px}
-  .item-value{
-    margin-top:18px;font-size:11.5px;color:var(--muted);font-weight:800;position:relative;
-    display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:99px;
-    background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08);
-  }
+  .item-value{margin-top:18px;font-size:11.5px;color:var(--muted);font-weight:800;position:relative;display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:99px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08)}
   .item-value span{color:var(--gold);font-weight:900;letter-spacing:2.5px}
-  .bid-banner{
-    text-align:center;padding:13px 14px;border-radius:14px;margin-bottom:12px;
-    background:var(--raised-2);border:1px solid var(--border);
-    font-size:13.5px;font-weight:700;
-  }
+  .bid-banner{text-align:center;padding:13px 14px;border-radius:14px;margin-bottom:12px;background:var(--raised-2);border:1px solid var(--border);font-size:13.5px;font-weight:700}
   .bid-banner strong{color:var(--gold);font-weight:900}
   .bid-banner.empty{color:var(--muted);font-size:12.5px;font-weight:600}
   .players{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:8px;margin-bottom:12px}
-  .pcard{
-    position:relative;padding:14px 8px 12px;border-radius:16px;text-align:center;
-    background:var(--surface);border:1px solid var(--border);transition:.25s;overflow:hidden;
-  }
-  .pcard.active{
-    border-color:rgba(251,191,36,.65);
-    background:linear-gradient(180deg,rgba(251,191,36,.12),rgba(251,191,36,.04));
-    animation:pulseGold 2.4s ease-in-out infinite;
-  }
+  .pcard{position:relative;padding:14px 8px 12px;border-radius:16px;text-align:center;background:var(--surface);border:1px solid var(--border);transition:.25s;overflow:hidden}
+  .pcard.active{border-color:rgba(251,191,36,.65);background:linear-gradient(180deg,rgba(251,191,36,.12),rgba(251,191,36,.04));animation:pulseGold 2.4s ease-in-out infinite}
   .pcard.folded,.pcard.broke{opacity:.36;filter:grayscale(.5)}
   .pcard.forfeited{opacity:.28;filter:grayscale(.85)}
-  .pcard.you::after{
-    content:'YOU';position:absolute;bottom:4px;right:6px;
-    font-size:7px;font-weight:900;letter-spacing:.8px;color:var(--gold);opacity:.8;
-  }
-  .p-avatar{
-    width:32px;height:32px;border-radius:50%;margin:0 auto 8px;
-    display:flex;align-items:center;justify-content:center;
-    font-weight:900;font-size:12.5px;color:#fff;overflow:hidden;
-  }
+  .pcard.you::after{content:'YOU';position:absolute;bottom:4px;right:6px;font-size:7px;font-weight:900;letter-spacing:.8px;color:var(--gold);opacity:.8}
+  .p-avatar{width:32px;height:32px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12.5px;color:#fff;overflow:hidden}
   .p-avatar img{width:100%;height:100%;object-fit:cover}
   .pname{font-size:11.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .pid{
-    font-size:8.5px;font-weight:900;color:var(--gold);letter-spacing:.8px;margin-top:2px;
-    font-family:ui-monospace,Menlo,monospace;opacity:.72;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  }
+  .pid{font-size:8.5px;font-weight:900;color:var(--gold);letter-spacing:.8px;margin-top:2px;font-family:ui-monospace,Menlo,monospace;opacity:.72;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .pid.guest{color:#c4b5fd;opacity:.9}
   .pmoney{font-size:16px;font-weight:900;color:var(--green);margin-top:4px}
   .pitems{font-size:9.5px;color:var(--muted);margin-top:2px;font-weight:800}
-  .pbadge{
-    position:absolute;top:0;left:0;right:0;font-size:7.5px;font-weight:900;
-    letter-spacing:1.2px;padding:3px 0;text-align:center;text-transform:uppercase;
-  }
+  .pbadge{position:absolute;top:0;left:0;right:0;font-size:7.5px;font-weight:900;letter-spacing:1.2px;padding:3px 0;text-align:center;text-transform:uppercase}
   .pbadge.high{background:linear-gradient(90deg,#fbbf24,#f59e0b);color:#1a1206}
   .pbadge.out,.pbadge.broke{background:var(--raised);color:var(--muted)}
   .pbadge.forfeit{background:linear-gradient(90deg,#ef4444,#dc2626);color:#fff}
   .pcard:has(.pbadge) .p-avatar{margin-top:8px}
   .controls{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:16px}
-  .turn-line{
-    text-align:center;font-size:12.5px;color:var(--muted);margin-bottom:14px;
-    font-weight:700;letter-spacing:.2px;
-  }
+  .turn-line{text-align:center;font-size:12.5px;color:var(--muted);margin-bottom:14px;font-weight:700;letter-spacing:.2px}
   .turn-line strong{color:var(--gold);font-weight:900;font-size:14px}
   .turn-line.you{color:var(--gold)}
-  .turn-line.guest-turn{
-    background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);
-    border-radius:10px;padding:10px;margin-bottom:14px;color:#c4b5fd;
-  }
+  .turn-line.guest-turn{background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);border-radius:10px;padding:10px;margin-bottom:14px;color:#c4b5fd}
   .bid-row{display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:12px}
-  .bid-amount{
-    font-size:38px;font-weight:900;color:var(--gold);min-width:120px;
-    text-align:center;letter-spacing:-1.6px;line-height:1;
-    text-shadow:0 0 30px rgba(251,191,36,.35);
-  }
-  .bid-step{
-    width:44px;height:44px;border-radius:12px;font-size:20px;font-weight:700;
-    background:var(--raised);border:1px solid var(--border-2);
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  }
-  .bid-step:hover{background:var(--raised)}
+  .bid-amount{font-size:38px;font-weight:900;color:var(--gold);min-width:120px;text-align:center;letter-spacing:-1.6px;line-height:1;text-shadow:0 0 30px rgba(251,191,36,.35)}
+  .bid-step{width:44px;height:44px;border-radius:12px;font-size:20px;font-weight:700;background:var(--raised);border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .quick{display:flex;gap:7px;margin-bottom:12px}
-  .quick button{
-    flex:1;padding:10px 4px;border-radius:11px;font-size:11.5px;font-weight:900;
-    background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);
-    letter-spacing:.3px;
-  }
+  .quick button{flex:1;padding:10px 4px;border-radius:11px;font-size:11.5px;font-weight:900;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);letter-spacing:.3px}
   .quick button:hover{background:var(--raised);color:var(--text-2)}
-  .btn-bid{
-    width:100%;padding:16px;border-radius:15px;font-size:15px;font-weight:900;letter-spacing:.7px;
-    background:linear-gradient(135deg,#34d399,#10b981);color:#04231a;
-    box-shadow:0 8px 24px rgba(52,211,153,.26), inset 0 1px 0 rgba(255,255,255,.3);
-    margin-bottom:9px;transition:transform .1s;
-  }
+  .btn-bid{width:100%;padding:16px;border-radius:15px;font-size:15px;font-weight:900;letter-spacing:.7px;background:linear-gradient(135deg,#34d399,#10b981);color:#04231a;box-shadow:0 8px 24px rgba(52,211,153,.26), inset 0 1px 0 rgba(255,255,255,.3);margin-bottom:9px;transition:transform .1s}
   .btn-bid:active{transform:scale(.985)}
   .btn-bid:disabled{opacity:.4;pointer-events:none;filter:grayscale(.4)}
-  .btn-fold{
-    width:100%;padding:13px;border-radius:15px;font-size:12.5px;font-weight:900;
-    letter-spacing:.8px;background:transparent;border:1px solid rgba(248,113,113,.32);
-    color:var(--red);transition:.15s;text-transform:uppercase;
-  }
+  .btn-fold{width:100%;padding:13px;border-radius:15px;font-size:12.5px;font-weight:900;letter-spacing:.8px;background:transparent;border:1px solid rgba(248,113,113,.32);color:var(--red);transition:.15s;text-transform:uppercase}
   .btn-fold:hover{background:rgba(248,113,113,.08)}
   .btn-fold:disabled{opacity:.4;pointer-events:none}
   .cant{text-align:center;font-size:12.5px;color:var(--red);font-weight:800;padding:16px 0;margin-bottom:9px}
-  .spectator-note{
-    text-align:center;padding:16px;border-radius:14px;
-    background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.22);
-    font-size:12.5px;font-weight:800;color:#bfd4f5;line-height:1.5;
-  }
-  .flash{
-    position:fixed;inset:0;z-index:1100;display:flex;align-items:center;justify-content:center;
-    background:var(--flash-bg);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
-    opacity:0;transition:opacity .28s;padding:20px;pointer-events:none;
-  }
+  .spectator-note{text-align:center;padding:16px;border-radius:14px;background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.22);font-size:12.5px;font-weight:800;color:#bfd4f5;line-height:1.5}
+  .flash{position:fixed;inset:0;z-index:1100;display:flex;align-items:center;justify-content:center;background:var(--flash-bg);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;transition:opacity .28s;padding:20px;pointer-events:none}
   .flash.show{opacity:1}
   .flash-inner{text-align:center;animation:pop .4s cubic-bezier(.2,1.5,.5,1)}
-  .flash-sold{
-    font-size:52px;font-weight:900;letter-spacing:4.5px;line-height:1;
-    background:linear-gradient(100deg,#fde68a 0%,#fbbf24 45%,#f59e0b 100%);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    filter:drop-shadow(0 4px 22px rgba(251,191,36,.5));
-  }
+  .flash-sold{font-size:52px;font-weight:900;letter-spacing:4.5px;line-height:1;background:linear-gradient(100deg,#fde68a 0%,#fbbf24 45%,#f59e0b 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 22px rgba(251,191,36,.5))}
   .flash-sold.unsold{background:linear-gradient(100deg,#8b8b9a,#c4c4d0);-webkit-background-clip:text;background-clip:text}
   .flash-item{font-size:21px;font-weight:900;margin-top:10px}
   .flash-price{font-size:13.5px;color:var(--muted);margin-top:9px;font-weight:700}
   .flash-profit{font-size:12.5px;font-weight:900;margin-top:6px}
   .flash-profit.pos{color:var(--green)}
   .flash-profit.neg{color:var(--red)}
-  .winner-box{
-    text-align:center;padding:34px 20px;border-radius:24px;margin-bottom:14px;
-    background:var(--winner-bg);
-    border:1px solid rgba(251,191,36,.32);
-    box-shadow:0 16px 46px rgba(251,191,36,.13);position:relative;overflow:hidden;
-  }
-  .winner-box::before{
-    content:'';position:absolute;inset:0;
-    background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.06) 50%,transparent 60%);
-    background-size:500px 100%;animation:shimmer 4s linear infinite;
-  }
+  .winner-box{text-align:center;padding:34px 20px;border-radius:24px;margin-bottom:14px;background:var(--winner-bg);border:1px solid rgba(251,191,36,.32);box-shadow:0 16px 46px rgba(251,191,36,.13);position:relative;overflow:hidden}
+  .winner-box::before{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.06) 50%,transparent 60%);background-size:500px 100%;animation:shimmer 4s linear infinite}
   .crown{font-size:48px;line-height:1;filter:drop-shadow(0 4px 16px rgba(251,191,36,.5));position:relative}
   .wlabel{font-size:10.5px;letter-spacing:3.5px;color:var(--muted);font-weight:900;margin-top:12px;position:relative}
   .wname{font-size:32px;font-weight:900;margin-top:6px;color:var(--gold);position:relative;letter-spacing:-.8px}
   .wsub{font-size:12.5px;color:var(--muted);margin-top:9px;font-weight:700;position:relative}
   .rank-list{display:flex;flex-direction:column;gap:9px;margin-bottom:14px}
   .rank-row{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:15px}
-  .rank-row.first{
-    border-color:rgba(251,191,36,.4);
-    background:linear-gradient(135deg,rgba(251,191,36,.08),rgba(251,191,36,.02));
-  }
+  .rank-row.first{border-color:rgba(251,191,36,.4);background:linear-gradient(135deg,rgba(251,191,36,.08),rgba(251,191,36,.02))}
   .rank-row.guest{opacity:.9}
   .rank-row.forfeited{opacity:.6}
   .rank-head{display:flex;align-items:center;gap:10px}
   .medal{font-size:18px;width:24px;text-align:center;flex-shrink:0}
-  .rname{
-    font-weight:800;font-size:14px;flex:1;overflow:hidden;
-    text-overflow:ellipsis;white-space:nowrap;display:flex;align-items:center;gap:7px;
-  }
+  .rname{font-weight:800;font-size:14px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:flex;align-items:center;gap:7px}
   .rname .rid{font-size:9.5px;font-weight:900;color:var(--gold);letter-spacing:.8px;font-family:ui-monospace,Menlo,monospace;opacity:.85}
-  .rname .guest-tag{
-    font-size:8.5px;font-weight:900;letter-spacing:1.2px;padding:2px 6px;
-    border-radius:99px;background:rgba(167,139,250,.15);color:#c4b5fd;
-  }
-  .rname .ff-tag{
-    font-size:8.5px;font-weight:900;letter-spacing:1.2px;padding:2px 6px;
-    border-radius:99px;background:rgba(248,113,113,.18);color:#fca5a5;
-  }
+  .rname .guest-tag{font-size:8.5px;font-weight:900;letter-spacing:1.2px;padding:2px 6px;border-radius:99px;background:rgba(167,139,250,.15);color:#c4b5fd}
+  .rname .ff-tag{font-size:8.5px;font-weight:900;letter-spacing:1.2px;padding:2px 6px;border-radius:99px;background:rgba(248,113,113,.18);color:#fca5a5}
   .rval{font-weight:900;color:var(--gold);font-size:15px}
   .rline{font-size:11px;color:var(--muted);margin:7px 0 10px 34px;font-weight:700}
   .ritems{display:flex;flex-wrap:wrap;gap:5px;margin-left:34px}
-  .chip{
-    font-size:10.5px;padding:5px 9px;border-radius:99px;font-weight:700;
-    background:var(--raised);border:1px solid var(--border);
-    display:inline-flex;align-items:center;gap:5px;
-  }
+  .chip{font-size:10.5px;padding:5px 9px;border-radius:99px;font-weight:700;background:var(--raised);border:1px solid var(--border);display:inline-flex;align-items:center;gap:5px}
   .chip b{color:var(--gold);font-weight:900}
   .chip .paid{color:var(--muted);font-weight:700;font-size:9.5px}
   .chip .paid.profit{color:var(--green)}
   .chip .paid.loss{color:var(--red)}
   .lb-header{text-align:center;padding:14px 0 20px}
-  .lb-header h2{
-    margin:0;font-size:27px;font-weight:900;letter-spacing:-.6px;
-    background:linear-gradient(100deg,#fde68a 0%,#fbbf24 45%,#f59e0b 100%);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
+  .lb-header h2{margin:0;font-size:27px;font-weight:900;letter-spacing:-.6px;background:linear-gradient(100deg,#fde68a 0%,#fbbf24 45%,#f59e0b 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
   .lb-header p{color:var(--muted);font-size:12px;margin:9px 0 0;font-weight:700}
-  .lb-tabs{
-    display:flex;gap:4px;padding:4px;margin-bottom:14px;
-    background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:14px;
-  }
+  .lb-tabs{display:flex;gap:4px;padding:4px;margin-bottom:14px;background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:14px}
   .lb-tab{flex:1;padding:10px;border-radius:10px;font-size:12.5px;font-weight:800;color:var(--muted)}
   .lb-tab.sel{background:linear-gradient(135deg,rgba(251,191,36,.18),rgba(251,191,36,.08));color:var(--gold)}
   .lb-list{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
-  .lb-row{
-    display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:15px;
-    background:var(--surface);border:1px solid var(--border);
-  }
+  .lb-row{display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:15px;background:var(--surface);border:1px solid var(--border)}
   .lb-row.me{border-color:rgba(251,191,36,.5);background:linear-gradient(135deg,rgba(251,191,36,.09),rgba(251,191,36,.02))}
   .lb-rank{width:26px;text-align:center;font-weight:900;font-size:13px;color:var(--muted-2);flex-shrink:0}
   .lb-rank.top1{color:var(--gold);font-size:17px}
   .lb-rank.top2{color:#c9ccd6;font-size:16px}
   .lb-rank.top3{color:#d1996a;font-size:16px}
-  .lb-avatar{
-    width:40px;height:40px;border-radius:50%;flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;
-    font-weight:900;font-size:13.5px;color:#fff;overflow:hidden;
-  }
+  .lb-avatar{width:40px;height:40px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13.5px;color:#fff;overflow:hidden}
   .lb-avatar img{width:100%;height:100%;object-fit:cover}
   .lb-info{flex:1;min-width:0}
-  .lb-name{
-    font-size:13.5px;font-weight:800;white-space:nowrap;overflow:hidden;
-    text-overflow:ellipsis;display:flex;align-items:center;gap:7px;
-  }
-  .lb-pid{
-    font-size:9.5px;color:var(--gold);font-weight:900;letter-spacing:.7px;
-    font-family:ui-monospace,Menlo,monospace;opacity:.8;
-    background:rgba(251,191,36,.1);padding:2px 6px;border-radius:5px;
-  }
-  .lb-you{
-    font-size:8.5px;font-weight:900;letter-spacing:1.2px;padding:2px 6px;
-    border-radius:99px;background:rgba(251,191,36,.15);color:var(--gold);
-  }
+  .lb-name{font-size:13.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:7px}
+  .lb-pid{font-size:9.5px;color:var(--gold);font-weight:900;letter-spacing:.7px;font-family:ui-monospace,Menlo,monospace;opacity:.8;background:rgba(251,191,36,.1);padding:2px 6px;border-radius:5px}
+  .lb-you{font-size:8.5px;font-weight:900;letter-spacing:1.2px;padding:2px 6px;border-radius:99px;background:rgba(251,191,36,.15);color:var(--gold)}
   .lb-stats{font-size:10.5px;color:var(--muted);font-weight:700;margin-top:3px}
   .lb-elo{font-size:17px;font-weight:900;color:var(--gold);text-align:right;flex-shrink:0;line-height:1}
   .lb-elo small{display:block;font-size:9px;color:var(--muted-2);font-weight:800;letter-spacing:.7px;margin-top:3px}
   .empty-state{text-align:center;padding:48px 20px;color:var(--muted);font-size:13px;font-weight:700;line-height:1.65}
   .empty-state .big{font-size:44px;display:block;margin-bottom:16px;opacity:.55}
-  .overlay{
-    position:fixed;inset:0;z-index:1200;display:none;background:var(--overlay-bg);
-    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
-    overflow-y:auto;padding:22px 14px 44px;animation:screenIn .2s ease;
-  }
+  .overlay{position:fixed;inset:0;z-index:1200;display:none;background:var(--overlay-bg);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);overflow-y:auto;padding:22px 14px 44px;animation:screenIn .2s ease}
   .overlay.show{display:block}
-  .modal{
-    max-width:520px;margin:0 auto;
-    background:linear-gradient(180deg,var(--modal-bg-a),var(--modal-bg-b));
-    border:1px solid var(--border-2);border-radius:22px;padding:22px;box-shadow:var(--shadow-lg);
-  }
+  .modal{max-width:520px;margin:0 auto;background:linear-gradient(180deg,var(--modal-bg-a),var(--modal-bg-b));border:1px solid var(--border-2);border-radius:22px;padding:22px;box-shadow:var(--shadow-lg)}
   .modal-title{font-size:19px;font-weight:900;margin-bottom:6px}
   .modal-sub{font-size:12px;color:var(--muted);margin-bottom:20px;font-weight:600;line-height:1.6}
   .menu-list{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
-  .menu-item{
-    display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;
-    background:var(--raised-2);border:1px solid var(--border);
-    font-size:13.5px;font-weight:800;color:var(--text);text-align:left;
-    transition:.15s;width:100%;
-  }
+  .menu-item{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;background:var(--raised-2);border:1px solid var(--border);font-size:13.5px;font-weight:800;color:var(--text);text-align:left;transition:.15s;width:100%}
   .menu-item:hover{background:var(--raised)}
   .menu-item.danger{color:var(--red)}
   .menu-item.danger:hover{background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.3)}
   .menu-item .mi-icon{font-size:18px;flex-shrink:0}
   .menu-item .mi-text{flex:1;min-width:0}
   .menu-item .mi-sub{font-size:10.5px;color:var(--muted-2);font-weight:700;margin-top:2px}
-  .picker-list{
-    display:flex;flex-direction:column;gap:6px;max-height:52vh;overflow-y:auto;
-    margin:-4px -6px 14px -4px;padding:4px 6px 4px 4px;
-  }
+  .picker-list{display:flex;flex-direction:column;gap:6px;max-height:52vh;overflow-y:auto;margin:-4px -6px 14px -4px;padding:4px 6px 4px 4px}
   .picker-list::-webkit-scrollbar{width:5px}
   .picker-list::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:99px}
-  .picker-row{
-    display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:13px;
-    background:rgba(255,255,255,.025);border:1px solid var(--border);
-    cursor:pointer;text-align:left;
-  }
+  .picker-row{display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:13px;background:rgba(255,255,255,.025);border:1px solid var(--border);cursor:pointer;text-align:left}
   .picker-row:hover{background:var(--raised)}
   .picker-row.sel{background:linear-gradient(135deg,rgba(251,191,36,.15),rgba(251,191,36,.05));border-color:rgba(251,191,36,.5)}
   .picker-row.disabled{opacity:.42;cursor:not-allowed}
-  .picker-check{
-    width:22px;height:22px;border-radius:7px;flex-shrink:0;
-    background:var(--raised);border:1.5px solid var(--border-2);
-    display:flex;align-items:center;justify-content:center;font-size:13px;color:transparent;
-  }
+  .picker-check{width:22px;height:22px;border-radius:7px;flex-shrink:0;background:var(--raised);border:1.5px solid var(--border-2);display:flex;align-items:center;justify-content:center;font-size:13px;color:transparent}
   .picker-row.sel .picker-check{background:var(--gold);border-color:var(--gold);color:#1a1206}
   .picker-empty{text-align:center;padding:32px 16px;color:var(--muted);font-size:12.5px;font-weight:700;line-height:1.65}
   .field{margin-bottom:16px}
   .field-label{font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:9px;display:block}
   .emoji-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
   .emoji-row::-webkit-scrollbar{display:none}
-  .emoji-opt{
-    width:42px;height:42px;flex-shrink:0;border-radius:12px;font-size:20px;
-    background:var(--raised);border:1px solid var(--border);
-    display:flex;align-items:center;justify-content:center;
-  }
+  .emoji-opt{width:42px;height:42px;flex-shrink:0;border-radius:12px;font-size:20px;background:var(--raised);border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
   .emoji-opt.sel{background:rgba(251,191,36,.18);border-color:rgba(251,191,36,.6);transform:scale(1.06)}
-  .editor-input{
-    width:100%;padding:13px;border-radius:13px;font-size:14px;font-weight:700;
-    background:var(--input-bg);border:1px solid var(--border);color:var(--text);outline:none;
-  }
+  .editor-input{width:100%;padding:13px;border-radius:13px;font-size:14px;font-weight:700;background:var(--input-bg);border:1px solid var(--border);color:var(--text);outline:none}
   .editor-input:focus{border-color:rgba(251,191,36,.5)}
   .items-list{display:flex;flex-direction:column;gap:7px;max-height:340px;overflow-y:auto;padding:2px 4px 2px 2px;margin:-2px -4px -2px -2px}
   .items-list::-webkit-scrollbar{width:5px}
   .items-list::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:99px}
   .item-row{display:grid;grid-template-columns:1fr 76px 34px;gap:6px;align-items:center}
-  .item-name-in{
-    width:100%;padding:11px 13px;border-radius:11px;font-size:13.5px;font-weight:700;
-    background:var(--input-bg);border:1px solid var(--border);color:var(--text);outline:none;
-  }
+  .item-name-in{width:100%;padding:11px 13px;border-radius:11px;font-size:13.5px;font-weight:700;background:var(--input-bg);border:1px solid var(--border);color:var(--text);outline:none}
   .item-name-in:focus{border-color:rgba(251,191,36,.5)}
   .val-wrap{position:relative}
-  .val-wrap::before{
-    content:'$';position:absolute;left:9px;top:50%;transform:translateY(-50%);
-    color:var(--gold);font-size:12.5px;font-weight:900;pointer-events:none;opacity:.8;
-  }
-  .item-val-in{
-    width:100%;padding:11px 8px 11px 20px;border-radius:11px;font-size:13.5px;font-weight:900;
-    color:var(--gold);background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.22);
-    outline:none;text-align:center;-moz-appearance:textfield;
-  }
+  .val-wrap::before{content:'$';position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:12.5px;font-weight:900;pointer-events:none;opacity:.8}
+  .item-val-in{width:100%;padding:11px 8px 11px 20px;border-radius:11px;font-size:13.5px;font-weight:900;color:var(--gold);background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.22);outline:none;text-align:center;-moz-appearance:textfield}
   .item-val-in::-webkit-outer-spin-button,.item-val-in::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-  .item-del{
-    width:34px;height:38px;border-radius:10px;
-    background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.22);
-    color:var(--red);font-size:16px;font-weight:900;
-    display:flex;align-items:center;justify-content:center;
-  }
+  .item-del{width:34px;height:38px;border-radius:10px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.22);color:var(--red);font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center}
   .items-toolbar{display:flex;gap:7px;margin-top:10px}
-  .items-toolbar button{
-    flex:1;padding:11px;border-radius:11px;font-size:12px;font-weight:800;
-    background:var(--raised);border:1px solid var(--border);color:var(--text);
-  }
+  .items-toolbar button{flex:1;padding:11px;border-radius:11px;font-size:12px;font-weight:800;background:var(--raised);border:1px solid var(--border);color:var(--text)}
   .items-meta{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;color:var(--muted-2);font-weight:800;margin-top:9px}
   .items-meta b{color:var(--gold);font-weight:900}
   .bulk-area{display:none;margin-top:10px}
   .bulk-area.show{display:block}
-  .bulk-area textarea{
-    width:100%;min-height:130px;resize:vertical;
-    background:var(--input-bg);border:1px solid var(--border);border-radius:12px;
-    padding:12px;color:var(--text);font-size:12.5px;outline:none;line-height:1.6;
-    font-family:ui-monospace,Menlo,monospace;
-  }
+  .bulk-area textarea{width:100%;min-height:130px;resize:vertical;background:var(--input-bg);border:1px solid var(--border);border-radius:12px;padding:12px;color:var(--text);font-size:12.5px;outline:none;line-height:1.6;font-family:ui-monospace,Menlo,monospace}
   .bulk-hint{font-size:10.5px;color:var(--muted-2);margin:7px 2px 0;font-weight:700;line-height:1.55}
   .bulk-hint code{background:var(--raised);padding:1px 5px;border-radius:5px;color:var(--gold);font-weight:800}
   .modal-actions{display:flex;gap:8px;margin-top:8px}
   .modal-actions .btn-primary{flex:1.4}
   .modal-actions .btn-ghost{flex:1}
-
-  /* ============================================================
-     SETTINGS
-     ============================================================ */
-  .settings-group{
-    margin-bottom:18px;
-  }
+  .settings-group{margin-bottom:18px}
   .settings-group:last-child{margin-bottom:0}
-  .settings-group-title{
-    font-size:10px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;
-    color:var(--muted-2);margin-bottom:10px;
-  }
-  .settings-row{
-    display:flex;align-items:center;gap:12px;padding:13px 14px;
-    border-radius:13px;
-    background:var(--raised-2);border:1px solid var(--border);
-    margin-bottom:8px;
-  }
+  .settings-group-title{font-size:10px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted-2);margin-bottom:10px}
+  .settings-row{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:13px;background:var(--raised-2);border:1px solid var(--border);margin-bottom:8px}
   .settings-row:last-child{margin-bottom:0}
   .settings-info{flex:1;min-width:0}
   .settings-name{font-size:13px;font-weight:800;letter-spacing:-.05px}
   .settings-desc{font-size:10.5px;color:var(--muted-2);font-weight:700;margin-top:3px;line-height:1.4}
-
-  /* Toggle switch */
-  .toggle{
-    width:44px;height:26px;border-radius:99px;flex-shrink:0;
-    background:var(--raised);border:1px solid var(--border-2);
-    position:relative;transition:.2s;
-    cursor:pointer;
-  }
-  .toggle::after{
-    content:'';position:absolute;top:2px;left:2px;
-    width:20px;height:20px;border-radius:50%;
-    background:var(--text-2);
-    transition:.2s;box-shadow:0 2px 4px rgba(0,0,0,.2);
-  }
+  .toggle{width:44px;height:26px;border-radius:99px;flex-shrink:0;background:var(--raised);border:1px solid var(--border-2);position:relative;transition:.2s;cursor:pointer}
+  .toggle::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:var(--text-2);transition:.2s;box-shadow:0 2px 4px rgba(0,0,0,.2)}
   .toggle.on{background:linear-gradient(135deg,#fbbf24,#f59e0b);border-color:rgba(251,191,36,.6)}
   .toggle.on::after{left:20px;background:#1a1206}
-
-  /* Segmented control in settings */
-  .settings-seg{
-    display:flex;gap:4px;padding:4px;border-radius:11px;
-    background:var(--input-bg);border:1px solid var(--border);
-    flex-shrink:0;
-  }
-  .settings-seg-btn{
-    padding:8px 12px;border-radius:8px;font-size:11.5px;font-weight:900;
-    color:var(--muted);letter-spacing:.2px;transition:.15s;
-    white-space:nowrap;
-  }
-  .settings-seg-btn.sel{
-    background:linear-gradient(135deg,rgba(251,191,36,.22),rgba(251,191,36,.12));
-    color:var(--gold);
-  }
-
-  /* Reduce motion — kill all animations & transitions */
-  html[data-reduce-motion="true"] *,
-  html[data-reduce-motion="true"] *::before,
-  html[data-reduce-motion="true"] *::after{
-    animation-duration:.001s !important;
-    animation-iteration-count:1 !important;
-    transition-duration:.001s !important;
-  }
-  html[data-reduce-motion="true"] .item-card::before,
-  html[data-reduce-motion="true"] .winner-box::before{
-    display:none;
-  }
-
-  /* ============================================================
-     LIGHT THEME
-     ============================================================ */
+  .settings-seg{display:flex;gap:4px;padding:4px;border-radius:11px;background:var(--input-bg);border:1px solid var(--border);flex-shrink:0}
+  .settings-seg-btn{padding:8px 12px;border-radius:8px;font-size:11.5px;font-weight:900;color:var(--muted);letter-spacing:.2px;transition:.15s;white-space:nowrap}
+  .settings-seg-btn.sel{background:linear-gradient(135deg,rgba(251,191,36,.22),rgba(251,191,36,.12));color:var(--gold)}
+  html[data-reduce-motion="true"] *,html[data-reduce-motion="true"] *::before,html[data-reduce-motion="true"] *::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}
+  html[data-reduce-motion="true"] .item-card::before,html[data-reduce-motion="true"] .winner-box::before{display:none}
   html[data-theme="light"]{
-    --bg:#f2f2f7;
-    --surface:#ffffff;
-    --border:rgba(0,0,0,.09);
-    --border-2:rgba(0,0,0,.15);
-    --gold:#b45309;
-    --green:#059669;
-    --red:#dc2626;
-    --purple:#7c3aed;
-    --text:#0a0a12;
-    --text-2:#4a4a5a;
-    --muted:#5f5f6e;
-    --muted-2:#8a8a99;
-    --shadow-lg:0 20px 50px rgba(0,0,0,.12);
-    --shadow-md:0 6px 24px rgba(0,0,0,.08);
-    --input-bg:rgba(0,0,0,.035);
-    --raised:rgba(0,0,0,.045);
-    --raised-2:rgba(0,0,0,.025);
-    --modal-bg-a:#ffffff;
-    --modal-bg-b:#f8f8fc;
-    --overlay-bg:rgba(240,240,245,.9);
-    --flash-bg:rgba(240,240,245,.88);
-    --toast-bg:rgba(255,255,255,.98);
+    --bg:#f2f2f7;--surface:#ffffff;--border:rgba(0,0,0,.09);--border-2:rgba(0,0,0,.15);
+    --gold:#b45309;--green:#059669;--red:#dc2626;--purple:#7c3aed;
+    --text:#0a0a12;--text-2:#4a4a5a;--muted:#5f5f6e;--muted-2:#8a8a99;
+    --shadow-lg:0 20px 50px rgba(0,0,0,.12);--shadow-md:0 6px 24px rgba(0,0,0,.08);
+    --input-bg:rgba(0,0,0,.035);--raised:rgba(0,0,0,.045);--raised-2:rgba(0,0,0,.025);
+    --modal-bg-a:#ffffff;--modal-bg-b:#f8f8fc;--overlay-bg:rgba(240,240,245,.9);
+    --flash-bg:rgba(240,240,245,.88);--toast-bg:rgba(255,255,255,.98);
     --item-card-bg:linear-gradient(160deg,rgba(251,191,36,.22) 0%,rgba(168,85,247,.16) 55%,rgba(96,165,250,.12) 100%);
     --winner-bg:radial-gradient(ellipse at 50% 0%, rgba(251,191,36,.35), transparent 65%),linear-gradient(160deg,rgba(251,191,36,.12),rgba(168,85,247,.08));
   }
@@ -723,118 +388,41 @@
       radial-gradient(circle at 0% 0%, rgba(99,102,241,.10) 0%, transparent 40%),
       radial-gradient(circle at 100% 100%, rgba(168,85,247,.10) 0%, transparent 45%);
   }
-  html[data-theme="light"] .brand-mark{
-    box-shadow:0 6px 20px rgba(180,83,9,.28), inset 0 1px 0 rgba(255,255,255,.5);
-  }
   html[data-theme="light"] .hero h1 span,
-  html[data-theme="light"] .lb-header h2{
-    background:linear-gradient(100deg,#b45309 0%,#d97706 50%,#78350f 100%);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  html[data-theme="light"] .signin-btn{
-    background:linear-gradient(135deg,#111117,#2a2a35);
-    color:#fff;
-  }
-  html[data-theme="light"] .toast{
-    color:#0a0a12;border-color:rgba(0,0,0,.12);
-  }
-  html[data-theme="light"] .flash-sold{
-    background:linear-gradient(100deg,#78350f 0%,#d97706 45%,#b45309 100%);
-    -webkit-background-clip:text;background-clip:text;
-    filter:drop-shadow(0 4px 22px rgba(180,83,9,.35));
-  }
-  html[data-theme="light"] .flash-sold.unsold{
-    background:linear-gradient(100deg,#6b6b7a,#3f3f4a);
-    -webkit-background-clip:text;background-clip:text;
-  }
-  html[data-theme="light"] .winner-box::before{
-    background:linear-gradient(105deg,transparent 40%,rgba(0,0,0,.03) 50%,transparent 60%);
-  }
-  html[data-theme="light"] .item-card::before{
-    background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.4) 50%,transparent 60%);
-  }
-  html[data-theme="light"] .user-avatar,
-  html[data-theme="light"] .comp-avatar,
-  html[data-theme="light"] .p-avatar,
-  html[data-theme="light"] .lb-avatar{
-    color:#fff;
-  }
+  html[data-theme="light"] .lb-header h2{background:linear-gradient(100deg,#b45309 0%,#d97706 50%,#78350f 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  html[data-theme="light"] .signin-btn{background:linear-gradient(135deg,#111117,#2a2a35);color:#fff}
+  html[data-theme="light"] .toast{color:#0a0a12;border-color:rgba(0,0,0,.12)}
+  html[data-theme="light"] .flash-sold{background:linear-gradient(100deg,#78350f 0%,#d97706 45%,#b45309 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 4px 22px rgba(180,83,9,.35))}
+  html[data-theme="light"] .flash-sold.unsold{background:linear-gradient(100deg,#6b6b7a,#3f3f4a);-webkit-background-clip:text;background-clip:text}
+  html[data-theme="light"] .winner-box::before{background:linear-gradient(105deg,transparent 40%,rgba(0,0,0,.03) 50%,transparent 60%)}
+  html[data-theme="light"] .item-card::before{background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.4) 50%,transparent 60%)}
   html[data-theme="light"] .bid-amount{text-shadow:0 0 30px rgba(180,83,9,.25)}
   html[data-theme="light"] .progress>div{box-shadow:0 0 12px rgba(180,83,9,.4)}
-  html[data-theme="light"] .spectator-note{
-    background:rgba(96,165,250,.10);border-color:rgba(96,165,250,.25);color:#1e40af;
-  }
+  html[data-theme="light"] .spectator-note{background:rgba(96,165,250,.10);border-color:rgba(96,165,250,.25);color:#1e40af}
   html[data-theme="light"] .banner{color:#1e40af}
   html[data-theme="light"] .banner.warn{color:#92400e}
   html[data-theme="light"] .banner.ok{color:#065f46}
   html[data-theme="light"] .banner.danger{color:#991b1b}
-  html[data-theme="light"] .banner b{color:var(--gold)}
   html[data-theme="light"] .turn-line.guest-turn{color:#6d28d9}
-  html[data-theme="light"] .menu-item:hover{background:rgba(0,0,0,.04)}
-  html[data-theme="light"] .modal-actions .btn-ghost:hover{background:rgba(0,0,0,.04)}
-  html[data-theme="light"] .emoji-opt.sel{background:rgba(180,83,9,.15);border-color:rgba(180,83,9,.5)}
-  html[data-theme="light"] .item-val-in{
-    background:rgba(180,83,9,.06);border-color:rgba(180,83,9,.22);
-  }
-  html[data-theme="light"] .val-wrap::before{color:var(--gold)}
-  html[data-theme="light"] .pbadge.high{color:#1a1206}
   html[data-theme="light"] .btn-primary{color:#1a1206}
   html[data-theme="light"] .btn-bid{color:#04231a}
   html[data-theme="light"] .segbtn.sel{background:linear-gradient(135deg,rgba(180,83,9,.18),rgba(180,83,9,.08))}
   html[data-theme="light"] .lb-tab.sel{background:linear-gradient(135deg,rgba(180,83,9,.15),rgba(180,83,9,.06))}
   html[data-theme="light"] .settings-seg-btn.sel{background:linear-gradient(135deg,rgba(180,83,9,.18),rgba(180,83,9,.10))}
-  html[data-theme="light"] .topic-pill{
-    background:rgba(180,83,9,.10);border-color:rgba(180,83,9,.25);color:var(--gold);
-  }
-  html[data-theme="light"] .pack.sel{
-    background:linear-gradient(135deg,rgba(180,83,9,.12),rgba(180,83,9,.05));
-    border-color:rgba(180,83,9,.5);
-  }
-  html[data-theme="light"] .comp-row.you{
-    background:linear-gradient(135deg,rgba(180,83,9,.08),rgba(180,83,9,.02));
-    border-color:rgba(180,83,9,.28);
-  }
-  html[data-theme="light"] .pcard.active{
-    border-color:rgba(180,83,9,.6);
-    background:linear-gradient(180deg,rgba(180,83,9,.10),rgba(180,83,9,.03));
-  }
-  html[data-theme="light"] .waiting-row.host{
-    border-color:rgba(180,83,9,.28);
-    background:linear-gradient(135deg,rgba(180,83,9,.06),rgba(180,83,9,.02));
-  }
-  html[data-theme="light"] .rank-row.first{
-    border-color:rgba(180,83,9,.35);
-    background:linear-gradient(135deg,rgba(180,83,9,.06),rgba(180,83,9,.02));
-  }
-  html[data-theme="light"] .lb-row.me{
-    border-color:rgba(180,83,9,.45);
-    background:linear-gradient(135deg,rgba(180,83,9,.07),rgba(180,83,9,.02));
-  }
-  html[data-theme="light"] .lb-pid{
-    background:rgba(180,83,9,.10);
-  }
-  html[data-theme="light"] .lb-you{
-    background:rgba(180,83,9,.15);
-  }
-  html[data-theme="light"] .pack .pcount{color:var(--muted-2)}
-
-  .toast-wrap{
-    position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:2000;
-    display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;padding:0 16px;
-  }
-  .toast{
-    padding:12px 19px;border-radius:99px;font-size:12.5px;font-weight:800;
-    background:var(--toast-bg);border:1px solid var(--border-2);color:var(--text);
-    box-shadow:var(--shadow-md);animation:toastIn .3s cubic-bezier(.2,1.3,.5,1);
-    max-width:92vw;text-align:center;
-  }
+  html[data-theme="light"] .topic-pill{background:rgba(180,83,9,.10);border-color:rgba(180,83,9,.25);color:var(--gold)}
+  html[data-theme="light"] .pack.sel{background:linear-gradient(135deg,rgba(180,83,9,.12),rgba(180,83,9,.05));border-color:rgba(180,83,9,.5)}
+  html[data-theme="light"] .comp-row.you{background:linear-gradient(135deg,rgba(180,83,9,.08),rgba(180,83,9,.02));border-color:rgba(180,83,9,.28)}
+  html[data-theme="light"] .pcard.active{border-color:rgba(180,83,9,.6);background:linear-gradient(180deg,rgba(180,83,9,.10),rgba(180,83,9,.03))}
+  html[data-theme="light"] .waiting-row.host{border-color:rgba(180,83,9,.28);background:linear-gradient(135deg,rgba(180,83,9,.06),rgba(180,83,9,.02))}
+  html[data-theme="light"] .rank-row.first{border-color:rgba(180,83,9,.35);background:linear-gradient(135deg,rgba(180,83,9,.06),rgba(180,83,9,.02))}
+  html[data-theme="light"] .lb-row.me{border-color:rgba(180,83,9,.45);background:linear-gradient(135deg,rgba(180,83,9,.07),rgba(180,83,9,.02))}
+  html[data-theme="light"] .lb-pid{background:rgba(180,83,9,.10)}
+  html[data-theme="light"] .lb-you{background:rgba(180,83,9,.15)}
+  .toast-wrap{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:2000;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;padding:0 16px}
+  .toast{padding:12px 19px;border-radius:99px;font-size:12.5px;font-weight:800;background:var(--toast-bg);border:1px solid var(--border-2);color:var(--text);box-shadow:var(--shadow-md);animation:toastIn .3s cubic-bezier(.2,1.3,.5,1);max-width:92vw;text-align:center}
   .toast.success{border-color:rgba(52,211,153,.4)}
   .toast.error{border-color:rgba(248,113,113,.4)}
-  .spin{
-    width:14px;height:14px;border:2px solid rgba(255,255,255,.2);
-    border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;
-    display:inline-block;
-  }
+  .spin{width:14px;height:14px;border:2px solid rgba(255,255,255,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;display:inline-block}
 </style>
 </head>
 <body>
@@ -900,7 +488,6 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>'
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const uid = () => 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2,8);
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
-/* Integer-only Elo helper */
 const intElo = v => Math.round(Number(v) || 1000);
 
 function showScreen(name){
@@ -940,15 +527,11 @@ function openModal(html){ $('modal').innerHTML = html; $('modal').classList.add(
 function closeModal(){ $('modal').classList.remove('show'); $('modal').innerHTML = ''; }
 
 /* ============================================================
-   SETTINGS MODULE
+   SETTINGS
    ============================================================ */
 const SETTINGS_KEY = 'auctionWars_settings_v1';
 const settings = {
-  theme: 'dark',           // 'dark' | 'light' | 'auto'
-  reduceMotion: false,
-  showSyncDot: true,
-  autoAdvance: true,       // kept for future use
-
+  theme: 'dark', reduceMotion: false, showSyncDot: true, autoAdvance: true,
   load(){
     try {
       const raw = localStorage.getItem(SETTINGS_KEY);
@@ -961,7 +544,6 @@ const settings = {
       }
     } catch(e){}
     this.apply();
-    // Watch system pref for auto mode
     if (window.matchMedia){
       window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
         if (this.theme === 'auto') this.apply();
@@ -969,18 +551,12 @@ const settings = {
     }
   },
   save(){
-    try {
-      localStorage.setItem(SETTINGS_KEY, JSON.stringify({
-        theme: this.theme, reduceMotion: this.reduceMotion,
-        showSyncDot: this.showSyncDot, autoAdvance: this.autoAdvance
-      }));
-    } catch(e){}
+    try { localStorage.setItem(SETTINGS_KEY, JSON.stringify({
+      theme: this.theme, reduceMotion: this.reduceMotion,
+      showSyncDot: this.showSyncDot, autoAdvance: this.autoAdvance
+    })); } catch(e){}
   },
-  set(key, value){
-    this[key] = value;
-    this.save();
-    this.apply();
-  },
+  set(key, value){ this[key] = value; this.save(); this.apply(); },
   apply(){
     let t = this.theme;
     if (t === 'auto'){
@@ -990,13 +566,11 @@ const settings = {
     document.documentElement.setAttribute('data-reduce-motion', this.reduceMotion ? 'true' : 'false');
     const dot = $('syncDot');
     if (dot) dot.style.display = this.showSyncDot ? '' : 'none';
-    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-    if (themeColorMeta) themeColorMeta.setAttribute('content', t === 'light' ? '#f2f2f7' : '#08080f');
   }
 };
 
 /* ============================================================
-   REGISTRY (Elo values sanitized to integers)
+   REGISTRY
    ============================================================ */
 const PLAYERS_KEY = 'auctionWars_players_v1';
 const registry = {
@@ -1005,10 +579,7 @@ const registry = {
     if (this.loaded) return;
     try {
       const raw = JSON.parse(localStorage.getItem(PLAYERS_KEY) || '{}');
-      // Sanitize any legacy decimal Elo values
-      for (const id in raw){
-        if (raw[id] && typeof raw[id].elo === 'number') raw[id].elo = intElo(raw[id].elo);
-      }
+      for (const id in raw) if (raw[id] && typeof raw[id].elo === 'number') raw[id].elo = intElo(raw[id].elo);
       this.local = raw;
     } catch(e){ this.local = {}; }
     this.loaded = true;
@@ -1026,11 +597,7 @@ const registry = {
     if (cloud.enabled && cloud.db){
       try {
         const snap = await cloud.fb.dbMod.getDoc(cloud.fb.dbMod.doc(cloud.db, 'players', id));
-        if (snap.exists()){
-          const data = snap.data();
-          if (typeof data.elo === 'number') data.elo = intElo(data.elo);
-          return data;
-        }
+        if (snap.exists()){ const data = snap.data(); if (typeof data.elo === 'number') data.elo = intElo(data.elo); return data; }
       } catch(e){}
     }
     return this.getLocal(id);
@@ -1038,7 +605,6 @@ const registry = {
   async upsert(id, data){
     if (!id || !this.isValidId(id)) return;
     this.load();
-    // Round elo on write
     if (typeof data.elo === 'number') data.elo = intElo(data.elo);
     const existing = this.local[id] || { createdAt: Date.now() };
     const merged = { ...existing, ...data, id, updatedAt: Date.now() };
@@ -1062,10 +628,7 @@ const registry = {
         });
       } catch(e){}
     }
-    // Final sanitization pass
-    for (const id in map){
-      if (map[id] && typeof map[id].elo === 'number') map[id].elo = intElo(map[id].elo);
-    }
+    for (const id in map) if (map[id] && typeof map[id].elo === 'number') map[id].elo = intElo(map[id].elo);
     return Object.values(map).sort((a, b) => (b.elo || 0) - (a.elo || 0));
   }
 };
@@ -1094,14 +657,8 @@ function saveLocalProfile(p){ try { localStorage.setItem(PROFILE_KEY, JSON.strin
 
 async function initCloud(){
   registry.load();
-  if (!FIREBASE_ENABLED){
-    cloud.ready = true;
-    console.error('[AuctionWars] Firebase config missing — running in local mode.');
-    renderHeader();
-    return;
-  }
+  if (!FIREBASE_ENABLED){ cloud.ready = true; renderHeader(); return; }
   try {
-    console.log('[AuctionWars] Loading Firebase SDK...');
     const [appMod, authMod, dbMod] = await Promise.all([
       import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js'),
       import('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js'),
@@ -1111,23 +668,18 @@ async function initCloud(){
     cloud.auth = authMod.getAuth(app);
     cloud.db = dbMod.getFirestore(app);
     cloud.fb = { authMod, dbMod };
-    console.log('[AuctionWars] Firebase initialized. Project:', FIREBASE_CONFIG.projectId);
 
     authMod.onAuthStateChanged(cloud.auth, async user => {
-      console.log('[AuctionWars] Auth state changed:', user ? user.uid : 'signed out');
       cloud.user = user;
       cloud.ready = true;
 
       if (user){
         await loadUserProfile();
         await pullCloudPacks();
+        // NEW: Migrate any packs missing from sharedPacks
+        await migrateOwnPacksToShared();
         cloud.healthy = await firestoreSmokeTest();
-        if (!cloud.healthy){
-          console.error('[AuctionWars] Firestore smoke test failed — sync will not work.');
-          renderHeader();
-          if ($('screen-setup').classList.contains('active')) renderSetup();
-          return;
-        }
+        if (!cloud.healthy){ renderHeader(); if ($('screen-setup').classList.contains('active')) renderSetup(); return; }
         presence.start();
         games.stop();
         games.start(onGamesUpdate);
@@ -1149,17 +701,10 @@ async function initCloud(){
 
 async function firestoreSmokeTest(){
   try {
-    console.log('[AuctionWars] Smoke test: reading players collection...');
-    const snap = await cloud.fb.dbMod.getDocs(
-      cloud.fb.dbMod.query(cloud.fb.dbMod.collection(cloud.db, 'players'), cloud.fb.dbMod.limit(1))
-    );
-    console.log('[AuctionWars] Firestore smoke test OK — read', snap.size, 'doc(s)');
+    const snap = await cloud.fb.dbMod.getDocs(cloud.fb.dbMod.query(cloud.fb.dbMod.collection(cloud.db, 'players'), cloud.fb.dbMod.limit(1)));
     return true;
   } catch(e) {
-    console.error('[AuctionWars] Firestore smoke test FAILED:', { code: e.code, message: e.message, name: e.name });
-    if (e.code === 'permission-denied') console.error('[AuctionWars] → Publish your rules in Firebase Console → Firestore → Rules.');
-    else if (e.code === 'failed-precondition') console.error('[AuctionWars] → Firestore may not be enabled.');
-    else if (e.code === 'unavailable') console.error('[AuctionWars] → Network can\'t reach Firestore.');
+    console.error('[AuctionWars] Firestore smoke test FAILED:', { code: e.code, message: e.message });
     return false;
   }
 }
@@ -1172,23 +717,15 @@ async function signIn(){
     await cloud.fb.authMod.signInWithPopup(cloud.auth, provider);
     toast('Signed in', 'success');
   } catch(e){
-    console.error('[AuctionWars] Sign-in error:', e);
     let msg = 'Sign-in failed';
     if (e?.code === 'auth/unauthorized-domain') msg = 'Add this domain in Firebase Auth settings';
     if (e?.code === 'auth/popup-blocked') msg = 'Popup blocked';
-    if (e?.code === 'auth/popup-closed-by-user') msg = 'Sign-in cancelled';
     toast(msg, 'error');
   }
 }
 async function signOutUser(){
   if (!cloud.auth) return;
-  try {
-    await presence.setOffline();
-    presence.stop();
-    games.stop();
-    await cloud.fb.authMod.signOut(cloud.auth);
-    toast('Signed out');
-  } catch(e){}
+  try { await presence.setOffline(); presence.stop(); games.stop(); await cloud.fb.authMod.signOut(cloud.auth); toast('Signed out'); } catch(e){}
 }
 async function loadUserProfile(){
   if (!cloud.user) return;
@@ -1207,14 +744,8 @@ async function loadUserProfile(){
       cloud.profile = { displayName: cloud.user.displayName || 'Player', photoURL: cloud.user.photoURL || '', playerId: pid, createdAt: Date.now() };
       await cloud.fb.dbMod.setDoc(ref, cloud.profile);
     }
-    console.log('[AuctionWars] Profile loaded. Player ID:', cloud.profile.playerId);
   } catch(e){
-    console.error('[AuctionWars] Profile load failed:', e);
-    cloud.profile = loadLocalProfile() || {
-      displayName: cloud.user.displayName || 'Player',
-      photoURL: cloud.user.photoURL || '',
-      playerId: registry.randomId(cloud.user.displayName || 'PL')
-    };
+    cloud.profile = loadLocalProfile() || { displayName: cloud.user.displayName || 'Player', photoURL: cloud.user.photoURL || '', playerId: registry.randomId(cloud.user.displayName || 'PL') };
   }
 }
 async function saveUserProfile(){
@@ -1222,6 +753,7 @@ async function saveUserProfile(){
   saveLocalProfile(cloud.profile);
   try { await cloud.fb.dbMod.setDoc(cloud.fb.dbMod.doc(cloud.db, 'users', cloud.user.uid), cloud.profile, { merge: true }); } catch(e){}
 }
+
 async function pullCloudPacks(){
   if (!cloud.user) return;
   try {
@@ -1232,41 +764,84 @@ async function pullCloudPacks(){
       const items = Array.isArray(data.items) ? data.items.map(it => ({ name: String(it.name || '').trim(), value: clamp(parseInt(it.value, 10) || 1, 1, 99) })).filter(it => it.name) : [];
       if (items.length) list.push({
         id: d.id, name: String(data.name || 'Untitled'), emoji: data.emoji || '✨',
-        ownerUid: data.ownerUid || cloud.user.uid, ownerPlayerId: data.ownerPlayerId || null, ownerName: data.ownerName || null, items
+        ownerUid: data.ownerUid || cloud.user.uid, ownerPlayerId: data.ownerPlayerId || null,
+        ownerName: data.ownerName || null, items
       });
     });
     if (list.length){ setup.myPacks = list; saveLocalPacks(list); }
   } catch(e){ console.error('[AuctionWars] Pull packs failed:', e); }
 }
+
+/* Push a pack to BOTH the private user subcollection and the global sharedPacks collection */
 async function pushPackToCloud(pack){
   if (!cloud.user || !cloud.enabled) return;
+  const payload = {
+    name: pack.name,
+    emoji: pack.emoji,
+    items: pack.items,
+    ownerUid: cloud.user.uid,
+    ownerPlayerId: cloud.profile?.playerId || null,
+    ownerName: cloud.profile?.displayName || null,
+    updatedAt: Date.now()
+  };
   try {
-    await cloud.fb.dbMod.setDoc(cloud.fb.dbMod.doc(cloud.db, 'users', cloud.user.uid, 'packs', pack.id), {
-      name: pack.name, emoji: pack.emoji, items: pack.items,
-      ownerUid: cloud.user.uid, ownerPlayerId: cloud.profile?.playerId || null,
-      ownerName: cloud.profile?.displayName || null, updatedAt: Date.now()
-    });
-  } catch(e){ console.error('[AuctionWars] Push pack failed:', e); }
+    await cloud.fb.dbMod.setDoc(cloud.fb.dbMod.doc(cloud.db, 'users', cloud.user.uid, 'packs', pack.id), payload);
+  } catch(e){ console.error('[AuctionWars] Push pack (private) failed:', e); }
+  try {
+    await cloud.fb.dbMod.setDoc(cloud.fb.dbMod.doc(cloud.db, 'sharedPacks', pack.id), payload);
+  } catch(e){ console.error('[AuctionWars] Push pack (shared) failed:', e); }
 }
+
 async function deletePackFromCloud(id){
   if (!cloud.user || !cloud.enabled) return;
   try { await cloud.fb.dbMod.deleteDoc(cloud.fb.dbMod.doc(cloud.db, 'users', cloud.user.uid, 'packs', id)); } catch(e){}
+  try { await cloud.fb.dbMod.deleteDoc(cloud.fb.dbMod.doc(cloud.db, 'sharedPacks', id)); } catch(e){}
 }
+
+/* Read all shared packs from the top-level collection */
 async function fetchAllPublicPacks(){
   if (!cloud.enabled || !cloud.db || !cloud.user) return [];
   try {
-    const snap = await cloud.fb.dbMod.getDocs(cloud.fb.dbMod.collectionGroup('packs'));
+    const snap = await cloud.fb.dbMod.getDocs(cloud.fb.dbMod.collection(cloud.db, 'sharedPacks'));
     const list = [];
     snap.forEach(d => {
       const data = d.data();
       const items = Array.isArray(data.items) ? data.items.map(it => ({ name: String(it.name || '').trim(), value: clamp(parseInt(it.value, 10) || 1, 1, 99) })).filter(it => it.name) : [];
       if (items.length) list.push({
         id: d.id, name: String(data.name || 'Untitled'), emoji: data.emoji || '✨',
-        ownerUid: data.ownerUid || null, ownerPlayerId: data.ownerPlayerId || null, ownerName: data.ownerName || null, items
+        ownerUid: data.ownerUid || null, ownerPlayerId: data.ownerPlayerId || null,
+        ownerName: data.ownerName || null, items
       });
     });
     return list;
-  } catch(e){ console.error('[AuctionWars] Fetch public packs failed:', e); return []; }
+  } catch(e){ console.error('[AuctionWars] Fetch shared packs failed:', e); return []; }
+}
+
+/* One-time migration: copy existing private packs into sharedPacks */
+async function migrateOwnPacksToShared(){
+  if (!cloud.user || !cloud.enabled) return;
+  try {
+    const snap = await cloud.fb.dbMod.getDocs(cloud.fb.dbMod.collection(cloud.db, 'users', cloud.user.uid, 'packs'));
+    if (snap.empty) return;
+    let migrated = 0;
+    for (const d of snap.docs){
+      const data = d.data();
+      if (!data || !Array.isArray(data.items) || !data.items.length) continue;
+      try {
+        await cloud.fb.dbMod.setDoc(cloud.fb.dbMod.doc(cloud.db, 'sharedPacks', d.id), {
+          name: String(data.name || 'Untitled'),
+          emoji: data.emoji || '✨',
+          items: data.items,
+          ownerUid: data.ownerUid || cloud.user.uid,
+          ownerPlayerId: data.ownerPlayerId || cloud.profile?.playerId || null,
+          ownerName: data.ownerName || cloud.profile?.displayName || null,
+          updatedAt: Date.now()
+        }, { merge: true });
+        migrated++;
+      } catch(e){ /* skip */ }
+    }
+    if (migrated) console.log('[AuctionWars] Migrated', migrated, 'pack(s) to sharedPacks');
+  } catch(e){ console.warn('[AuctionWars] Migration skipped:', e); }
 }
 
 /* ============================================================
@@ -1278,10 +853,8 @@ const presence = {
     if (!cloud.user || !cloud.profile?.playerId || !cloud.db) return;
     try {
       await cloud.fb.dbMod.setDoc(cloud.fb.dbMod.doc(cloud.db, 'presence', cloud.profile.playerId), {
-        playerId: cloud.profile.playerId,
-        name: cloud.profile.displayName,
-        photoURL: cloud.profile.photoURL || '',
-        online: true, lastSeen: Date.now(),
+        playerId: cloud.profile.playerId, name: cloud.profile.displayName,
+        photoURL: cloud.profile.photoURL || '', online: true, lastSeen: Date.now(),
         ownerUid: cloud.user.uid
       }, { merge: true });
     } catch(e){}
@@ -1298,13 +871,9 @@ const presence = {
       const snap = await cloud.fb.dbMod.getDocs(cloud.fb.dbMod.collection(cloud.db, 'presence'));
       const now = Date.now();
       const list = [];
-      snap.forEach(d => {
-        const data = d.data();
-        if (!data.lastSeen || now - data.lastSeen > ONLINE_TIMEOUT_MS) return;
-        list.push({ ...data, id: d.id });
-      });
+      snap.forEach(d => { const data = d.data(); if (!data.lastSeen || now - data.lastSeen > ONLINE_TIMEOUT_MS) return; list.push({ ...data, id: d.id }); });
       return list;
-    } catch(e){ console.error('[AuctionWars] fetchOnline failed:', e); return []; }
+    } catch(e){ return []; }
   }
 };
 
@@ -1312,66 +881,41 @@ const presence = {
    GAMES MODULE
    ============================================================ */
 const games = {
-  pollTimer: null,
-  listenerUnsub: null,
-  lastFingerprint: null,
-  currentCb: null,
-  status: 'idle',
-
+  pollTimer: null, listenerUnsub: null, lastFingerprint: null, currentCb: null, status: 'idle',
   start(cb){
-    this.stop();
-    this.currentCb = cb;
-    this.status = 'polling';
-    updateSyncDot();
+    this.stop(); this.currentCb = cb; this.status = 'polling'; updateSyncDot();
     this.poll();
     this.pollTimer = setInterval(() => this.poll(), POLL_INTERVAL_MS);
     this.attachListener();
   },
-
   stop(){
     if (this.pollTimer){ clearInterval(this.pollTimer); this.pollTimer = null; }
     if (this.listenerUnsub){ try { this.listenerUnsub(); } catch(e){} this.listenerUnsub = null; }
-    this.lastFingerprint = null;
-    this.currentCb = null;
-    this.status = 'idle';
-    updateSyncDot();
+    this.lastFingerprint = null; this.currentCb = null; this.status = 'idle'; updateSyncDot();
   },
-
   attachListener(){
     if (!cloud.enabled || !cloud.db || !cloud.user) return;
     try {
-      const q = cloud.fb.dbMod.query(
-        cloud.fb.dbMod.collection(cloud.db, 'games'),
-        cloud.fb.dbMod.where('invitedUids', 'array-contains', cloud.user.uid)
-      );
+      const q = cloud.fb.dbMod.query(cloud.fb.dbMod.collection(cloud.db, 'games'),
+        cloud.fb.dbMod.where('invitedUids', 'array-contains', cloud.user.uid));
       this.listenerUnsub = cloud.fb.dbMod.onSnapshot(q,
         snap => { this.status = 'live'; updateSyncDot(); this.handleSnapshot(snap); },
         err => {
-          console.error('[AuctionWars] Live listener unavailable (code', err.code, '). Continuing with polling.');
+          console.error('[AuctionWars] Live listener unavailable (code', err.code, '). Polling only.');
           if (this.listenerUnsub){ try { this.listenerUnsub(); } catch(e){} this.listenerUnsub = null; }
-          this.status = 'polling';
-          updateSyncDot();
-        }
-      );
+          this.status = 'polling'; updateSyncDot();
+        });
     } catch(e){ console.error('[AuctionWars] Listener setup threw:', e); }
   },
-
   async poll(){
     if (!cloud.user || !cloud.db || !this.currentCb) return;
     try {
-      const q = cloud.fb.dbMod.query(
-        cloud.fb.dbMod.collection(cloud.db, 'games'),
-        cloud.fb.dbMod.where('invitedUids', 'array-contains', cloud.user.uid)
-      );
+      const q = cloud.fb.dbMod.query(cloud.fb.dbMod.collection(cloud.db, 'games'),
+        cloud.fb.dbMod.where('invitedUids', 'array-contains', cloud.user.uid));
       const snap = await cloud.fb.dbMod.getDocs(q);
       this.handleSnapshot(snap);
-    } catch(e) {
-      console.error('[AuctionWars] Poll failed:', { code: e.code, message: e.message });
-      this.status = 'error';
-      updateSyncDot();
-    }
+    } catch(e) { console.error('[AuctionWars] Poll failed:', { code: e.code, message: e.message }); this.status = 'error'; updateSyncDot(); }
   },
-
   handleSnapshot(snap){
     const list = [];
     snap.forEach(d => list.push({ id: d.id, ...d.data() }));
@@ -1382,63 +926,39 @@ const games = {
       return (b.updatedAt || 0) - (a.updatedAt || 0);
     });
     const top = list[0] || null;
-    const fp = top
-      ? `${top.id}|${top.status}|${top.game?.version || 0}|${top.game?.phase || ''}|${top.updatedAt || 0}`
-      : 'none';
+    const fp = top ? `${top.id}|${top.status}|${top.game?.version || 0}|${top.game?.phase || ''}|${top.updatedAt || 0}` : 'none';
     if (fp === this.lastFingerprint) return;
     this.lastFingerprint = fp;
     if (this.currentCb) this.currentCb(top);
   },
-
   async create(participants, settings, items){
     const gameId = 'game_' + uid();
     const invitedUids = [];
-    for (const p of participants){
-      if (p.uid && !invitedUids.includes(p.uid)) invitedUids.push(p.uid);
-    }
+    for (const p of participants) if (p.uid && !invitedUids.includes(p.uid)) invitedUids.push(p.uid);
     if (!invitedUids.includes(cloud.user.uid)) invitedUids.push(cloud.user.uid);
-
     const ref = cloud.fb.dbMod.doc(cloud.db, 'games', gameId);
     await cloud.fb.dbMod.setDoc(ref, {
-      id: gameId,
-      hostUid: cloud.user.uid,
-      hostPlayerId: cloud.profile.playerId,
-      hostName: cloud.profile.displayName,
-      status: 'open',
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
-      invitedUids,
+      id: gameId, hostUid: cloud.user.uid, hostPlayerId: cloud.profile.playerId, hostName: cloud.profile.displayName,
+      status: 'open', createdAt: Date.now(), updatedAt: Date.now(), invitedUids,
       participants: participants.map((p, i) => ({
-        idx: i,
-        uid: p.uid || null,
-        playerId: p.playerId || null,
-        name: p.name,
-        photoURL: p.photoURL || '',
-        isGuest: !!p.isGuest,
-        status: (p.isGuest || p.uid === cloud.user.uid) ? 'joined' : 'invited',
-        forfeited: false
+        idx: i, uid: p.uid || null, playerId: p.playerId || null, name: p.name,
+        photoURL: p.photoURL || '', isGuest: !!p.isGuest,
+        status: (p.isGuest || p.uid === cloud.user.uid) ? 'joined' : 'invited', forfeited: false
       })),
-      items,
-      settings,
-      game: null,
-      eloRecorded: false
+      items, settings, game: null, eloRecorded: false
     });
     return gameId;
   },
-
   async join(gameId, myUid){
     const ref = cloud.fb.dbMod.doc(cloud.db, 'games', gameId);
     await cloud.fb.dbMod.runTransaction(cloud.db, async tx => {
       const snap = await tx.get(ref);
       if (!snap.exists()) throw new Error('Game ended');
       const data = snap.data();
-      const participants = data.participants.map(p =>
-        p.uid === myUid ? { ...p, status: 'joined' } : p
-      );
+      const participants = data.participants.map(p => p.uid === myUid ? { ...p, status: 'joined' } : p);
       tx.update(ref, { participants, updatedAt: Date.now() });
     });
   },
-
   async decline(gameId, myUid){
     const ref = cloud.fb.dbMod.doc(cloud.db, 'games', gameId);
     try {
@@ -1446,15 +966,12 @@ const games = {
         const snap = await tx.get(ref);
         if (!snap.exists()) return;
         const data = snap.data();
-        const participants = data.participants.map(p =>
-          p.uid === myUid ? { ...p, status: 'declined' } : p
-        );
+        const participants = data.participants.map(p => p.uid === myUid ? { ...p, status: 'declined' } : p);
         const invitedUids = (data.invitedUids || []).filter(u => u !== myUid);
         tx.update(ref, { participants, invitedUids, updatedAt: Date.now() });
       });
-    } catch(e){ console.error('[AuctionWars] Decline failed:', e); }
+    } catch(e){}
   },
-
   async begin(gameId){
     const ref = cloud.fb.dbMod.doc(cloud.db, 'games', gameId);
     await cloud.fb.dbMod.runTransaction(cloud.db, async tx => {
@@ -1466,22 +983,15 @@ const games = {
       if (joined.length < 2) throw new Error('Need at least 2 joined players');
       const cash = data.settings.cash;
       const game = {
-        idx: 0, phase: 'bidding', turnIdx: 0, currentBid: 0, highBidderIdx: null,
-        lastSold: null,
+        idx: 0, phase: 'bidding', turnIdx: 0, currentBid: 0, highBidderIdx: null, lastSold: null,
         players: joined.map(() => ({ money: cash, items: [], inRound: true })),
         version: 0, updatedAt: Date.now()
       };
       const newParticipants = joined.map((p, i) => ({ ...p, idx: i, forfeited: false }));
       const newInvitedUids = newParticipants.filter(p => p.uid).map(p => p.uid);
-      tx.update(ref, {
-        participants: newParticipants,
-        invitedUids: newInvitedUids,
-        game, status: 'running',
-        startedAt: Date.now(), updatedAt: Date.now()
-      });
+      tx.update(ref, { participants: newParticipants, invitedUids: newInvitedUids, game, status: 'running', startedAt: Date.now(), updatedAt: Date.now() });
     });
   },
-
   async bid(gameId, amount, myUid){
     const ref = cloud.fb.dbMod.doc(cloud.db, 'games', gameId);
     await cloud.fb.dbMod.runTransaction(cloud.db, async tx => {
@@ -1491,38 +1001,25 @@ const games = {
       if (data.status !== 'running') throw new Error('Game not running');
       const g = data.game;
       if (!g || g.phase !== 'bidding') throw new Error('Not bidding phase');
-
       const curIdx = g.turnIdx;
       const cur = data.participants[curIdx];
       const myIdx = data.participants.findIndex(p => p.uid === myUid);
-
       if (cur.forfeited) throw new Error('That player has forfeited');
       if (!cur.isGuest && myIdx !== curIdx) throw new Error('Not your turn');
       if (myIdx === -1) throw new Error('You are not in this game');
       if (data.participants[myIdx].forfeited) throw new Error('You have forfeited');
-
       const curPlayer = g.players[curIdx];
       if (amount <= g.currentBid) throw new Error('Bid must be higher than $' + g.currentBid);
       if (amount > curPlayer.money) throw new Error('Not enough cash');
-
       const n = g.players.length;
       let nextIdx = curIdx;
-      for (let k = 1; k <= n; k++){
-        const j = (curIdx + k) % n;
-        if (g.players[j].inRound){ nextIdx = j; break; }
-      }
-
+      for (let k = 1; k <= n; k++){ const j = (curIdx + k) % n; if (g.players[j].inRound){ nextIdx = j; break; } }
       tx.update(ref, {
-        'game.currentBid': amount,
-        'game.highBidderIdx': curIdx,
-        'game.turnIdx': nextIdx,
-        'game.version': (g.version || 0) + 1,
-        'game.updatedAt': Date.now(),
-        updatedAt: Date.now()
+        'game.currentBid': amount, 'game.highBidderIdx': curIdx, 'game.turnIdx': nextIdx,
+        'game.version': (g.version || 0) + 1, 'game.updatedAt': Date.now(), updatedAt: Date.now()
       });
     });
   },
-
   async fold(gameId, myUid){
     const ref = cloud.fb.dbMod.doc(cloud.db, 'games', gameId);
     await cloud.fb.dbMod.runTransaction(cloud.db, async tx => {
@@ -1532,54 +1029,35 @@ const games = {
       if (data.status !== 'running') throw new Error('Game not running');
       const g = data.game;
       if (!g || g.phase !== 'bidding') throw new Error('Not bidding phase');
-
       const curIdx = g.turnIdx;
       const cur = data.participants[curIdx];
       const myIdx = data.participants.findIndex(p => p.uid === myUid);
       if (cur.forfeited) throw new Error('That player has forfeited');
       if (!cur.isGuest && myIdx !== curIdx) throw new Error('Not your turn');
-
       const newPlayers = g.players.map((p, i) => i === curIdx ? { ...p, inRound: false } : p);
       const activeCount = newPlayers.filter(p => p.inRound).length;
-
       if (activeCount <= 1){
         const item = data.items[g.idx];
         let winnerIdx = null, price = 0;
         const active = newPlayers.map((p,i)=>({...p,idx:i})).filter(p => p.inRound);
-        if (active.length === 1 && g.highBidderIdx !== null && active[0].idx === g.highBidderIdx){
-          winnerIdx = g.highBidderIdx;
-          price = g.currentBid;
-        }
-        const updated = newPlayers.map((p, i) => {
-          if (i === winnerIdx) return { ...p, money: p.money - price, items: [...(p.items||[]), { idx: g.idx, price }] };
-          return p;
-        });
+        if (active.length === 1 && g.highBidderIdx !== null && active[0].idx === g.highBidderIdx){ winnerIdx = g.highBidderIdx; price = g.currentBid; }
+        const updated = newPlayers.map((p, i) => i === winnerIdx ? { ...p, money: p.money - price, items: [...(p.items||[]), { idx: g.idx, price }] } : p);
         tx.update(ref, {
-          'game.players': updated,
-          'game.phase': 'reveal',
+          'game.players': updated, 'game.phase': 'reveal',
           'game.lastSold': { winnerIdx, price, value: item.value, name: item.name },
-          'game.version': (g.version || 0) + 1,
-          'game.updatedAt': Date.now(),
-          updatedAt: Date.now()
+          'game.version': (g.version || 0) + 1, 'game.updatedAt': Date.now(), updatedAt: Date.now()
         });
       } else {
         const n = newPlayers.length;
         let nextIdx = curIdx;
-        for (let k = 1; k <= n; k++){
-          const j = (curIdx + k) % n;
-          if (newPlayers[j].inRound){ nextIdx = j; break; }
-        }
+        for (let k = 1; k <= n; k++){ const j = (curIdx + k) % n; if (newPlayers[j].inRound){ nextIdx = j; break; } }
         tx.update(ref, {
-          'game.players': newPlayers,
-          'game.turnIdx': nextIdx,
-          'game.version': (g.version || 0) + 1,
-          'game.updatedAt': Date.now(),
-          updatedAt: Date.now()
+          'game.players': newPlayers, 'game.turnIdx': nextIdx,
+          'game.version': (g.version || 0) + 1, 'game.updatedAt': Date.now(), updatedAt: Date.now()
         });
       }
     });
   },
-
   async forfeit(gameId, myUid){
     const ref = cloud.fb.dbMod.doc(cloud.db, 'games', gameId);
     await cloud.fb.dbMod.runTransaction(cloud.db, async tx => {
@@ -1589,73 +1067,37 @@ const games = {
       if (data.status !== 'running') throw new Error('Game not running');
       const g = data.game;
       if (!g) throw new Error('No game state');
-
       const myIdx = data.participants.findIndex(p => p.uid === myUid);
       if (myIdx === -1) throw new Error('You are not in this game');
       if (data.participants[myIdx].forfeited) throw new Error('Already forfeited');
-
-      const newParticipants = data.participants.map((p, i) =>
-        i === myIdx ? { ...p, forfeited: true } : p
-      );
-      const newPlayers = g.players.map((p, i) =>
-        i === myIdx ? { ...p, money: 0, inRound: false } : p
-      );
-
+      const newParticipants = data.participants.map((p, i) => i === myIdx ? { ...p, forfeited: true } : p);
+      const newPlayers = g.players.map((p, i) => i === myIdx ? { ...p, money: 0, inRound: false } : p);
       let newHighBidderIdx = g.highBidderIdx;
       let newCurrentBid = g.currentBid;
-      if (g.phase === 'bidding' && g.highBidderIdx === myIdx){
-        newHighBidderIdx = null;
-        newCurrentBid = 0;
-      }
-
+      if (g.phase === 'bidding' && g.highBidderIdx === myIdx){ newHighBidderIdx = null; newCurrentBid = 0; }
       const activeCount = newPlayers.filter(p => p.inRound).length;
-
       if (g.phase === 'bidding' && activeCount <= 1){
         const item = data.items[g.idx];
         const active = newPlayers.map((p,i)=>({...p,idx:i})).filter(p => p.inRound);
         let winnerIdx = null, price = 0;
-        if (active.length === 1 && newHighBidderIdx !== null && active[0].idx === newHighBidderIdx){
-          winnerIdx = newHighBidderIdx;
-          price = newCurrentBid;
-        }
-        const finalPlayers = newPlayers.map((p, i) => {
-          if (i === winnerIdx) return { ...p, money: p.money - price, items: [...(p.items||[]), { idx: g.idx, price }] };
-          return p;
-        });
+        if (active.length === 1 && newHighBidderIdx !== null && active[0].idx === newHighBidderIdx){ winnerIdx = newHighBidderIdx; price = newCurrentBid; }
+        const finalPlayers = newPlayers.map((p, i) => i === winnerIdx ? { ...p, money: p.money - price, items: [...(p.items||[]), { idx: g.idx, price }] } : p);
         tx.update(ref, {
-          participants: newParticipants,
-          'game.players': finalPlayers,
-          'game.phase': 'reveal',
+          participants: newParticipants, 'game.players': finalPlayers, 'game.phase': 'reveal',
           'game.lastSold': { winnerIdx, price, value: item.value, name: item.name },
-          'game.version': (g.version || 0) + 1,
-          'game.updatedAt': Date.now(),
-          updatedAt: Date.now()
+          'game.version': (g.version || 0) + 1, 'game.updatedAt': Date.now(), updatedAt: Date.now()
         });
         return;
       }
-
       let nextTurnIdx = g.turnIdx;
-      if (g.turnIdx === myIdx){
-        const n = newPlayers.length;
-        for (let k = 1; k <= n; k++){
-          const j = (myIdx + k) % n;
-          if (newPlayers[j].inRound){ nextTurnIdx = j; break; }
-        }
-      }
-
+      if (g.turnIdx === myIdx){ const n = newPlayers.length; for (let k = 1; k <= n; k++){ const j = (myIdx + k) % n; if (newPlayers[j].inRound){ nextTurnIdx = j; break; } } }
       tx.update(ref, {
-        participants: newParticipants,
-        'game.players': newPlayers,
-        'game.turnIdx': nextTurnIdx,
-        'game.highBidderIdx': newHighBidderIdx,
-        'game.currentBid': newCurrentBid,
-        'game.version': (g.version || 0) + 1,
-        'game.updatedAt': Date.now(),
-        updatedAt: Date.now()
+        participants: newParticipants, 'game.players': newPlayers, 'game.turnIdx': nextTurnIdx,
+        'game.highBidderIdx': newHighBidderIdx, 'game.currentBid': newCurrentBid,
+        'game.version': (g.version || 0) + 1, 'game.updatedAt': Date.now(), updatedAt: Date.now()
       });
     });
   },
-
   async advance(gameId){
     const ref = cloud.fb.dbMod.doc(cloud.db, 'games', gameId);
     try {
@@ -1666,49 +1108,26 @@ const games = {
         if (data.status !== 'running') return;
         const g = data.game;
         if (!g || g.phase !== 'reveal') return;
-
         const nextIdx = g.idx + 1;
         const total = data.items.length;
         const solvent = g.players.filter(p => p.money > 0);
-
         if (nextIdx >= total || solvent.length <= 1){
-          tx.update(ref, {
-            status: 'ended',
-            'game.phase': 'ended',
-            'game.endedAt': Date.now(),
-            updatedAt: Date.now()
-          });
+          tx.update(ref, { status: 'ended', 'game.phase': 'ended', 'game.endedAt': Date.now(), updatedAt: Date.now() });
           return;
         }
-
         const n = g.players.length;
         let turnIdx = -1;
-        for (let k = 0; k < n; k++){
-          const j = (nextIdx + k) % n;
-          if (g.players[j].money > 0){ turnIdx = j; break; }
-        }
-
+        for (let k = 0; k < n; k++){ const j = (nextIdx + k) % n; if (g.players[j].money > 0){ turnIdx = j; break; } }
         tx.update(ref, {
-          'game.idx': nextIdx,
-          'game.phase': 'bidding',
-          'game.turnIdx': turnIdx,
-          'game.currentBid': 0,
-          'game.highBidderIdx': null,
-          'game.lastSold': null,
+          'game.idx': nextIdx, 'game.phase': 'bidding', 'game.turnIdx': turnIdx,
+          'game.currentBid': 0, 'game.highBidderIdx': null, 'game.lastSold': null,
           'game.players': g.players.map(p => ({ ...p, inRound: p.money > 0 })),
-          'game.version': (g.version || 0) + 1,
-          'game.updatedAt': Date.now(),
-          updatedAt: Date.now()
+          'game.version': (g.version || 0) + 1, 'game.updatedAt': Date.now(), updatedAt: Date.now()
         });
       });
-    } catch(e){ console.error('[AuctionWars] Advance failed:', e); }
+    } catch(e){}
   },
-
-  async cancel(gameId){
-    const ref = cloud.fb.dbMod.doc(cloud.db, 'games', gameId);
-    try { await cloud.fb.dbMod.deleteDoc(ref); } catch(e){}
-  },
-
+  async cancel(gameId){ try { await cloud.fb.dbMod.deleteDoc(cloud.fb.dbMod.doc(cloud.db, 'games', gameId)); } catch(e){} },
   async leave(gameId, myUid){
     const ref = cloud.fb.dbMod.doc(cloud.db, 'games', gameId);
     try {
@@ -1717,11 +1136,8 @@ const games = {
         if (!snap.exists()) return;
         const data = snap.data();
         const invitedUids = (data.invitedUids || []).filter(u => u !== myUid);
-        if (invitedUids.length === 0){
-          tx.delete(ref);
-        } else {
-          tx.update(ref, { invitedUids, updatedAt: Date.now() });
-        }
+        if (invitedUids.length === 0) tx.delete(ref);
+        else tx.update(ref, { invitedUids, updatedAt: Date.now() });
       });
     } catch(e){}
   }
@@ -1736,33 +1152,17 @@ function updateSyncDot(){
 }
 
 /* ============================================================
-   SESSION
+   SESSION & STATE
    ============================================================ */
 const session = {
-  gameId: null,
-  game: null,
-  myIdx: -1,
-  pendingBid: 1,
-  lastTurnKey: null,
-  advancing: false,
-  lastRevealKey: null,
-  inviteModalOpen: null,
-  menuOpen: false,
-  settingsOpen: false
+  gameId: null, game: null, myIdx: -1, pendingBid: 1, lastTurnKey: null,
+  advancing: false, lastRevealKey: null, inviteModalOpen: null,
+  menuOpen: false, settingsOpen: false
 };
 
-/* ============================================================
-   SETUP STATE
-   ============================================================ */
 const setup = {
-  packId: Object.keys(PACKS)[0],
-  myPacks: loadLocalPacks(),
-  allPublicPacks: [],
-  cash: 20,
-  itemCount: 10,
-  onlinePlayers: [],
-  pickedIds: [],
-  guestNames: []
+  packId: Object.keys(PACKS)[0], myPacks: loadLocalPacks(), allPublicPacks: [],
+  cash: 20, itemCount: 10, onlinePlayers: [], pickedIds: [], guestNames: []
 };
 
 /* ============================================================
@@ -1771,7 +1171,6 @@ const setup = {
 function renderHeader(){
   const el = $('headerRight');
   const onLeaderboard = $('screen-leaderboard').classList.contains('active');
-
   let userBlock = '';
   if (cloud.enabled && cloud.user && cloud.profile){
     const p = cloud.profile;
@@ -1790,7 +1189,6 @@ function renderHeader(){
   } else {
     userBlock = `<div class="user-chip" style="cursor:default;opacity:.55"><div class="user-avatar" style="background:linear-gradient(145deg,#5f5f6e,#3f3f4a)">?</div><div class="user-name">Local</div></div>`;
   }
-
   el.innerHTML = `
     <div class="sync-dot" id="syncDot" title="Sync: idle"></div>
     <button class="icon-btn ${onLeaderboard ? 'active' : ''}" id="lbBtn" title="Leaderboard">🏆</button>
@@ -1798,7 +1196,6 @@ function renderHeader(){
     ${userBlock}
   `;
   updateSyncDot();
-
   $('lbBtn')?.addEventListener('click', () => {
     if (onLeaderboard){ renderSetup(); showScreen('setup'); }
     else { renderLeaderboard(); showScreen('leaderboard'); }
@@ -1858,21 +1255,15 @@ async function openAccountMenu(){
 /* ============================================================
    SETTINGS MENU
    ============================================================ */
-function openSettings(){
-  session.settingsOpen = true;
-  renderSettingsModal();
-}
-
+function openSettings(){ session.settingsOpen = true; renderSettingsModal(); }
 function renderSettingsModal(){
   const s = settings;
   openModal(`
     <div class="modal">
       <div class="modal-title">Settings</div>
       <div class="modal-sub">Preferences save to this device automatically.</div>
-
       <div class="settings-group">
         <div class="settings-group-title">Appearance</div>
-
         <div class="settings-row">
           <div class="settings-info">
             <div class="settings-name">Theme</div>
@@ -1884,7 +1275,6 @@ function renderSettingsModal(){
             <button class="settings-seg-btn ${s.theme === 'auto' ? 'sel' : ''}" data-theme-opt="auto">Auto</button>
           </div>
         </div>
-
         <div class="settings-row">
           <div class="settings-info">
             <div class="settings-name">Reduce motion</div>
@@ -1893,10 +1283,8 @@ function renderSettingsModal(){
           <div class="toggle ${s.reduceMotion ? 'on' : ''}" id="motionToggle"></div>
         </div>
       </div>
-
       <div class="settings-group">
         <div class="settings-group-title">Game</div>
-
         <div class="settings-row">
           <div class="settings-info">
             <div class="settings-name">Show sync indicator</div>
@@ -1905,10 +1293,8 @@ function renderSettingsModal(){
           <div class="toggle ${s.showSyncDot ? 'on' : ''}" id="syncToggle"></div>
         </div>
       </div>
-
       <div class="settings-group">
         <div class="settings-group-title">Data</div>
-
         <button class="menu-item danger" id="resetLocal">
           <span class="mi-icon">🗑️</span>
           <span class="mi-text">
@@ -1917,40 +1303,24 @@ function renderSettingsModal(){
           </span>
         </button>
       </div>
-
       <button class="btn-ghost" id="settingsClose" style="width:100%;margin-top:12px">Close</button>
     </div>
   `);
-
   $('themeSeg')?.addEventListener('click', e => {
     const btn = e.target.closest('[data-theme-opt]');
     if (!btn) return;
     settings.set('theme', btn.dataset.themeOpt);
     renderSettingsModal();
   });
-  $('motionToggle')?.addEventListener('click', () => {
-    settings.set('reduceMotion', !settings.reduceMotion);
-    renderSettingsModal();
-  });
-  $('syncToggle')?.addEventListener('click', () => {
-    settings.set('showSyncDot', !settings.showSyncDot);
-    renderSettingsModal();
-  });
+  $('motionToggle')?.addEventListener('click', () => { settings.set('reduceMotion', !settings.reduceMotion); renderSettingsModal(); });
+  $('syncToggle')?.addEventListener('click', () => { settings.set('showSyncDot', !settings.showSyncDot); renderSettingsModal(); });
   $('resetLocal')?.addEventListener('click', () => {
-    if (!confirm('Reset all local data? This clears cached players, packs and preferences on this device only.')) return;
-    try {
-      localStorage.removeItem(PLAYERS_KEY);
-      localStorage.removeItem(PACKS_KEY);
-      localStorage.removeItem(PROFILE_KEY);
-      localStorage.removeItem(SETTINGS_KEY);
-    } catch(e){}
+    if (!confirm('Reset all local data?')) return;
+    try { localStorage.removeItem(PLAYERS_KEY); localStorage.removeItem(PACKS_KEY); localStorage.removeItem(PROFILE_KEY); localStorage.removeItem(SETTINGS_KEY); } catch(e){}
     toast('Local data cleared. Reloading…');
     setTimeout(() => window.location.reload(), 800);
   });
-  $('settingsClose')?.addEventListener('click', () => {
-    session.settingsOpen = false;
-    closeModal();
-  });
+  $('settingsClose')?.addEventListener('click', () => { session.settingsOpen = false; closeModal(); });
 }
 
 /* ============================================================
@@ -1960,9 +1330,7 @@ function getSelectedPack(){
   if (setup.packId.startsWith('custom_')){
     return setup.myPacks.find(p => p.id === setup.packId) || setup.allPublicPacks.find(p => p.id === setup.packId) || null;
   }
-  if (PACKS[setup.packId]){
-    return { name: setup.packId, emoji: '', ownerUid: null, items: PACKS[setup.packId].map(([name, value]) => ({ name, value })) };
-  }
+  if (PACKS[setup.packId]) return { name: setup.packId, emoji: '', ownerUid: null, items: PACKS[setup.packId].map(([name, value]) => ({ name, value })) };
   return null;
 }
 function getSelectedItems(){ const p = getSelectedPack(); return p ? p.items.slice() : []; }
@@ -1990,9 +1358,9 @@ async function renderSetup(){
   } else if (!cloud.ready){
     cloudBanner = `<div class="banner"><span class="icon"><div class="spin"></div></span><span>Connecting to cloud…</span></div>`;
   } else if (!cloud.user){
-    cloudBanner = `<div class="banner"><span class="icon">☁️</span><span>Sign in with Google to invite real players, track Elo, and sync packs.</span></div>`;
+    cloudBanner = `<div class="banner"><span class="icon">☁️</span><span>Sign in with Google to share packs, invite players, and track Elo.</span></div>`;
   } else if (!cloud.healthy){
-    cloudBanner = `<div class="banner danger"><span class="icon">⚠️</span><span>Firestore isn't reachable. Open the browser console for the exact error. Falling back to local mode.</span></div>`;
+    cloudBanner = `<div class="banner danger"><span class="icon">⚠️</span><span>Firestore isn't reachable. Falling back to local mode.</span></div>`;
   } else {
     const pid = cloud.profile.playerId || '—';
     cloudBanner = `<div class="banner ok"><span class="icon">✓</span><span>Signed in as <b>${esc(cloud.profile.displayName)}</b> · ID <b style="font-family:ui-monospace,Menlo,monospace;letter-spacing:1px">${esc(pid)}</b></span></div>`;
@@ -2002,7 +1370,6 @@ async function renderSetup(){
   const myId = cloud.profile?.playerId;
   const onlineOthers = setup.onlinePlayers.filter(p => p.id !== myId);
   setup.pickedIds = setup.pickedIds.filter(id => onlineOthers.some(p => p.id === id));
-
   const totalPlayers = 1 + setup.pickedIds.length + setup.guestNames.length;
 
   const seenPackIds = new Set();
@@ -2014,6 +1381,8 @@ async function renderSetup(){
     packList.push({ id: p.id, label: `${p.emoji} ${p.name}`, count: p.items.length, custom: true, pack: p });
   }
 
+  const sharedCount = setup.allPublicPacks.filter(p => p.ownerUid !== cloud.user?.uid).length;
+
   el.innerHTML = `
     <div class="hero">
       <h1>AUCTION <span>WARS</span></h1>
@@ -2024,15 +1393,19 @@ async function renderSetup(){
     <div class="panel">
       <div class="panel-head">
         <div class="panel-title"><span class="num">1</span>Topic</div>
-        <div class="panel-hint">${packList.length} packs</div>
+        <div class="panel-hint">${sharedCount > 0 ? `${sharedCount} shared pack${sharedCount === 1 ? '' : 's'}` : `${packList.length} packs`}</div>
       </div>
       <div class="pack-grid">
-        ${packList.map(x => `
-          <button class="pack ${setup.packId === x.id ? 'sel' : ''}" data-pack="${esc(x.id)}">
-            <span class="pname">${esc(x.label)}</span>
-            <span class="pcount">${x.count} items${x.custom ? (isOwner(x.pack) ? ' · yours' : ' · shared') : ''}</span>
-          </button>
-        `).join('')}
+        ${packList.map(x => {
+          const isMine = x.custom && x.pack && x.pack.ownerUid === cloud.user?.uid;
+          const ownerLabel = !x.custom ? '' : (isMine ? ' · yours' : (x.pack?.ownerName ? ` · by ${esc(x.pack.ownerName)}` : ' · shared'));
+          return `
+            <button class="pack ${setup.packId === x.id ? 'sel' : ''}" data-pack="${esc(x.id)}">
+              <span class="pname">${esc(x.label)}</span>
+              <span class="pcount">${x.count} items${ownerLabel}</span>
+            </button>
+          `;
+        }).join('')}
         <button class="pack new" data-newpack="1">＋ Create pack</button>
       </div>
       ${selectedIsCustom && selected && isOwner(selected) ? `
@@ -2048,7 +1421,6 @@ async function renderSetup(){
         <div class="panel-title"><span class="num">2</span>Players</div>
         <div class="panel-hint">${totalPlayers} / 4</div>
       </div>
-
       ${cloud.user && cloud.healthy ? `
         <div class="competitors">
           <div class="comp-row you">
@@ -2060,7 +1432,6 @@ async function renderSetup(){
               <div class="comp-meta"><span class="pid">${esc(cloud.profile.playerId || '—')}</span><span>· You (host)</span></div>
             </div>
           </div>
-
           ${setup.pickedIds.map(id => {
             const p = onlineMap.get(id);
             if (!p) return '';
@@ -2077,7 +1448,6 @@ async function renderSetup(){
               </div>
             `;
           }).join('')}
-
           ${setup.guestNames.map((name, i) => `
             <div class="comp-row guest">
               <div class="comp-avatar" style="background:${colorFor('guest' + i + name)}">${esc(initialsOf(name))}</div>
@@ -2088,7 +1458,6 @@ async function renderSetup(){
               <button class="comp-remove" data-remove-guest="${i}">×</button>
             </div>
           `).join('')}
-
           ${totalPlayers < 4 ? `
             <div class="add-buttons">
               <button class="add-comp" id="addCompBtn">＋ Add player</button>
@@ -2097,7 +1466,7 @@ async function renderSetup(){
           ` : ''}
         </div>
       ` : `
-        <div class="setup-summary" style="font-size:11.5px;color:var(--muted);font-weight:700;padding:10px 12px;background:var(--raised-2);border:1px solid var(--border);border-radius:12px">
+        <div style="font-size:11.5px;color:var(--muted);font-weight:700;padding:10px 12px;background:var(--raised-2);border:1px solid var(--border);border-radius:12px">
           ${cloud.user ? 'Cloud connection failed — running in local mode.' : 'Sign in to invite real players.'}
         </div>
       `}
@@ -2137,7 +1506,6 @@ async function renderSetup(){
 $('screen-setup').addEventListener('click', async e => {
   const btn = e.target.closest('button');
   if (!btn) return;
-
   if (btn.dataset.pack){ setup.packId = btn.dataset.pack; renderSetup(); }
   else if (btn.dataset.newpack){ openEditor(null); }
   else if (btn.dataset.editpack){
@@ -2163,15 +1531,9 @@ $('screen-setup').addEventListener('click', async e => {
     renderSetup();
   } else if (btn.id === 'addCompBtn'){ openPlayerPicker(); }
   else if (btn.id === 'addGuestBtn'){ openGuestPrompt(); }
-  else if (btn.dataset.cash){
-    setup.cash = clamp(setup.cash + (+btn.dataset.cash), 10, 500);
-    renderSetup();
-  } else if (btn.dataset.items){
-    setup.itemCount = +btn.dataset.items;
-    renderSetup();
-  } else if (btn.id === 'startBtn'){
-    await createGame();
-  }
+  else if (btn.dataset.cash){ setup.cash = clamp(setup.cash + (+btn.dataset.cash), 10, 500); renderSetup(); }
+  else if (btn.dataset.items){ setup.itemCount = +btn.dataset.items; renderSetup(); }
+  else if (btn.id === 'startBtn'){ await createGame(); }
 });
 
 function openPlayerPicker(){
@@ -2179,7 +1541,6 @@ function openPlayerPicker(){
   const others = setup.onlinePlayers.filter(p => p.id !== myId);
   const taken = new Set(setup.pickedIds);
   const slotsLeft = 4 - (1 + setup.pickedIds.length + setup.guestNames.length);
-
   const rows = others.map(p => {
     const selected = taken.has(p.id);
     return `
@@ -2200,7 +1561,6 @@ function openPlayerPicker(){
       </button>
     `;
   }).join('');
-
   openModal(`
     <div class="modal">
       <div class="modal-title">Add player</div>
@@ -2255,8 +1615,7 @@ function openGuestPrompt(){
     const total = 1 + setup.pickedIds.length + setup.guestNames.length;
     if (total >= 4){ toast('Max 4 players', 'error'); return; }
     setup.guestNames.push(name);
-    closeModal();
-    renderSetup();
+    closeModal(); renderSetup();
   });
   $('guestName').addEventListener('keydown', e => { if (e.key === 'Enter') $('guestAdd').click(); });
 }
@@ -2267,69 +1626,39 @@ function openGuestPrompt(){
 async function createGame(){
   const pool = getSelectedItems();
   if (pool.length < 2){ toast('This pack needs at least 2 items', 'error'); return; }
-
   const participants = [];
-
   if (cloud.user && cloud.profile && cloud.healthy){
-    participants.push({
-      uid: cloud.user.uid,
-      playerId: cloud.profile.playerId,
-      name: cloud.profile.displayName || 'You',
-      photoURL: cloud.profile.photoURL || '',
-      isGuest: false
-    });
+    participants.push({ uid: cloud.user.uid, playerId: cloud.profile.playerId, name: cloud.profile.displayName || 'You', photoURL: cloud.profile.photoURL || '', isGuest: false });
     const onlineMap = new Map(setup.onlinePlayers.map(p => [p.id, p]));
     for (const id of setup.pickedIds){
       const p = onlineMap.get(id);
-      if (p) participants.push({
-        uid: p.ownerUid || null,
-        playerId: p.id,
-        name: p.name,
-        photoURL: p.photoURL || '',
-        isGuest: false
-      });
+      if (p) participants.push({ uid: p.ownerUid || null, playerId: p.id, name: p.name, photoURL: p.photoURL || '', isGuest: false });
     }
-    for (const name of setup.guestNames){
-      participants.push({ uid: null, playerId: null, name, photoURL: '', isGuest: true });
-    }
+    for (const name of setup.guestNames) participants.push({ uid: null, playerId: null, name, photoURL: '', isGuest: true });
   } else {
     const names = setup.guestNames.length ? setup.guestNames : ['Player 1', 'Player 2'];
     for (const n of names) participants.push({ uid: null, playerId: null, name: n, photoURL: '', isGuest: true });
     startLocalGame(participants);
     return;
   }
-
   if (participants.length < 2){ toast('Add at least 1 competitor', 'error'); return; }
-
   const count = Math.min(setup.itemCount, pool.length);
   const chosen = shuffle(pool).slice(0, count);
   const items = chosen.map(it => ({ name: it.name, value: it.value }));
-
   try {
-    console.log('[AuctionWars] Creating game...');
-    const gameId = await games.create(participants, {
-      packName: getSelectedLabel(),
-      itemCount: count,
-      cash: setup.cash
-    }, items);
-    console.log('[AuctionWars] Game created:', gameId);
+    const gameId = await games.create(participants, { packName: getSelectedLabel(), itemCount: count, cash: setup.cash }, items);
     session.gameId = gameId;
-  } catch(e){
-    console.error('[AuctionWars] Create game failed:', e);
-    toast('Failed to create game: ' + (e.code || e.message || 'unknown'), 'error');
-  }
+  } catch(e){ toast('Failed to create game: ' + (e.code || e.message || 'unknown'), 'error'); }
 }
 
 /* ============================================================
-   LOCAL SINGLE-DEVICE MODE
+   LOCAL MODE
    ============================================================ */
 const localGame = { game: null, items: [], participants: [], running: false };
-
 function startLocalGame(participants){
   const pool = getSelectedItems();
   const count = Math.min(setup.itemCount, pool.length);
   const chosen = shuffle(pool).slice(0, count);
-
   localGame.participants = participants.map((p, i) => ({ ...p, idx: i, forfeited: false }));
   localGame.items = chosen.map(it => ({ name: it.name, value: it.value }));
   localGame.game = {
@@ -2338,22 +1667,13 @@ function startLocalGame(participants){
     version: 0, updatedAt: Date.now()
   };
   localGame.running = true;
-
   session.game = {
-    id: 'local',
-    status: 'running',
-    hostUid: 'local',
-    hostPlayerId: null,
-    hostName: participants[0].name,
-    participants: localGame.participants,
-    items: localGame.items,
-    settings: { packName: getSelectedLabel(), cash: setup.cash },
-    game: localGame.game
+    id: 'local', status: 'running', hostUid: 'local', hostPlayerId: null, hostName: participants[0].name,
+    participants: localGame.participants, items: localGame.items,
+    settings: { packName: getSelectedLabel(), cash: setup.cash }, game: localGame.game
   };
-  session.myIdx = 0;
-  session.lastTurnKey = null;
-  renderGameFromGame();
-  showScreen('game');
+  session.myIdx = 0; session.lastTurnKey = null;
+  renderGameFromGame(); showScreen('game');
 }
 
 /* ============================================================
@@ -2362,48 +1682,29 @@ function startLocalGame(participants){
 function onGamesUpdate(game){
   if (!game){
     if (session.game && session.game.id === 'local') return;
-    session.game = null;
-    session.gameId = null;
-    session.myIdx = -1;
-    session.lastTurnKey = null;
-    if (!$('screen-setup').classList.contains('active')){
-      renderSetup();
-      showScreen('setup');
-    }
+    session.game = null; session.gameId = null; session.myIdx = -1; session.lastTurnKey = null;
+    if (!$('screen-setup').classList.contains('active')){ renderSetup(); showScreen('setup'); }
     return;
   }
-
-  session.game = game;
-  session.gameId = game.id;
-
+  session.game = game; session.gameId = game.id;
   const myUid = cloud.user?.uid;
   const myIdx = game.participants.findIndex(p => p.uid === myUid);
   session.myIdx = myIdx;
   const me = myIdx >= 0 ? game.participants[myIdx] : null;
 
   if (game.status === 'open'){
-    if (me && me.status === 'invited'){
-      showInviteModal(game, me);
-    } else if (me && me.status === 'joined'){
-      closeModal();
-      renderWaiting();
-      showScreen('waiting');
-    }
+    if (me && me.status === 'invited'){ showInviteModal(game, me); }
+    else if (me && me.status === 'joined'){ closeModal(); renderWaiting(); showScreen('waiting'); }
   } else if (game.status === 'running'){
     if (me && me.status === 'joined'){
       if (session.inviteModalOpen){ session.inviteModalOpen = null; closeModal(); }
-      renderGameFromGame();
-      showScreen('game');
-      scheduleAutoAdvance(game);
+      renderGameFromGame(); showScreen('game'); scheduleAutoAdvance(game);
     }
   } else if (game.status === 'ended'){
     if (me && me.status === 'joined'){
       if (session.inviteModalOpen){ session.inviteModalOpen = null; closeModal(); }
-      hideRevealFlash();
-      session.lastRevealKey = null;
-      renderResultsFromGame();
-      showScreen('results');
-      maybeRecordElo(game);
+      hideRevealFlash(); session.lastRevealKey = null;
+      renderResultsFromGame(); showScreen('results'); maybeRecordElo(game);
     }
   }
 }
@@ -2414,17 +1715,11 @@ function onGamesUpdate(game){
 function showInviteModal(game, me){
   if (session.inviteModalOpen === game.id) return;
   session.inviteModalOpen = game.id;
-
   const host = game.participants.find(p => p.uid === game.hostUid);
-
   openModal(`
     <div class="modal" style="max-width:420px">
       <div style="text-align:center;margin-bottom:22px">
-        <div style="width:78px;height:78px;border-radius:50%;margin:0 auto 16px;
-                    background:linear-gradient(145deg,#fcd34d,#f59e0b);
-                    display:flex;align-items:center;justify-content:center;
-                    font-size:26px;color:#1a1206;font-weight:900;overflow:hidden;
-                    box-shadow:0 10px 32px rgba(251,191,36,.4);animation:pulseGold 2s ease-in-out infinite">
+        <div style="width:78px;height:78px;border-radius:50%;margin:0 auto 16px;background:linear-gradient(145deg,#fcd34d,#f59e0b);display:flex;align-items:center;justify-content:center;font-size:26px;color:#1a1206;font-weight:900;overflow:hidden;box-shadow:0 10px 32px rgba(251,191,36,.4);animation:pulseGold 2s ease-in-out infinite">
           ${host?.photoURL ? `<img src="${esc(host.photoURL)}" style="width:100%;height:100%;object-fit:cover">` : esc(initialsOf(host?.name || '?'))}
         </div>
         <div style="font-size:19px;font-weight:900;letter-spacing:-.3px">${esc(host?.name || 'Someone')} invited you</div>
@@ -2435,22 +1730,12 @@ function showInviteModal(game, me){
       <button class="btn-ghost" id="inviteDecline" style="width:100%">Decline</button>
     </div>
   `);
-
   $('inviteJoin').addEventListener('click', async () => {
-    try {
-      await games.join(game.id, cloud.user.uid);
-      session.inviteModalOpen = null;
-      closeModal();
-      toast('Joined', 'success');
-    } catch(e){ toast('Failed: ' + (e.message || ''), 'error'); }
+    try { await games.join(game.id, cloud.user.uid); session.inviteModalOpen = null; closeModal(); toast('Joined', 'success'); }
+    catch(e){ toast('Failed: ' + (e.message || ''), 'error'); }
   });
   $('inviteDecline').addEventListener('click', async () => {
-    try {
-      await games.decline(game.id, cloud.user.uid);
-      session.inviteModalOpen = null;
-      closeModal();
-      toast('Declined');
-    } catch(e){}
+    try { await games.decline(game.id, cloud.user.uid); session.inviteModalOpen = null; closeModal(); toast('Declined'); } catch(e){}
   });
 }
 
@@ -2465,19 +1750,16 @@ function renderWaiting(){
   const el = $('screen-waiting');
   const m = session.game;
   if (!m) return;
-
   const isHost = m.hostUid === cloud.user?.uid;
   const participants = m.participants || [];
   const joinedCount = participants.filter(p => p.status === 'joined').length;
   const canStart = isHost && joinedCount >= 2;
-
   el.innerHTML = `
     <div class="waiting-wrap">
       <div class="waiting-icon">⏳</div>
       <div class="waiting-title">${isHost ? 'Waiting for players' : 'Waiting for host'}</div>
       <div class="waiting-sub">${joinedCount} joined · ${esc(m.settings?.packName || '')}</div>
     </div>
-
     <div class="waiting-list">
       ${participants.map(p => {
         const status = p.status || 'invited';
@@ -2488,8 +1770,7 @@ function renderWaiting(){
             ${avatarBlock(p.name, p.photoURL, 38)}
             <div style="flex:1;min-width:0">
               <div style="font-size:13.5px;font-weight:800;display:flex;align-items:center;gap:6px">
-                ${esc(p.name)}
-                ${isMe ? '<span class="lb-you">You</span>' : ''}
+                ${esc(p.name)}${isMe ? '<span class="lb-you">You</span>' : ''}
               </div>
               <div style="font-size:10.5px;color:var(--muted-2);margin-top:3px;font-weight:800;display:flex;gap:6px">
                 ${p.isGuest ? '<span style="color:#c4b5fd;background:rgba(167,139,250,.14);padding:1px 6px;border-radius:5px;font-weight:900;font-size:9px">GUEST</span>' : `<span style="font-family:ui-monospace,Menlo,monospace;color:var(--gold);letter-spacing:.6px">${esc(p.playerId || '')}</span>`}
@@ -2501,7 +1782,6 @@ function renderWaiting(){
         `;
       }).join('')}
     </div>
-
     ${isHost ? `
       <button class="btn-primary" id="beginBtn" ${!canStart ? 'disabled' : ''}>
         ${canStart ? `Begin auction (${joinedCount} players)` : 'Need at least 2 accepted'}
@@ -2512,30 +1792,19 @@ function renderWaiting(){
       <button class="btn-ghost btn-danger" id="leaveWaitBtn" style="width:100%;margin-top:12px">Leave match</button>
     `}
   `;
-
-  $('beginBtn')?.addEventListener('click', async () => {
-    try { await games.begin(session.gameId); }
-    catch(e){ toast(e.message || 'Failed to start', 'error'); }
-  });
+  $('beginBtn')?.addEventListener('click', async () => { try { await games.begin(session.gameId); } catch(e){ toast(e.message || 'Failed to start', 'error'); } });
   $('cancelBtn')?.addEventListener('click', async () => {
     if (!confirm('Cancel this match?')) return;
     await games.cancel(session.gameId);
-    session.game = null;
-    session.gameId = null;
-    session.lastTurnKey = null;
-    setup.pickedIds = [];
-    setup.guestNames = [];
-    renderSetup();
-    showScreen('setup');
+    session.game = null; session.gameId = null; session.lastTurnKey = null;
+    setup.pickedIds = []; setup.guestNames = [];
+    renderSetup(); showScreen('setup');
   });
   $('leaveWaitBtn')?.addEventListener('click', async () => {
     if (!confirm('Leave this match?')) return;
     await games.leave(session.gameId, cloud.user.uid);
-    session.game = null;
-    session.gameId = null;
-    session.lastTurnKey = null;
-    renderSetup();
-    showScreen('setup');
+    session.game = null; session.gameId = null; session.lastTurnKey = null;
+    renderSetup(); showScreen('setup');
   });
 }
 
@@ -2546,7 +1815,6 @@ function renderGameFromGame(){
   const g = $('screen-game');
   const m = session.game;
   if (!m || !m.game){ return; }
-
   const items = m.items || [];
   const game = m.game;
   const participants = m.participants || [];
@@ -2560,10 +1828,7 @@ function renderGameFromGame(){
   const isMyTurn = session.myIdx === curIdx;
 
   const turnKey = `${m.id}|${game.idx}|${game.turnIdx}`;
-  if (session.lastTurnKey !== turnKey){
-    session.lastTurnKey = turnKey;
-    session.pendingBid = game.currentBid + 1;
-  }
+  if (session.lastTurnKey !== turnKey){ session.lastTurnKey = turnKey; session.pendingBid = game.currentBid + 1; }
 
   const curPlayer = players[curIdx];
   const minB = game.currentBid + 1;
@@ -2587,34 +1852,24 @@ function renderGameFromGame(){
       </div>
     </div>
     <div class="progress"><div style="width:${(game.idx / total) * 100}%"></div></div>
-
     <div class="item-card">
       <div class="item-label">ON THE BLOCK</div>
       <div class="item-name">${esc(item.name)}</div>
       <div class="item-value">Hidden value <span>? ? ?</span></div>
     </div>
-
     <div class="bid-banner ${game.highBidderIdx === null ? 'empty' : ''}">
-      ${game.highBidderIdx === null
-        ? 'No bids yet — opening at $1'
-        : `Current bid <strong>$${game.currentBid}</strong> by <strong>${esc(participants[game.highBidderIdx]?.name || '—')}</strong>`}
+      ${game.highBidderIdx === null ? 'No bids yet — opening at $1' : `Current bid <strong>$${game.currentBid}</strong> by <strong>${esc(participants[game.highBidderIdx]?.name || '—')}</strong>`}
     </div>
-
     <div class="players">
       ${participants.map((p, i) => {
         const pg = players[i] || { money: 0, items: [], inRound: false };
         const isMe = i === session.myIdx;
         const forfeited = !!p.forfeited;
         let badge = '';
-        if (forfeited){
-          badge = '<div class="pbadge forfeit">Forfeit</div>';
-        } else if (i === game.highBidderIdx && game.phase === 'bidding'){
-          badge = '<div class="pbadge high">High bid</div>';
-        } else if (pg.money <= 0){
-          badge = '<div class="pbadge broke">Broke</div>';
-        } else if (!pg.inRound){
-          badge = '<div class="pbadge out">Out</div>';
-        }
+        if (forfeited) badge = '<div class="pbadge forfeit">Forfeit</div>';
+        else if (i === game.highBidderIdx && game.phase === 'bidding') badge = '<div class="pbadge high">High bid</div>';
+        else if (pg.money <= 0) badge = '<div class="pbadge broke">Broke</div>';
+        else if (!pg.inRound) badge = '<div class="pbadge out">Out</div>';
         return `
           <div class="pcard ${i === curIdx && game.phase === 'bidding' && !forfeited ? 'active' : ''} ${(!pg.inRound && pg.money > 0 && !forfeited) ? 'folded' : ''} ${pg.money <= 0 && !forfeited ? 'broke' : ''} ${forfeited ? 'forfeited' : ''} ${isMe ? 'you' : ''}">
             ${badge}
@@ -2629,75 +1884,43 @@ function renderGameFromGame(){
         `;
       }).join('')}
     </div>
-
     <div class="controls">
       ${renderTurnLine(curParticipant, isMyTurn, isGuestTurn, curForfeited, game)}
-      ${game.phase === 'reveal'
-        ? `<div class="cant" style="color:var(--gold)">Settling item…</div>`
+      ${game.phase === 'reveal' ? `<div class="cant" style="color:var(--gold)">Settling item…</div>`
         : renderBidControls(canBid, minB, isGuestTurn, curParticipant, isMyTurn, curForfeited, game, iHaveForfeited, myParticipant)}
     </div>
   `;
-
   $('gameMenuBtn')?.addEventListener('click', openGameMenu);
-
   if (game.phase === 'reveal' && game.lastSold){
     const key = `${game.idx}-${game.lastSold.winnerIdx}-${game.lastSold.price}`;
-    if (session.lastRevealKey !== key){
-      session.lastRevealKey = key;
-      showRevealFlash(game.lastSold, participants);
-    }
-  } else if (game.phase === 'bidding'){
-    session.lastRevealKey = null;
-    hideRevealFlash();
-  }
+    if (session.lastRevealKey !== key){ session.lastRevealKey = key; showRevealFlash(game.lastSold, participants); }
+  } else if (game.phase === 'bidding'){ session.lastRevealKey = null; hideRevealFlash(); }
 }
 
 function renderTurnLine(cur, isMyTurn, isGuestTurn, curForfeited, game){
   if (game.phase === 'reveal') return `<div class="turn-line">Settling…</div>`;
   if (!cur) return '';
-  if (curForfeited){
-    return `<div class="turn-line">Advancing past forfeited player…</div>`;
-  }
-  if (isGuestTurn){
-    return `<div class="turn-line guest-turn">🎭 <strong>${esc(cur.name)}</strong> (guest) — anyone can bid</div>`;
-  }
-  if (isMyTurn){
-    return `<div class="turn-line you">🔥 <strong>Your turn</strong> — make a bid</div>`;
-  }
+  if (curForfeited) return `<div class="turn-line">Advancing past forfeited player…</div>`;
+  if (isGuestTurn) return `<div class="turn-line guest-turn">🎭 <strong>${esc(cur.name)}</strong> (guest) — anyone can bid</div>`;
+  if (isMyTurn) return `<div class="turn-line you">🔥 <strong>Your turn</strong> — make a bid</div>`;
   return `<div class="turn-line">Waiting for <strong>${esc(cur.name)}</strong>…</div>`;
 }
 
-function renderBidControls(canBid, minB, isGuestTurn, cur, isMyTurn, curForfeited, game, iHaveForfeited, myParticipant){
-  if (curForfeited){
-    return `<div class="spectator-note">Waiting for next active player…</div>`;
-  }
-
-  if (iHaveForfeited){
-    return `<div class="spectator-note">You've forfeited this match. Watching only.</div>`;
-  }
-
+function renderBidControls(canBid, minB, isGuestTurn, cur, isMyTurn, curForfeited, game, iHaveForfeited){
+  if (curForfeited) return `<div class="spectator-note">Waiting for next active player…</div>`;
+  if (iHaveForfeited) return `<div class="spectator-note">You've forfeited this match. Watching only.</div>`;
   const isMyAction = isMyTurn || isGuestTurn;
-
   if (!isMyAction){
     const curP = game.players[game.turnIdx];
-    if (curP && curP.money < minB){
-      return `<div class="spectator-note">${esc(cur?.name || 'Player')} can't cover $${minB} — waiting for them to fold…</div>`;
-    }
+    if (curP && curP.money < minB) return `<div class="spectator-note">${esc(cur?.name || 'Player')} can't cover $${minB} — waiting for them to fold…</div>`;
     return `<div class="spectator-note">Waiting for your turn…</div>`;
   }
-
   if (!canBid){
     const curP = game.players[game.turnIdx];
     const money = curP?.money ?? 0;
-    const reason = money < minB
-      ? `You can't cover the $${minB} minimum (you have $${money}). Fold to pass.`
-      : `Waiting…`;
-    return `
-      <div class="cant">${esc(reason)}</div>
-      <button class="btn-fold" data-action="fold">${money < minB ? 'Fold (pass)' : 'Fold'}</button>
-    `;
+    const reason = money < minB ? `You can't cover the $${minB} minimum (you have $${money}). Fold to pass.` : `Waiting…`;
+    return `<div class="cant">${esc(reason)}</div><button class="btn-fold" data-action="fold">${money < minB ? 'Fold (pass)' : 'Fold'}</button>`;
   }
-
   const label = isGuestTurn ? `BID FOR ${cur.name.toUpperCase()}` : `BID $${session.pendingBid}`;
   return `
     <div class="bid-row">
@@ -2722,69 +1945,42 @@ function openGameMenu(){
   const m = session.game;
   if (!m) return;
   session.menuOpen = true;
-
   const me = session.myIdx >= 0 ? m.participants[session.myIdx] : null;
   const isHost = m.hostUid === cloud.user?.uid;
   const canForfeit = me && !me.forfeited && m.status === 'running';
-
   openModal(`
     <div class="modal" style="max-width:420px">
       <div class="modal-title">Match menu</div>
       <div class="modal-sub">${esc(m.settings?.packName || 'Auction')}</div>
-
       <div class="menu-list">
         ${canForfeit ? `
           <button class="menu-item danger" id="menuForfeit">
             <span class="mi-icon">🏳️</span>
-            <span class="mi-text">
-              Forfeit match
-              <div class="mi-sub">Leave the auction. Your cash goes to $0 and you're out of bidding.</div>
-            </span>
+            <span class="mi-text">Forfeit match<div class="mi-sub">Leave the auction. Your cash goes to $0 and you're out of bidding.</div></span>
           </button>
         ` : ''}
-
         ${isHost ? `
           <button class="menu-item danger" id="menuEnd">
             <span class="mi-icon">🛑</span>
-            <span class="mi-text">
-              End match for everyone
-              <div class="mi-sub">Cancels the game and closes it for all players.</div>
-            </span>
+            <span class="mi-text">End match for everyone<div class="mi-sub">Cancels the game and closes it for all players.</div></span>
           </button>
         ` : ''}
-
         <button class="menu-item" id="menuClose">
           <span class="mi-icon">✕</span>
-          <span class="mi-text">
-            Close
-            <div class="mi-sub">Back to the auction.</div>
-          </span>
+          <span class="mi-text">Close<div class="mi-sub">Back to the auction.</div></span>
         </button>
       </div>
     </div>
   `);
-
-  $('menuClose')?.addEventListener('click', () => {
-    session.menuOpen = false;
-    closeModal();
-  });
-  $('menuForfeit')?.addEventListener('click', () => {
-    session.menuOpen = false;
-    closeModal();
-    confirmForfeit();
-  });
+  $('menuClose')?.addEventListener('click', () => { session.menuOpen = false; closeModal(); });
+  $('menuForfeit')?.addEventListener('click', () => { session.menuOpen = false; closeModal(); confirmForfeit(); });
   $('menuEnd')?.addEventListener('click', async () => {
-    session.menuOpen = false;
-    closeModal();
+    session.menuOpen = false; closeModal();
     if (!confirm('End the match for everyone?')) return;
     await games.cancel(session.gameId);
-    session.game = null;
-    session.gameId = null;
-    session.lastTurnKey = null;
-    setup.pickedIds = [];
-    setup.guestNames = [];
-    renderSetup();
-    showScreen('setup');
+    session.game = null; session.gameId = null; session.lastTurnKey = null;
+    setup.pickedIds = []; setup.guestNames = [];
+    renderSetup(); showScreen('setup');
   });
 }
 
@@ -2792,74 +1988,52 @@ function confirmForfeit(){
   const m = session.game;
   if (!m) return;
   const myMoney = (m.game?.players?.[session.myIdx]?.money) ?? 0;
-
   openModal(`
     <div class="modal" style="max-width:420px">
       <div style="text-align:center;margin-bottom:20px">
         <div style="font-size:40px;line-height:1;margin-bottom:12px">🏳️</div>
         <div style="font-size:19px;font-weight:900;letter-spacing:-.3px">Forfeit this match?</div>
         <div style="font-size:13px;color:var(--muted);font-weight:600;margin-top:10px;line-height:1.6">
-          You'll be marked out of the auction. Your remaining <b style="color:var(--gold)">$${myMoney}</b> is gone,
-          and you can't bid for the rest of this match. Items you already won stay with you.
+          You'll be marked out of the auction. Your remaining <b style="color:var(--gold)">$${myMoney}</b> is gone, and you can't bid for the rest of this match. Items you already won stay with you.
         </div>
       </div>
       <button class="btn-primary" id="ffConfirm" style="background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;box-shadow:0 10px 30px rgba(239,68,68,.3);margin-bottom:8px">Yes, forfeit</button>
       <button class="btn-ghost" id="ffCancel" style="width:100%">Keep playing</button>
     </div>
   `);
-
   $('ffCancel').addEventListener('click', closeModal);
   $('ffConfirm').addEventListener('click', async () => {
     closeModal();
-    try {
-      await games.forfeit(session.gameId, cloud.user.uid);
-      games.poll();
-      toast('You forfeited', 'error');
-    } catch(e){
-      console.error('[AuctionWars] Forfeit failed:', e);
-      toast(e.message || 'Failed to forfeit', 'error');
-    }
+    try { await games.forfeit(session.gameId, cloud.user.uid); games.poll(); toast('You forfeited', 'error'); }
+    catch(e){ toast(e.message || 'Failed to forfeit', 'error'); }
   });
 }
 
 /* ============================================================
-   GAME ACTION HANDLER
+   GAME ACTIONS
    ============================================================ */
 $('screen-game').addEventListener('click', async e => {
   const btn = e.target.closest('[data-action]');
   if (!btn) return;
-
-  if (session.game?.id === 'local'){
-    handleLocalAction(btn);
-    return;
-  }
-
+  if (session.game?.id === 'local'){ handleLocalAction(btn); return; }
   const m = session.game;
   if (!m || !m.game) return;
   const game = m.game;
   if (game.phase !== 'bidding') return;
-
   const curIdx = game.turnIdx;
   const cur = m.participants[curIdx];
   const curForfeited = !!cur?.forfeited;
   const isGuestTurn = cur?.isGuest && !curForfeited;
   const isMyTurn = session.myIdx === curIdx;
   if (!isMyTurn && !isGuestTurn) return;
-
   const me = m.participants[session.myIdx];
   if (me?.forfeited) return;
-
   const curPlayer = game.players[curIdx];
   const minB = game.currentBid + 1;
   const maxB = curPlayer?.money ?? 0;
-
-  if (btn.dataset.action === 'inc'){
-    session.pendingBid = Math.min(session.pendingBid + 1, maxB);
-    renderGameFromGame();
-  } else if (btn.dataset.action === 'dec'){
-    session.pendingBid = Math.max(session.pendingBid - 1, minB);
-    renderGameFromGame();
-  } else if (btn.dataset.action === 'quick'){
+  if (btn.dataset.action === 'inc'){ session.pendingBid = Math.min(session.pendingBid + 1, maxB); renderGameFromGame(); }
+  else if (btn.dataset.action === 'dec'){ session.pendingBid = Math.max(session.pendingBid - 1, minB); renderGameFromGame(); }
+  else if (btn.dataset.action === 'quick'){
     const v = btn.dataset.v;
     if (v === 'all') session.pendingBid = maxB;
     else session.pendingBid = clamp(session.pendingBid + (+v), minB, maxB);
@@ -2867,16 +2041,10 @@ $('screen-game').addEventListener('click', async e => {
   } else if (btn.dataset.action === 'bid'){
     const amt = session.pendingBid;
     if (amt <= game.currentBid || amt > curPlayer.money) return;
-    try {
-      await games.bid(m.id, amt, cloud.user.uid);
-      games.poll();
-    }
+    try { await games.bid(m.id, amt, cloud.user.uid); games.poll(); }
     catch(err){ toast(err.message || 'Bid failed', 'error'); }
   } else if (btn.dataset.action === 'fold'){
-    try {
-      await games.fold(m.id, cloud.user.uid);
-      games.poll();
-    }
+    try { await games.fold(m.id, cloud.user.uid); games.poll(); }
     catch(err){ toast(err.message || 'Failed', 'error'); }
   }
 });
@@ -2888,20 +2056,11 @@ function handleLocalAction(btn){
   const curPlayer = g.players[curIdx];
   const minB = g.currentBid + 1;
   const maxB = curPlayer.money;
-
   const turnKey = `local|${g.idx}|${g.turnIdx}`;
-  if (session.lastTurnKey !== turnKey){
-    session.lastTurnKey = turnKey;
-    session.pendingBid = g.currentBid + 1;
-  }
-
-  if (btn.dataset.action === 'inc'){
-    session.pendingBid = Math.min(session.pendingBid + 1, maxB);
-    renderGameFromGame();
-  } else if (btn.dataset.action === 'dec'){
-    session.pendingBid = Math.max(session.pendingBid - 1, minB);
-    renderGameFromGame();
-  } else if (btn.dataset.action === 'quick'){
+  if (session.lastTurnKey !== turnKey){ session.lastTurnKey = turnKey; session.pendingBid = g.currentBid + 1; }
+  if (btn.dataset.action === 'inc'){ session.pendingBid = Math.min(session.pendingBid + 1, maxB); renderGameFromGame(); }
+  else if (btn.dataset.action === 'dec'){ session.pendingBid = Math.max(session.pendingBid - 1, minB); renderGameFromGame(); }
+  else if (btn.dataset.action === 'quick'){
     const v = btn.dataset.v;
     if (v === 'all') session.pendingBid = maxB;
     else session.pendingBid = clamp(session.pendingBid + (+v), minB, maxB);
@@ -2909,25 +2068,17 @@ function handleLocalAction(btn){
   } else if (btn.dataset.action === 'bid'){
     const amt = session.pendingBid;
     if (amt <= g.currentBid || amt > curPlayer.money) return;
-    g.currentBid = amt;
-    g.highBidderIdx = curIdx;
+    g.currentBid = amt; g.highBidderIdx = curIdx;
     const n = g.players.length;
-    for (let k = 1; k <= n; k++){
-      const j = (curIdx + k) % n;
-      if (g.players[j].inRound){ g.turnIdx = j; break; }
-    }
+    for (let k = 1; k <= n; k++){ const j = (curIdx + k) % n; if (g.players[j].inRound){ g.turnIdx = j; break; } }
     renderGameFromGame();
   } else if (btn.dataset.action === 'fold'){
     g.players[curIdx].inRound = false;
     const active = g.players.filter(p => p.inRound).length;
-    if (active <= 1){
-      resolveLocalItem();
-    } else {
+    if (active <= 1){ resolveLocalItem(); }
+    else {
       const n = g.players.length;
-      for (let k = 1; k <= n; k++){
-        const j = (curIdx + k) % n;
-        if (g.players[j].inRound){ g.turnIdx = j; break; }
-      }
+      for (let k = 1; k <= n; k++){ const j = (curIdx + k) % n; if (g.players[j].inRound){ g.turnIdx = j; break; } }
       renderGameFromGame();
     }
   }
@@ -2937,45 +2088,24 @@ function resolveLocalItem(){
   const g = localGame.game;
   const active = g.players.map((p, i) => ({ ...p, idx: i })).filter(p => p.inRound);
   let winnerIdx = null, price = 0;
-  if (active.length === 1 && g.highBidderIdx !== null && active[0].idx === g.highBidderIdx){
-    winnerIdx = g.highBidderIdx;
-    price = g.currentBid;
-  }
+  if (active.length === 1 && g.highBidderIdx !== null && active[0].idx === g.highBidderIdx){ winnerIdx = g.highBidderIdx; price = g.currentBid; }
   const item = localGame.items[g.idx];
-  if (winnerIdx !== null){
-    g.players[winnerIdx].money -= price;
-    g.players[winnerIdx].items.push({ idx: g.idx, price });
-  }
-  g.phase = 'reveal';
-  g.lastSold = { winnerIdx, price, value: item.value, name: item.name };
+  if (winnerIdx !== null){ g.players[winnerIdx].money -= price; g.players[winnerIdx].items.push({ idx: g.idx, price }); }
+  g.phase = 'reveal'; g.lastSold = { winnerIdx, price, value: item.value, name: item.name };
   session.lastRevealKey = `${g.idx}-${winnerIdx}-${price}`;
-  renderGameFromGame();
-  showRevealFlash(g.lastSold, localGame.participants);
-
+  renderGameFromGame(); showRevealFlash(g.lastSold, localGame.participants);
   setTimeout(() => {
-    hideRevealFlash();
-    session.lastRevealKey = null;
+    hideRevealFlash(); session.lastRevealKey = null;
     const nextIdx = g.idx + 1;
     const solvent = g.players.filter(p => p.money > 0).length;
     if (nextIdx >= localGame.items.length || solvent <= 1){
-      localGame.running = false;
-      session.game.status = 'ended';
-      session.game.game = g;
-      renderResultsFromGame();
-      showScreen('results');
-      return;
+      localGame.running = false; session.game.status = 'ended'; session.game.game = g;
+      renderResultsFromGame(); showScreen('results'); return;
     }
-    g.idx = nextIdx;
-    g.phase = 'bidding';
-    g.currentBid = 0;
-    g.highBidderIdx = null;
-    g.lastSold = null;
+    g.idx = nextIdx; g.phase = 'bidding'; g.currentBid = 0; g.highBidderIdx = null; g.lastSold = null;
     g.players.forEach(p => p.inRound = p.money > 0);
     const n = g.players.length;
-    for (let k = 0; k < n; k++){
-      const j = (nextIdx + k) % n;
-      if (g.players[j].inRound){ g.turnIdx = j; break; }
-    }
+    for (let k = 0; k < n; k++){ const j = (nextIdx + k) % n; if (g.players[j].inRound){ g.turnIdx = j; break; } }
     renderGameFromGame();
   }, REVEAL_MS);
 }
@@ -2984,10 +2114,7 @@ function scheduleAutoAdvance(m){
   if (!m.game || m.game.phase !== 'reveal') return;
   if (session.advancing) return;
   session.advancing = true;
-  setTimeout(async () => {
-    try { await games.advance(m.id); } catch(e){}
-    session.advancing = false;
-  }, REVEAL_MS);
+  setTimeout(async () => { try { await games.advance(m.id); } catch(e){} session.advancing = false; }, REVEAL_MS);
 }
 
 function showRevealFlash(sold, participants){
@@ -3022,16 +2149,12 @@ function hideRevealFlash(){ $('flashOverlay').classList.remove('show'); }
 const eloRecorded = {};
 
 function renderResultsFromGame(){
-  hideRevealFlash();
-  session.lastRevealKey = null;
-
+  hideRevealFlash(); session.lastRevealKey = null;
   const m = session.game;
   if (!m) return;
-
   const items = m.items || [];
   const participants = m.participants || [];
   const players = m.game?.players || [];
-
   const ranked = participants.map((p, i) => {
     const pg = players[i] || { money: 0, items: [] };
     const itemObjs = (pg.items || []).map(it => {
@@ -3039,22 +2162,17 @@ function renderResultsFromGame(){
       return { name: itm.name, value: itm.value, price: it.price };
     });
     return {
-      name: p.name, id: p.playerId, photoURL: p.photoURL,
-      isGuest: p.isGuest, forfeited: !!p.forfeited,
+      name: p.name, id: p.playerId, photoURL: p.photoURL, isGuest: p.isGuest, forfeited: !!p.forfeited,
       money: pg.money, items: itemObjs,
       total: itemObjs.reduce((s, it) => s + it.value, 0),
       spent: itemObjs.reduce((s, it) => s + it.price, 0),
-      isYou: i === session.myIdx,
-      idx: i
+      isYou: i === session.myIdx, idx: i
     };
   }).sort((a, b) => (b.total - a.total) || (b.money - a.money));
-
   ranked.forEach((r, i) => r.placement = i);
-
   const soldIdxs = new Set();
   players.forEach(p => (p.items || []).forEach(it => soldIdxs.add(it.idx)));
   const unsold = items.map((it, i) => ({ ...it, idx: i })).filter(it => !soldIdxs.has(it.idx));
-
   const top = ranked[0];
   const tie = ranked.length > 1 && ranked[1].total === top.total && ranked[1].money === top.money;
   const medals = ['🥇','🥈','🥉','4️⃣'];
@@ -3066,7 +2184,6 @@ function renderResultsFromGame(){
       <div class="wname">${esc(top.name)}</div>
       <div class="wsub">${top.total} total value · $${top.money} left</div>
     </div>
-
     <div class="rank-list">
       ${ranked.map((r, i) => `
         <div class="rank-row ${i === 0 ? 'first' : ''} ${r.isGuest ? 'guest' : ''} ${r.forfeited ? 'forfeited' : ''}">
@@ -3087,15 +2204,13 @@ function renderResultsFromGame(){
                   const profit = it.value - it.price;
                   const cls = profit >= 0 ? 'profit' : 'loss';
                   const sign = profit >= 0 ? '+' : '−';
-                  return `<span class="chip">${esc(it.name)} <b>${it.value}</b>
-                          <span class="paid ${cls}">${sign}$${Math.abs(profit)}</span></span>`;
+                  return `<span class="chip">${esc(it.name)} <b>${it.value}</b><span class="paid ${cls}">${sign}$${Math.abs(profit)}</span></span>`;
                 }).join('')
               : '<span class="muted" style="font-size:11px;font-weight:700">bought nothing 😬</span>'}
           </div>
         </div>
       `).join('')}
     </div>
-
     ${unsold.length ? `
       <div class="panel">
         <div class="panel-head"><div class="panel-title">Went unsold</div></div>
@@ -3104,30 +2219,17 @@ function renderResultsFromGame(){
         </div>
       </div>
     ` : ''}
-
     <button class="btn-primary" id="againBtn">Back to setup</button>
     <button class="btn-secondary" id="lbFromResults" style="margin-top:8px">View leaderboard</button>
   `;
-
   $('againBtn').addEventListener('click', async () => {
-    if (m.id !== 'local'){
-      try { await games.leave(m.id, cloud.user.uid); } catch(e){}
-    }
+    if (m.id !== 'local'){ try { await games.leave(m.id, cloud.user.uid); } catch(e){} }
     localGame.running = false;
-    session.game = null;
-    session.gameId = null;
-    session.myIdx = -1;
-    session.lastTurnKey = null;
-    setup.pickedIds = [];
-    setup.guestNames = [];
-    renderSetup();
-    showScreen('setup');
+    session.game = null; session.gameId = null; session.myIdx = -1; session.lastTurnKey = null;
+    setup.pickedIds = []; setup.guestNames = [];
+    renderSetup(); showScreen('setup');
   });
-  $('lbFromResults').addEventListener('click', () => {
-    renderLeaderboard();
-    showScreen('leaderboard');
-    renderHeader();
-  });
+  $('lbFromResults').addEventListener('click', () => { renderLeaderboard(); showScreen('leaderboard'); renderHeader(); });
 }
 
 async function maybeRecordElo(m){
@@ -3135,7 +2237,6 @@ async function maybeRecordElo(m){
   if (m.id === 'local' || m.eloRecorded) return;
   if (eloRecorded[m.id]) return;
   eloRecorded[m.id] = true;
-
   const ref = cloud.fb.dbMod.doc(cloud.db, 'games', m.id);
   try {
     let claimed = false;
@@ -3148,38 +2249,26 @@ async function maybeRecordElo(m){
       claimed = true;
     });
     if (!claimed) return;
-  } catch(e){ console.error('[AuctionWars] Elo claim failed:', e); return; }
-
+  } catch(e){ return; }
   const participants = m.participants || [];
   const players = m.game?.players || [];
   const items = m.items || [];
-
   const ranked = participants.map((p, i) => {
     const pg = players[i] || { items: [] };
-    const total = (pg.items || []).reduce((s, it) => {
-      const itm = items[it.idx] || { value: 0 };
-      return s + itm.value;
-    }, 0);
+    const total = (pg.items || []).reduce((s, it) => { const itm = items[it.idx] || { value: 0 }; return s + itm.value; }, 0);
     return { id: p.playerId, name: p.name, isGuest: p.isGuest, forfeited: !!p.forfeited, total, placement: 0 };
   }).sort((a, b) => b.total - a.total);
   ranked.forEach((r, i) => r.placement = i);
-
   const identified = ranked.filter(r => !r.isGuest && r.id && registry.isValidId(r.id));
   if (!identified.length) return;
-
   const records = await Promise.all(identified.map(async r => {
     const data = await registry.get(r.id);
     return { id: r.id, name: r.name, placement: r.placement, elo: intElo(data?.elo ?? 1000), prev: data || null };
   }));
-
   const ratings = ranked.map(r => {
-    if (!r.isGuest && r.id && registry.isValidId(r.id)){
-      const rec = records.find(x => x.id === r.id);
-      return { rating: rec?.elo ?? 1000, placement: r.placement };
-    }
+    if (!r.isGuest && r.id && registry.isValidId(r.id)){ const rec = records.find(x => x.id === r.id); return { rating: rec?.elo ?? 1000, placement: r.placement }; }
     return { rating: GUEST_ELO, placement: r.placement };
   });
-
   const K = 32, n = ratings.length;
   const deltas = ratings.map(() => 0);
   for (let i = 0; i < n; i++){
@@ -3192,7 +2281,6 @@ async function maybeRecordElo(m){
       deltas[i] += (K / (n - 1)) * (Sa - Ea);
     }
   }
-
   for (const rec of records){
     const idx = ranked.findIndex(r => r.id === rec.id);
     const delta = Math.round(deltas[idx]);
@@ -3222,17 +2310,12 @@ async function renderLeaderboard(){
     <button class="btn-secondary" id="lbBack">Back</button>
   `;
   $('lbBack').addEventListener('click', () => { renderSetup(); showScreen('setup'); renderHeader(); });
-
   let list = (await registry.listAll()).filter(u => u && u.id);
-  // Final sanitization on display
   list.forEach(u => { if (typeof u.elo === 'number') u.elo = intElo(u.elo); });
-
   if (lbSort === 'wins') list.sort((a, b) => (b.wins || 0) - (a.wins || 0) || (b.elo || 0) - (a.elo || 0));
   else if (lbSort === 'games') list.sort((a, b) => (b.games || 0) - (a.games || 0) || (b.elo || 0) - (a.elo || 0));
   else list.sort((a, b) => (b.elo || 0) - (a.elo || 0));
-
   const myId = cloud.profile?.playerId;
-
   if (!list.length){
     el.innerHTML = `
       <div class="lb-header"><h2>Leaderboard</h2><p>No games yet</p></div>
@@ -3242,7 +2325,6 @@ async function renderLeaderboard(){
     $('lbBack2').addEventListener('click', () => { renderSetup(); showScreen('setup'); renderHeader(); });
     return;
   }
-
   el.innerHTML = `
     <div class="lb-header"><h2>Leaderboard</h2><p>${list.length} tracked player${list.length === 1 ? '' : 's'}</p></div>
     <div class="lb-tabs">
@@ -3272,9 +2354,7 @@ async function renderLeaderboard(){
     </div>
     <button class="btn-secondary" id="lbBack3">Back</button>
   `;
-  el.querySelectorAll('.lb-tab').forEach(tab => {
-    tab.addEventListener('click', () => { lbSort = tab.dataset.sort; renderLeaderboard(); });
-  });
+  el.querySelectorAll('.lb-tab').forEach(tab => { tab.addEventListener('click', () => { lbSort = tab.dataset.sort; renderLeaderboard(); }); });
   $('lbBack3').addEventListener('click', () => { renderSetup(); showScreen('setup'); renderHeader(); });
 }
 
@@ -3297,20 +2377,17 @@ function renderEditor(){
   openModal(`
     <div class="modal">
       <div class="modal-title">${editor.id ? 'Edit pack' : 'Create pack'}</div>
-      <div class="modal-sub">Give every item a fixed value. Values stay hidden during the auction and only count at the end.</div>
-
+      <div class="modal-sub">${cloud.user ? 'Saved to your account and shared with other players.' : 'Saved locally on this device.'}</div>
       <div class="field">
         <label class="field-label">Icon</label>
         <div class="emoji-row" id="emojiRow">
           ${EMOJI_CHOICES.map(e => `<button class="emoji-opt ${e === editor.emoji ? 'sel' : ''}" data-emoji="${e}">${e}</button>`).join('')}
         </div>
       </div>
-
       <div class="field">
         <label class="field-label" for="edName">Pack name</label>
         <input id="edName" class="editor-input" maxlength="24" placeholder="e.g. Horror Movies" value="${esc(editor.name)}">
       </div>
-
       <div class="field">
         <label class="field-label">Items &amp; values</label>
         <div class="items-list" id="itemsList"></div>
@@ -3328,7 +2405,6 @@ function renderEditor(){
           <button class="btn-secondary" id="bulkApply" style="margin-top:8px">Replace list</button>
         </div>
       </div>
-
       <div class="modal-actions">
         <button class="btn-ghost" id="edCancel">Cancel</button>
         <button class="btn-primary" id="edSave">Save pack</button>
@@ -3340,28 +2416,20 @@ function renderEditor(){
   $('edName').addEventListener('input', e => { editor.name = e.target.value; });
   $('edCancel').addEventListener('click', closeModal);
   $('addRowBtn').addEventListener('click', () => {
-    editor.items.push({ name: '', value: 5 });
-    renderItemRows();
-    const ins = $('itemsList').querySelectorAll('.item-name-in');
-    if (ins.length) ins[ins.length - 1].focus();
+    editor.items.push({ name: '', value: 5 }); renderItemRows();
+    const ins = $('itemsList').querySelectorAll('.item-name-in'); if (ins.length) ins[ins.length - 1].focus();
   });
-  $('bulkToggle').addEventListener('click', () => {
-    editor.bulkOpen = !editor.bulkOpen;
-    $('bulkArea').classList.toggle('show', editor.bulkOpen);
-  });
+  $('bulkToggle').addEventListener('click', () => { editor.bulkOpen = !editor.bulkOpen; $('bulkArea').classList.toggle('show', editor.bulkOpen); });
   $('bulkApply').addEventListener('click', () => {
     const parsed = parseBulk($('bulkText').value);
     if (!parsed.length){ toast('Nothing to import', 'error'); return; }
-    editor.items = parsed;
-    editor.bulkOpen = false;
-    renderEditor();
+    editor.items = parsed; editor.bulkOpen = false; renderEditor();
     toast(`Imported ${parsed.length} items`, 'success');
   });
   $('edSave').addEventListener('click', saveEditor);
   $('edDelete')?.addEventListener('click', deleteEditor);
   $('emojiRow').addEventListener('click', e => {
-    const b = e.target.closest('[data-emoji]');
-    if (!b) return;
+    const b = e.target.closest('[data-emoji]'); if (!b) return;
     editor.emoji = b.dataset.emoji;
     $('emojiRow').querySelectorAll('.emoji-opt').forEach(x => x.classList.toggle('sel', x.dataset.emoji === editor.emoji));
   });
@@ -3370,21 +2438,18 @@ function renderEditor(){
 function parseBulk(text){
   const out = [];
   String(text).split('\n').forEach(line => {
-    line = line.trim();
-    if (!line) return;
+    line = line.trim(); if (!line) return;
     let name = line, val = 5, m;
     if ((m = line.match(/^(.+?)\s*\|\s*(-?\d+)\s*$/))){ name = m[1].trim(); val = parseInt(m[2], 10); }
     else if ((m = line.match(/^(.+?)\s*[,:]\s*(-?\d+)\s*$/))){ name = m[1].trim(); val = parseInt(m[2], 10); }
-    name = name.replace(/^[-•*]\s*/, '').trim();
-    if (!name) return;
+    name = name.replace(/^[-•*]\s*/, '').trim(); if (!name) return;
     out.push({ name, value: clamp(isNaN(val) ? 5 : val, 1, 99) });
   });
   return out;
 }
 
 function renderItemRows(){
-  const list = $('itemsList');
-  if (!list) return;
+  const list = $('itemsList'); if (!list) return;
   list.innerHTML = editor.items.map((it, i) => `
     <div class="item-row">
       <input class="item-name-in" maxlength="40" placeholder="Item name" value="${esc(it.name)}" data-i="${i}">
@@ -3392,12 +2457,8 @@ function renderItemRows(){
       <button class="item-del" data-i="${i}">×</button>
     </div>
   `).join('');
-  list.querySelectorAll('.item-name-in').forEach(inp => {
-    inp.addEventListener('input', e => { editor.items[+e.target.dataset.i].name = e.target.value; updateEditorMeta(); });
-  });
-  list.querySelectorAll('.item-val-in').forEach(inp => {
-    inp.addEventListener('input', e => { editor.items[+e.target.dataset.i].value = clamp(parseInt(e.target.value, 10) || 1, 1, 99); updateEditorMeta(); });
-  });
+  list.querySelectorAll('.item-name-in').forEach(inp => { inp.addEventListener('input', e => { editor.items[+e.target.dataset.i].name = e.target.value; updateEditorMeta(); }); });
+  list.querySelectorAll('.item-val-in').forEach(inp => { inp.addEventListener('input', e => { editor.items[+e.target.dataset.i].value = clamp(parseInt(e.target.value, 10) || 1, 1, 99); updateEditorMeta(); }); });
   list.querySelectorAll('.item-del').forEach(btn => {
     btn.addEventListener('click', e => {
       const i = +e.target.dataset.i;
@@ -3410,8 +2471,7 @@ function renderItemRows(){
 }
 
 function updateEditorMeta(){
-  const c = $('itemCount'), t = $('totalValue');
-  if (!c || !t) return;
+  const c = $('itemCount'), t = $('totalValue'); if (!c || !t) return;
   const valid = editor.items.filter(it => it.name.trim());
   c.textContent = valid.length;
   t.textContent = valid.reduce((s, it) => s + it.value, 0);
@@ -3426,6 +2486,9 @@ async function saveEditor(){
     const p = setup.myPacks.find(x => x.id === editor.id);
     if (!p || !isOwner(p)){ toast('You can only edit your own packs', 'error'); return; }
     p.name = name; p.emoji = editor.emoji; p.items = items;
+    p.ownerUid = p.ownerUid || cloud.user?.uid || null;
+    p.ownerPlayerId = p.ownerPlayerId || cloud.profile?.playerId || null;
+    p.ownerName = p.ownerName || cloud.profile?.displayName || null;
     await pushPackToCloud(p);
   } else {
     const newPack = {
@@ -3441,7 +2504,7 @@ async function saveEditor(){
   saveLocalPacks(setup.myPacks);
   closeModal();
   renderSetup();
-  toast('Pack saved', 'success');
+  toast(cloud.user ? 'Pack saved and shared' : 'Pack saved locally', 'success');
 }
 
 async function deleteEditor(){
