@@ -2910,28 +2910,3 @@ async function deleteEditor(){
 </script>
 </body>
 </html>
-```
-
-Firestore rules — add these to your existing set
-
-Add these two new collections to your rules file and publish:
-
-```
-match /matches/{matchId} {
-  allow read: if request.auth != null;
-  allow create: if request.auth != null
-    && request.resource.data.hostUid == request.auth.uid
-    && request.resource.data.participants is list
-    && request.resource.data.participants.size() >= 2
-    && request.resource.data.participants.size() <= 4;
-  allow update: if request.auth != null;
-  allow delete: if request.auth != null
-    && resource.data.hostUid == request.auth.uid;
-}
-
-match /invites/{inviteId} {
-  allow read: if request.auth != null;
-  allow create: if request.auth != null;
-  allow update: if request.auth != null;
-  allow delete: if false;
-}
