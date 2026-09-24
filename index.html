@@ -239,19 +239,33 @@
   .waiting-row .badge.status-accepted{background:rgba(52,211,153,.15);color:var(--green)}
   .waiting-row .badge.status-pending{background:rgba(251,191,36,.15);color:var(--gold)}
   .waiting-row .badge.status-declined{background:rgba(248,113,113,.15);color:var(--red)}
+
+  /* ============================================================
+     GAME TOPBAR with menu button
+     ============================================================ */
   .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
   .topic-pill{
     display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;
     background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.24);
-    font-size:11.5px;font-weight:900;color:var(--gold);max-width:60%;overflow:hidden;
+    font-size:11.5px;font-weight:900;color:var(--gold);max-width:50%;overflow:hidden;
   }
   .topic-pill span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .topbar-right{display:flex;align-items:center;gap:6px}
   .live-pill{
     display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;
     background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.28);
     font-size:10px;font-weight:900;letter-spacing:1.2px;color:var(--green);text-transform:uppercase;
   }
   .live-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulseDot 1.6s ease-in-out infinite}
+  .menu-btn{
+    width:32px;height:32px;border-radius:10px;flex-shrink:0;
+    background:rgba(255,255,255,.035);border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    font-size:16px;font-weight:900;color:var(--muted);transition:.15s;
+    line-height:1;
+  }
+  .menu-btn:hover{background:rgba(255,255,255,.08);color:var(--text)}
+  .menu-btn:active{transform:scale(.94)}
   .counter{font-size:11.5px;color:var(--muted);font-weight:800}
   .progress{height:5px;border-radius:99px;background:rgba(255,255,255,.05);overflow:hidden;margin-bottom:16px}
   .progress>div{
@@ -296,6 +310,7 @@
     animation:pulseGold 2.4s ease-in-out infinite;
   }
   .pcard.folded,.pcard.broke{opacity:.36;filter:grayscale(.5)}
+  .pcard.forfeited{opacity:.28;filter:grayscale(.85)}
   .pcard.you::after{
     content:'YOU';position:absolute;bottom:4px;right:6px;
     font-size:7px;font-weight:900;letter-spacing:.8px;color:var(--gold);opacity:.8;
@@ -321,6 +336,7 @@
   }
   .pbadge.high{background:linear-gradient(90deg,#fbbf24,#f59e0b);color:#1a1206}
   .pbadge.out,.pbadge.broke{background:rgba(255,255,255,.13);color:var(--muted)}
+  .pbadge.forfeit{background:linear-gradient(90deg,#ef4444,#dc2626);color:#fff}
   .pcard:has(.pbadge) .p-avatar{margin-top:8px}
   .controls{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:16px}
   .turn-line{
@@ -416,6 +432,7 @@
     background:linear-gradient(135deg,rgba(251,191,36,.08),rgba(251,191,36,.02));
   }
   .rank-row.guest{opacity:.9}
+  .rank-row.forfeited{opacity:.6}
   .rank-head{display:flex;align-items:center;gap:10px}
   .medal{font-size:18px;width:24px;text-align:center;flex-shrink:0}
   .rname{
@@ -426,6 +443,10 @@
   .rname .guest-tag{
     font-size:8.5px;font-weight:900;letter-spacing:1.2px;padding:2px 6px;
     border-radius:99px;background:rgba(167,139,250,.15);color:#c4b5fd;
+  }
+  .rname .ff-tag{
+    font-size:8.5px;font-weight:900;letter-spacing:1.2px;padding:2px 6px;
+    border-radius:99px;background:rgba(248,113,113,.18);color:#fca5a5;
   }
   .rval{font-weight:900;color:var(--gold);font-size:15px}
   .rline{font-size:11px;color:var(--muted);margin:7px 0 10px 34px;font-weight:700}
@@ -500,6 +521,19 @@
   }
   .modal-title{font-size:19px;font-weight:900;margin-bottom:6px}
   .modal-sub{font-size:12px;color:var(--muted);margin-bottom:20px;font-weight:600;line-height:1.6}
+  .menu-list{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+  .menu-item{
+    display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;
+    background:rgba(255,255,255,.03);border:1px solid var(--border);
+    font-size:13.5px;font-weight:800;color:var(--text);text-align:left;
+    transition:.15s;width:100%;
+  }
+  .menu-item:hover{background:rgba(255,255,255,.07)}
+  .menu-item.danger{color:var(--red)}
+  .menu-item.danger:hover{background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.3)}
+  .menu-item .mi-icon{font-size:18px;flex-shrink:0}
+  .menu-item .mi-text{flex:1;min-width:0}
+  .menu-item .mi-sub{font-size:10.5px;color:var(--muted-2);font-weight:700;margin-top:2px}
   .picker-list{
     display:flex;flex-direction:column;gap:6px;max-height:52vh;overflow-y:auto;
     margin:-4px -6px 14px -4px;padding:4px 6px 4px 4px;
@@ -768,7 +802,6 @@ function saveLocalPacks(p){ try { localStorage.setItem(PACKS_KEY, JSON.stringify
 function loadLocalProfile(){ try { return JSON.parse(localStorage.getItem(PROFILE_KEY) || 'null'); } catch(e){ return null; } }
 function saveLocalProfile(p){ try { localStorage.setItem(PROFILE_KEY, JSON.stringify(p)); } catch(e){} }
 
-/* Boot: import Firebase SDK, wire up auth, run smoke test, start polling */
 async function initCloud(){
   registry.load();
   if (!FIREBASE_ENABLED){
@@ -798,8 +831,6 @@ async function initCloud(){
       if (user){
         await loadUserProfile();
         await pullCloudPacks();
-
-        // Smoke test: verify Firestore read works before starting sync
         cloud.healthy = await firestoreSmokeTest();
         if (!cloud.healthy){
           console.error('[AuctionWars] Firestore smoke test failed — sync will not work.');
@@ -807,7 +838,6 @@ async function initCloud(){
           if ($('screen-setup').classList.contains('active')) renderSetup();
           return;
         }
-
         presence.start();
         games.stop();
         games.start(onGamesUpdate);
@@ -820,9 +850,6 @@ async function initCloud(){
       renderHeader();
       if ($('screen-setup').classList.contains('active')) renderSetup();
     });
-
-    // Handle auth errors
-    authMod.onIdTokenChanged(cloud.auth, () => {});
   } catch(e){
     console.error('[AuctionWars] Firebase init FAILED:', e.code || '', e.message || e, e);
     cloud.ready = true;
@@ -830,7 +857,6 @@ async function initCloud(){
   }
 }
 
-/* Smoke test — verifies Firestore is reachable and rules allow our read */
 async function firestoreSmokeTest(){
   try {
     console.log('[AuctionWars] Smoke test: reading players collection...');
@@ -840,20 +866,10 @@ async function firestoreSmokeTest(){
     console.log('[AuctionWars] Firestore smoke test OK — read', snap.size, 'doc(s)');
     return true;
   } catch(e) {
-    console.error('[AuctionWars] Firestore smoke test FAILED:', {
-      code: e.code,
-      message: e.message,
-      name: e.name
-    });
-    if (e.code === 'permission-denied'){
-      console.error('[AuctionWars] → Publish your rules in Firebase Console → Firestore → Rules.');
-    } else if (e.code === 'failed-precondition'){
-      console.error('[AuctionWars] → Firestore may not be enabled. Check Firebase Console → Firestore Database.');
-    } else if (e.code === 'unavailable'){
-      console.error('[AuctionWars] → Network can\'t reach Firestore. Check your internet connection or ad blocker.');
-    } else if (e.code === 'not-found'){
-      console.error('[AuctionWars] → Firestore database doesn\'t exist for this project. Create it in Firebase Console.');
-    }
+    console.error('[AuctionWars] Firestore smoke test FAILED:', { code: e.code, message: e.message, name: e.name });
+    if (e.code === 'permission-denied') console.error('[AuctionWars] → Publish your rules in Firebase Console → Firestore → Rules.');
+    else if (e.code === 'failed-precondition') console.error('[AuctionWars] → Firestore may not be enabled.');
+    else if (e.code === 'unavailable') console.error('[AuctionWars] → Network can\'t reach Firestore.');
     return false;
   }
 }
@@ -978,7 +994,7 @@ const presence = {
         online: true, lastSeen: Date.now(),
         ownerUid: cloud.user.uid
       }, { merge: true });
-    } catch(e){ /* silent — presence is best-effort */ }
+    } catch(e){}
   },
   async setOffline(){
     if (!cloud.user || !cloud.profile?.playerId || !cloud.db) return;
@@ -1003,26 +1019,22 @@ const presence = {
 };
 
 /* ============================================================
-   GAMES MODULE — polling primary, listener as bonus
+   GAMES MODULE — polling primary, listener bonus
    ============================================================ */
 const games = {
   pollTimer: null,
   listenerUnsub: null,
   lastFingerprint: null,
   currentCb: null,
-  status: 'idle', // 'live' | 'polling' | 'error'
+  status: 'idle',
 
   start(cb){
     this.stop();
     this.currentCb = cb;
     this.status = 'polling';
     updateSyncDot();
-
-    // Fire immediately, then poll
     this.poll();
     this.pollTimer = setInterval(() => this.poll(), POLL_INTERVAL_MS);
-
-    // Also try to attach a bonus listener (best-effort; if it fails we just keep polling)
     this.attachListener();
   },
 
@@ -1043,22 +1055,15 @@ const games = {
         cloud.fb.dbMod.where('invitedUids', 'array-contains', cloud.user.uid)
       );
       this.listenerUnsub = cloud.fb.dbMod.onSnapshot(q,
-        snap => {
-          this.status = 'live';
-          updateSyncDot();
-          this.handleSnapshot(snap);
-        },
+        snap => { this.status = 'live'; updateSyncDot(); this.handleSnapshot(snap); },
         err => {
-          // Listener died — polling will keep working
           console.error('[AuctionWars] Live listener unavailable (code', err.code, '). Continuing with polling.');
           if (this.listenerUnsub){ try { this.listenerUnsub(); } catch(e){} this.listenerUnsub = null; }
           this.status = 'polling';
           updateSyncDot();
         }
       );
-    } catch(e){
-      console.error('[AuctionWars] Listener setup threw:', e);
-    }
+    } catch(e){ console.error('[AuctionWars] Listener setup threw:', e); }
   },
 
   async poll(){
@@ -1080,7 +1085,6 @@ const games = {
   handleSnapshot(snap){
     const list = [];
     snap.forEach(d => list.push({ id: d.id, ...d.data() }));
-    // Prefer running > open > ended, then most recent
     list.sort((a, b) => {
       const rank = s => s === 'running' ? 3 : s === 'open' ? 2 : s === 'ended' ? 1 : 0;
       const ra = rank(a.status), rb = rank(b.status);
@@ -1088,14 +1092,11 @@ const games = {
       return (b.updatedAt || 0) - (a.updatedAt || 0);
     });
     const top = list[0] || null;
-
-    // Deduplicate — only fire callback if something material changed
     const fp = top
       ? `${top.id}|${top.status}|${top.game?.version || 0}|${top.game?.phase || ''}|${top.updatedAt || 0}`
       : 'none';
     if (fp === this.lastFingerprint) return;
     this.lastFingerprint = fp;
-
     if (this.currentCb) this.currentCb(top);
   },
 
@@ -1124,7 +1125,8 @@ const games = {
         name: p.name,
         photoURL: p.photoURL || '',
         isGuest: !!p.isGuest,
-        status: (p.isGuest || p.uid === cloud.user.uid) ? 'joined' : 'invited'
+        status: (p.isGuest || p.uid === cloud.user.uid) ? 'joined' : 'invited',
+        forfeited: false
       })),
       items,
       settings,
@@ -1179,7 +1181,7 @@ const games = {
         players: joined.map(() => ({ money: cash, items: [], inRound: true })),
         version: 0, updatedAt: Date.now()
       };
-      const newParticipants = joined.map((p, i) => ({ ...p, idx: i }));
+      const newParticipants = joined.map((p, i) => ({ ...p, idx: i, forfeited: false }));
       const newInvitedUids = newParticipants.filter(p => p.uid).map(p => p.uid);
       tx.update(ref, {
         participants: newParticipants,
@@ -1204,8 +1206,10 @@ const games = {
       const cur = data.participants[curIdx];
       const myIdx = data.participants.findIndex(p => p.uid === myUid);
 
+      if (cur.forfeited) throw new Error('That player has forfeited');
       if (!cur.isGuest && myIdx !== curIdx) throw new Error('Not your turn');
       if (myIdx === -1) throw new Error('You are not in this game');
+      if (data.participants[myIdx].forfeited) throw new Error('You have forfeited');
 
       const curPlayer = g.players[curIdx];
       if (amount <= g.currentBid) throw new Error('Bid must be higher than $' + g.currentBid);
@@ -1242,6 +1246,7 @@ const games = {
       const curIdx = g.turnIdx;
       const cur = data.participants[curIdx];
       const myIdx = data.participants.findIndex(p => p.uid === myUid);
+      if (cur.forfeited) throw new Error('That player has forfeited');
       if (!cur.isGuest && myIdx !== curIdx) throw new Error('Not your turn');
 
       const newPlayers = g.players.map((p, i) => i === curIdx ? { ...p, inRound: false } : p);
@@ -1256,9 +1261,7 @@ const games = {
           price = g.currentBid;
         }
         const updated = newPlayers.map((p, i) => {
-          if (i === winnerIdx){
-            return { ...p, money: p.money - price, items: [...(p.items||[]), { idx: g.idx, price }] };
-          }
+          if (i === winnerIdx) return { ...p, money: p.money - price, items: [...(p.items||[]), { idx: g.idx, price }] };
           return p;
         });
         tx.update(ref, {
@@ -1284,6 +1287,94 @@ const games = {
           updatedAt: Date.now()
         });
       }
+    });
+  },
+
+  /**
+   * Forfeit — the caller leaves the auction. Their money goes to 0, they're out.
+   * If they were the high bidder, the current bid resets to 0.
+   * If it was their turn, advance to next active player.
+   * If only one active player remains after that, resolve the item and end.
+   */
+  async forfeit(gameId, myUid){
+    const ref = cloud.fb.dbMod.doc(cloud.db, 'games', gameId);
+    await cloud.fb.dbMod.runTransaction(cloud.db, async tx => {
+      const snap = await tx.get(ref);
+      if (!snap.exists()) throw new Error('Game ended');
+      const data = snap.data();
+      if (data.status !== 'running') throw new Error('Game not running');
+      const g = data.game;
+      if (!g) throw new Error('No game state');
+
+      const myIdx = data.participants.findIndex(p => p.uid === myUid);
+      if (myIdx === -1) throw new Error('You are not in this game');
+      if (data.participants[myIdx].forfeited) throw new Error('Already forfeited');
+
+      // Mark participant as forfeited
+      const newParticipants = data.participants.map((p, i) =>
+        i === myIdx ? { ...p, forfeited: true } : p
+      );
+
+      // Zero their cash and put them out
+      const newPlayers = g.players.map((p, i) =>
+        i === myIdx ? { ...p, money: 0, inRound: false } : p
+      );
+
+      // If they were the high bidder and we're mid-auction, void their bid
+      let newHighBidderIdx = g.highBidderIdx;
+      let newCurrentBid = g.currentBid;
+      if (g.phase === 'bidding' && g.highBidderIdx === myIdx){
+        newHighBidderIdx = null;
+        newCurrentBid = 0;
+      }
+
+      // Only one active player left? Resolve the item and end.
+      const activeCount = newPlayers.filter(p => p.inRound).length;
+
+      if (g.phase === 'bidding' && activeCount <= 1){
+        const item = data.items[g.idx];
+        const active = newPlayers.map((p,i)=>({...p,idx:i})).filter(p => p.inRound);
+        let winnerIdx = null, price = 0;
+        if (active.length === 1 && newHighBidderIdx !== null && active[0].idx === newHighBidderIdx){
+          winnerIdx = newHighBidderIdx;
+          price = newCurrentBid;
+        }
+        const finalPlayers = newPlayers.map((p, i) => {
+          if (i === winnerIdx) return { ...p, money: p.money - price, items: [...(p.items||[]), { idx: g.idx, price }] };
+          return p;
+        });
+        tx.update(ref, {
+          participants: newParticipants,
+          'game.players': finalPlayers,
+          'game.phase': 'reveal',
+          'game.lastSold': { winnerIdx, price, value: item.value, name: item.name },
+          'game.version': (g.version || 0) + 1,
+          'game.updatedAt': Date.now(),
+          updatedAt: Date.now()
+        });
+        return;
+      }
+
+      // Advance turn if it was theirs
+      let nextTurnIdx = g.turnIdx;
+      if (g.turnIdx === myIdx){
+        const n = newPlayers.length;
+        for (let k = 1; k <= n; k++){
+          const j = (myIdx + k) % n;
+          if (newPlayers[j].inRound){ nextTurnIdx = j; break; }
+        }
+      }
+
+      tx.update(ref, {
+        participants: newParticipants,
+        'game.players': newPlayers,
+        'game.turnIdx': nextTurnIdx,
+        'game.highBidderIdx': newHighBidderIdx,
+        'game.currentBid': newCurrentBid,
+        'game.version': (g.version || 0) + 1,
+        'game.updatedAt': Date.now(),
+        updatedAt: Date.now()
+      });
     });
   },
 
@@ -1375,7 +1466,8 @@ const session = {
   pendingBid: 1,
   advancing: false,
   lastRevealKey: null,
-  inviteModalOpen: null
+  inviteModalOpen: null,
+  menuOpen: false
 };
 
 /* ============================================================
@@ -1518,7 +1610,7 @@ async function renderSetup(){
   } else if (!cloud.user){
     cloudBanner = `<div class="banner"><span class="icon">☁️</span><span>Sign in with Google to invite real players, track Elo, and sync packs.</span></div>`;
   } else if (!cloud.healthy){
-    cloudBanner = `<div class="banner danger"><span class="icon">⚠️</span><span>Firestore isn't reachable. Open the browser console for the exact error, and check <b>Firebase Console → Firestore Database</b> is enabled and rules are published. Falling back to local mode.</span></div>`;
+    cloudBanner = `<div class="banner danger"><span class="icon">⚠️</span><span>Firestore isn't reachable. Open the browser console for the exact error. Falling back to local mode.</span></div>`;
   } else {
     const pid = cloud.profile.playerId || '—';
     cloudBanner = `<div class="banner ok"><span class="icon">✓</span><span>Signed in as <b>${esc(cloud.profile.displayName)}</b> · ID <b style="font-family:ui-monospace,Menlo,monospace;letter-spacing:1px">${esc(pid)}</b></span></div>`;
@@ -1655,7 +1747,7 @@ async function renderSetup(){
 
     <button class="btn-primary" id="startBtn" ${(!selected || available < 2) ? 'disabled' : ''}>Start Auction</button>
     <p style="color:var(--muted);font-size:11.5px;text-align:center;line-height:1.7;margin:16px 6px 0;font-weight:600">
-      Invited players get a live invite on their screen. Guests play instantly.
+      Invited players get a live invite. Guests play instantly. Anyone can forfeit mid-match.
     </p>
   `;
 }
@@ -1819,7 +1911,6 @@ async function createGame(){
       participants.push({ uid: null, playerId: null, name, photoURL: '', isGuest: true });
     }
   } else {
-    // Local mode
     const names = setup.guestNames.length ? setup.guestNames : ['Player 1', 'Player 2'];
     for (const n of names) participants.push({ uid: null, playerId: null, name: n, photoURL: '', isGuest: true });
     startLocalGame(participants);
@@ -1857,7 +1948,7 @@ function startLocalGame(participants){
   const count = Math.min(setup.itemCount, pool.length);
   const chosen = shuffle(pool).slice(0, count);
 
-  localGame.participants = participants.map((p, i) => ({ ...p, idx: i }));
+  localGame.participants = participants.map((p, i) => ({ ...p, idx: i, forfeited: false }));
   localGame.items = chosen.map(it => ({ name: it.name, value: it.value }));
   localGame.game = {
     idx: 0, phase: 'bidding', turnIdx: 0, currentBid: 0, highBidderIdx: null, lastSold: null,
@@ -1910,7 +2001,7 @@ function onGamesUpdate(game){
     if (me && me.status === 'invited'){
       showInviteModal(game, me);
     } else if (me && me.status === 'joined'){
-      closeModal(); // close invite if we joined
+      closeModal();
       renderWaiting();
       showScreen('waiting');
     }
@@ -1978,7 +2069,7 @@ function showInviteModal(game, me){
 }
 
 $('modal').addEventListener('click', e => {
-  if (e.target === $('modal') && !session.inviteModalOpen) closeModal();
+  if (e.target === $('modal') && !session.inviteModalOpen && !session.menuOpen) closeModal();
 });
 
 /* ============================================================
@@ -2032,6 +2123,7 @@ function renderWaiting(){
       <button class="btn-ghost btn-danger" id="cancelBtn" style="width:100%;margin-top:8px">Cancel match</button>
     ` : `
       <div class="spectator-note">Waiting for the host to start…</div>
+      <button class="btn-ghost btn-danger" id="leaveWaitBtn" style="width:100%;margin-top:12px">Leave match</button>
     `}
   `;
 
@@ -2046,6 +2138,14 @@ function renderWaiting(){
     session.gameId = null;
     setup.pickedIds = [];
     setup.guestNames = [];
+    renderSetup();
+    showScreen('setup');
+  });
+  $('leaveWaitBtn')?.addEventListener('click', async () => {
+    if (!confirm('Leave this match?')) return;
+    await games.leave(session.gameId, cloud.user.uid);
+    session.game = null;
+    session.gameId = null;
     renderSetup();
     showScreen('setup');
   });
@@ -2067,7 +2167,8 @@ function renderGameFromGame(){
   const item = items[game.idx] || { name: '—', value: 0 };
   const curIdx = game.turnIdx;
   const curParticipant = participants[curIdx];
-  const isGuestTurn = curParticipant?.isGuest || false;
+  const curForfeited = !!curParticipant?.forfeited;
+  const isGuestTurn = curParticipant?.isGuest && !curForfeited;
   const isMyTurn = session.myIdx === curIdx;
 
   const curPlayer = players[curIdx];
@@ -2075,14 +2176,15 @@ function renderGameFromGame(){
   const maxB = curPlayer?.money ?? 0;
   session.pendingBid = clamp(session.pendingBid || minB, minB, Math.max(minB, maxB));
 
-  const canBid = game.phase === 'bidding' && (isMyTurn || isGuestTurn) && maxB >= minB;
+  const canBid = game.phase === 'bidding' && !curForfeited && (isMyTurn || isGuestTurn) && maxB >= minB;
 
   g.innerHTML = `
     <div class="topbar">
       <div class="topic-pill"><span>${esc(m.settings?.packName || 'Auction')}</span></div>
-      <div style="display:flex;align-items:center;gap:8px">
+      <div class="topbar-right">
         <div class="live-pill"><span class="dot"></span>Live</div>
         <div class="counter">${game.idx + 1}/${total}</div>
+        <button class="menu-btn" id="gameMenuBtn" title="Match menu">⋯</button>
       </div>
     </div>
     <div class="progress"><div style="width:${(game.idx / total) * 100}%"></div></div>
@@ -2103,12 +2205,19 @@ function renderGameFromGame(){
       ${participants.map((p, i) => {
         const pg = players[i] || { money: 0, items: [], inRound: false };
         const isMe = i === session.myIdx;
-        const badge = (i === game.highBidderIdx && game.phase === 'bidding')
-          ? '<div class="pbadge high">High bid</div>'
-          : (pg.money <= 0) ? '<div class="pbadge broke">Broke</div>'
-          : (!pg.inRound ? '<div class="pbadge out">Out</div>' : '');
+        const forfeited = !!p.forfeited;
+        let badge = '';
+        if (forfeited){
+          badge = '<div class="pbadge forfeit">Forfeit</div>';
+        } else if (i === game.highBidderIdx && game.phase === 'bidding'){
+          badge = '<div class="pbadge high">High bid</div>';
+        } else if (pg.money <= 0){
+          badge = '<div class="pbadge broke">Broke</div>';
+        } else if (!pg.inRound){
+          badge = '<div class="pbadge out">Out</div>';
+        }
         return `
-          <div class="pcard ${i === curIdx && game.phase === 'bidding' ? 'active' : ''} ${(!pg.inRound && pg.money > 0) ? 'folded' : ''} ${pg.money <= 0 ? 'broke' : ''} ${isMe ? 'you' : ''}">
+          <div class="pcard ${i === curIdx && game.phase === 'bidding' && !forfeited ? 'active' : ''} ${(!pg.inRound && pg.money > 0 && !forfeited) ? 'folded' : ''} ${pg.money <= 0 && !forfeited ? 'broke' : ''} ${forfeited ? 'forfeited' : ''} ${isMe ? 'you' : ''}">
             ${badge}
             <div class="p-avatar" style="background:${p.photoURL ? 'transparent' : colorFor(p.name)}">
               ${p.photoURL ? `<img src="${esc(p.photoURL)}" alt="">` : esc(initialsOf(p.name))}
@@ -2123,12 +2232,14 @@ function renderGameFromGame(){
     </div>
 
     <div class="controls">
-      ${renderTurnLine(curParticipant, isMyTurn, isGuestTurn, game)}
+      ${renderTurnLine(curParticipant, isMyTurn, isGuestTurn, curForfeited, game)}
       ${game.phase === 'reveal'
         ? `<div class="cant" style="color:var(--gold)">Settling item…</div>`
-        : renderBidControls(canBid, minB, isGuestTurn, curParticipant, isMyTurn, game)}
+        : renderBidControls(canBid, minB, isGuestTurn, curParticipant, isMyTurn, curForfeited, game)}
     </div>
   `;
+
+  $('gameMenuBtn')?.addEventListener('click', openGameMenu);
 
   if (game.phase === 'reveal' && game.lastSold){
     const key = `${game.idx}-${game.lastSold.winnerIdx}-${game.lastSold.price}`;
@@ -2142,9 +2253,12 @@ function renderGameFromGame(){
   }
 }
 
-function renderTurnLine(cur, isMyTurn, isGuestTurn, game){
+function renderTurnLine(cur, isMyTurn, isGuestTurn, curForfeited, game){
   if (game.phase === 'reveal') return `<div class="turn-line">Settling…</div>`;
   if (!cur) return '';
+  if (curForfeited){
+    return `<div class="turn-line">Advancing past forfeited player…</div>`;
+  }
   if (isGuestTurn){
     return `<div class="turn-line guest-turn">🎭 <strong>${esc(cur.name)}</strong> (guest) — anyone can bid</div>`;
   }
@@ -2154,8 +2268,9 @@ function renderTurnLine(cur, isMyTurn, isGuestTurn, game){
   return `<div class="turn-line">Waiting for <strong>${esc(cur.name)}</strong>…</div>`;
 }
 
-function renderBidControls(canBid, minB, isGuestTurn, cur, isMyTurn, game){
+function renderBidControls(canBid, minB, isGuestTurn, cur, isMyTurn, curForfeited, game){
   if (!canBid){
+    if (curForfeited) return `<div class="spectator-note">Waiting for next active player…</div>`;
     const curP = game.players[game.turnIdx];
     if (curP && curP.money < minB){
       return `<div class="cant">Player can't cover $${minB} minimum</div>`;
@@ -2179,6 +2294,116 @@ function renderBidControls(canBid, minB, isGuestTurn, cur, isMyTurn, game){
   `;
 }
 
+/* ============================================================
+   GAME MENU (with Forfeit)
+   ============================================================ */
+function openGameMenu(){
+  const m = session.game;
+  if (!m) return;
+  session.menuOpen = true;
+
+  const me = session.myIdx >= 0 ? m.participants[session.myIdx] : null;
+  const isHost = m.hostUid === cloud.user?.uid;
+  const canForfeit = me && !me.forfeited && m.status === 'running';
+
+  openModal(`
+    <div class="modal" style="max-width:420px">
+      <div class="modal-title">Match menu</div>
+      <div class="modal-sub">${esc(m.settings?.packName || 'Auction')}</div>
+
+      <div class="menu-list">
+        ${canForfeit ? `
+          <button class="menu-item danger" id="menuForfeit">
+            <span class="mi-icon">🏳️</span>
+            <span class="mi-text">
+              Forfeit match
+              <div class="mi-sub">Leave the auction. Your cash goes to $0 and you're out of bidding.</div>
+            </span>
+          </button>
+        ` : ''}
+
+        ${isHost ? `
+          <button class="menu-item danger" id="menuEnd">
+            <span class="mi-icon">🛑</span>
+            <span class="mi-text">
+              End match for everyone
+              <div class="mi-sub">Cancels the game and closes it for all players.</div>
+            </span>
+          </button>
+        ` : ''}
+
+        <button class="menu-item" id="menuClose">
+          <span class="mi-icon">✕</span>
+          <span class="mi-text">
+            Close
+            <div class="mi-sub">Back to the auction.</div>
+          </span>
+        </button>
+      </div>
+    </div>
+  `);
+
+  $('menuClose')?.addEventListener('click', () => {
+    session.menuOpen = false;
+    closeModal();
+  });
+  $('menuForfeit')?.addEventListener('click', () => {
+    session.menuOpen = false;
+    closeModal();
+    confirmForfeit();
+  });
+  $('menuEnd')?.addEventListener('click', async () => {
+    session.menuOpen = false;
+    closeModal();
+    if (!confirm('End the match for everyone?')) return;
+    await games.cancel(session.gameId);
+    session.game = null;
+    session.gameId = null;
+    setup.pickedIds = [];
+    setup.guestNames = [];
+    renderSetup();
+    showScreen('setup');
+  });
+}
+
+function confirmForfeit(){
+  const m = session.game;
+  if (!m) return;
+  const me = session.myIdx >= 0 ? m.participants[session.myIdx] : null;
+  const myMoney = (m.game?.players?.[session.myIdx]?.money) ?? 0;
+
+  openModal(`
+    <div class="modal" style="max-width:420px">
+      <div style="text-align:center;margin-bottom:20px">
+        <div style="font-size:40px;line-height:1;margin-bottom:12px">🏳️</div>
+        <div style="font-size:19px;font-weight:900;letter-spacing:-.3px">Forfeit this match?</div>
+        <div style="font-size:13px;color:var(--muted);font-weight:600;margin-top:10px;line-height:1.6">
+          You'll be marked out of the auction. Your remaining <b style="color:var(--gold)">$${myMoney}</b> is gone,
+          and you can't bid for the rest of this match. Items you already won stay with you.
+        </div>
+      </div>
+      <button class="btn-primary" id="ffConfirm" style="background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;box-shadow:0 10px 30px rgba(239,68,68,.3);margin-bottom:8px">Yes, forfeit</button>
+      <button class="btn-ghost" id="ffCancel" style="width:100%">Keep playing</button>
+    </div>
+  `);
+
+  $('ffCancel').addEventListener('click', closeModal);
+  $('ffConfirm').addEventListener('click', async () => {
+    closeModal();
+    try {
+      await games.forfeit(session.gameId, cloud.user.uid);
+      games.poll();
+      toast('You forfeited', 'error');
+    } catch(e){
+      console.error('[AuctionWars] Forfeit failed:', e);
+      toast(e.message || 'Failed to forfeit', 'error');
+    }
+  });
+}
+
+/* ============================================================
+   GAME ACTION HANDLER
+   ============================================================ */
 $('screen-game').addEventListener('click', async e => {
   const btn = e.target.closest('[data-action]');
   if (!btn) return;
@@ -2195,9 +2420,13 @@ $('screen-game').addEventListener('click', async e => {
 
   const curIdx = game.turnIdx;
   const cur = m.participants[curIdx];
-  const isGuestTurn = cur?.isGuest;
+  const curForfeited = !!cur?.forfeited;
+  const isGuestTurn = cur?.isGuest && !curForfeited;
   const isMyTurn = session.myIdx === curIdx;
   if (!isMyTurn && !isGuestTurn) return;
+
+  const me = m.participants[session.myIdx];
+  if (me?.forfeited) return;
 
   const curPlayer = game.players[curIdx];
   const minB = game.currentBid + 1;
@@ -2219,7 +2448,6 @@ $('screen-game').addEventListener('click', async e => {
     if (amt <= game.currentBid || amt > curPlayer.money) return;
     try {
       await games.bid(m.id, amt, cloud.user.uid);
-      // Force immediate poll so my own action reflects instantly
       games.poll();
     }
     catch(err){ toast(err.message || 'Bid failed', 'error'); }
@@ -2232,7 +2460,7 @@ $('screen-game').addEventListener('click', async e => {
   }
 });
 
-/* Local actions */
+/* Local actions (unchanged) */
 function handleLocalAction(btn){
   const g = localGame.game;
   if (g.phase !== 'bidding') return;
@@ -2382,7 +2610,8 @@ function renderResultsFromGame(){
       return { name: itm.name, value: itm.value, price: it.price };
     });
     return {
-      name: p.name, id: p.playerId, photoURL: p.photoURL, isGuest: p.isGuest,
+      name: p.name, id: p.playerId, photoURL: p.photoURL,
+      isGuest: p.isGuest, forfeited: !!p.forfeited,
       money: pg.money, items: itemObjs,
       total: itemObjs.reduce((s, it) => s + it.value, 0),
       spent: itemObjs.reduce((s, it) => s + it.price, 0),
@@ -2411,11 +2640,12 @@ function renderResultsFromGame(){
 
     <div class="rank-list">
       ${ranked.map((r, i) => `
-        <div class="rank-row ${i === 0 ? 'first' : ''} ${r.isGuest ? 'guest' : ''}">
+        <div class="rank-row ${i === 0 ? 'first' : ''} ${r.isGuest ? 'guest' : ''} ${r.forfeited ? 'forfeited' : ''}">
           <div class="rank-head">
             <span class="medal">${medals[i] || ''}</span>
             <span class="rname">
               ${esc(r.name)}
+              ${r.forfeited ? '<span class="ff-tag">FORFEITED</span>' : ''}
               ${r.isGuest ? '<span class="guest-tag">GUEST</span>' : (r.id ? `<span class="rid">${esc(r.id)}</span>` : '')}
               ${r.isYou ? '<span class="lb-you">You</span>' : ''}
             </span>
@@ -2500,10 +2730,12 @@ async function maybeRecordElo(m){
       const itm = items[it.idx] || { value: 0 };
       return s + itm.value;
     }, 0);
-    return { id: p.playerId, name: p.name, isGuest: p.isGuest, total, placement: 0 };
+    return { id: p.playerId, name: p.name, isGuest: p.isGuest, forfeited: !!p.forfeited, total, placement: 0 };
   }).sort((a, b) => b.total - a.total);
   ranked.forEach((r, i) => r.placement = i);
 
+  // Forfeited players take an Elo hit as if they finished last in their match,
+  // but they still count for opponents' rating math.
   const identified = ranked.filter(r => !r.isGuest && r.id && registry.isValidId(r.id));
   if (!identified.length) return;
 
@@ -2538,7 +2770,7 @@ async function maybeRecordElo(m){
     const delta = deltas[idx];
     const newElo = clamp(rec.elo + delta, 100, 4000);
     const prev = rec.prev || {};
-    const won = rec.placement === 0;
+    const won = rec.placement === 0 && !ranked[idx].forfeited;
     await registry.upsert(rec.id, {
       name: rec.name, elo: newElo,
       wins: (prev.wins || 0) + (won ? 1 : 0),
